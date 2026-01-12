@@ -1,0 +1,44 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/HomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Home"
+      },
+      {
+        "comment": "",
+        "key": "Credits"
+      },
+      {
+        "comment": "",
+        "key": "credits"
+      },
+      {
+        "comment": "",
+        "key": "Low balance"
+      },
+      {
+        "comment": "",
+        "key": "Buy"
+      },
+      {
+        "comment": "",
+        "key": "Categories"
+      },
+      {
+        "comment": "",
+        "key": "Featured Models"
+      },
+      {
+        "comment": "",
+        "key": "See all"
+      },
+      {
+        "comment": "",
+        "key": "Popular"
+      }
+    ]
+  },
+  "version": 1
+}

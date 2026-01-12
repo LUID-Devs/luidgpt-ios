@@ -1,0 +1,238 @@
+{
+  "" : {
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPT-master.dia",
+    "emit-module-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPT-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPT-master-emit-module.dia",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPT-master.swiftdeps"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/Auth/AuthService.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService-d2cefa6e8c83e1b772e59db44c237cb2~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/Config/AppConfig.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AppConfig-0cab172757a234731f3b49a999c1f18f~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/Components/LGBadge.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGBadge-36330133a82185ab6f847a28a6d169a3~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/Components/LGButton.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton-304f64dc40c8e31848f95ce827176ecb~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/Components/LGCard.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard-603b4bfb978cc1408164cd08923f1b10~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/Components/LGLoadingView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGLoadingView-4c711db92b25d63857ccfb718abd2351~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/Components/LGTextField.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTextField-260ff7f3182fdce68c0ae9a770159da5~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/LGColors.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGColors-98906a280cd5a967c2bafd00161f1bbb~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/LGSpacing.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGSpacing-ffa545e53bb853f2f9edf97d812f8b8b~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/DesignSystem/LGTypography.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGTypography-75e6f5af65eadc760b377e31f739f252~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Core/Storage/KeychainManager.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/KeychainManager-fbe122ae6891509bfe400bd72fcd9088~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/LuidGPTApp.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp-bddab1dd483c1be8ba35826bec376f5f~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Models/Category.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-eeaf040a9024b0aafdda527aececb86f~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Models/Generation.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Generation-795477548cc271c66c641e1fe43b6143~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Models/ReplicateModel.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel-50e0f586010419c5d763b22f25444999~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Models/User.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/User-d2703b2632d6d4f494c10c97afb736a7~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/ViewModels/AuthViewModel.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthViewModel-df3c3108983791182445bcaf2047c646~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Views/Auth/AuthenticationView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView-939ad2ada6ffee5518ddc1e2afc199c7~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Views/Auth/ForgotPasswordView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ForgotPasswordView-66dad06b122fbed04be57ee6559740e1~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Views/Auth/LoginView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView-e5cea9098a792430a355890e5d6f9b38~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Views/Auth/RegisterView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/RegisterView-b6d174ae7391f103577867f0eb394418~partial.swiftmodule"
+  },
+  "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/Views/Auth/VerifyEmailView.swift" : {
+    "const-values" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.swiftconstvalues",
+    "dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.d",
+    "diagnostics" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.dia",
+    "index-unit-output-path" : "/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.o",
+    "llvm-bc" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.bc",
+    "object" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.o",
+    "swift-dependencies" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2.swiftdeps",
+    "swiftmodule" : "/Users/alaindimabuyo/luid_projects/luidgpt-ios/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-75f38bf2f38ce51f5431618bac1b2ac2~partial.swiftmodule"
+  }
+}

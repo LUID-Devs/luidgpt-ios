@@ -1,0 +1,18 @@
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Services/UserService.swift":
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UserService.dia"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UserService.o"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UserService.swiftconstvalues"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UserService.swiftdeps"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UserService.d"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Auth/VerifyEmailView.swift":
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-ab82b6ca7599bf5c076452b8c2aaeaee.dia"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-ab82b6ca7599bf5c076452b8c2aaeaee.d"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-ab82b6ca7599bf5c076452b8c2aaeaee.swiftdeps"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-ab82b6ca7599bf5c076452b8c2aaeaee.swiftconstvalues"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/VerifyEmailView-ab82b6ca7599bf5c076452b8c2aaeaee.o"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Models/ReplicateModel.swift":
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel.swiftdeps"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel.swiftconstvalues"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel.dia"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel.o"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/ReplicateModel.d"

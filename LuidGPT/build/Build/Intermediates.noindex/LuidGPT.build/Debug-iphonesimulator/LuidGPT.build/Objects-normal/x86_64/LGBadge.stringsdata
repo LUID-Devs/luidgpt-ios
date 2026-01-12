@@ -1,0 +1,32 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/DesignSystem/Components/LGBadge.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Category Badges"
+      },
+      {
+        "comment": "",
+        "key": "Tier Badges"
+      },
+      {
+        "comment": "",
+        "key": "Credit Badges"
+      },
+      {
+        "comment": "",
+        "key": "Status Badges"
+      },
+      {
+        "comment": "",
+        "key": "Status Badges with Dots"
+      },
+      {
+        "comment": "",
+        "key": "Badge Sizes"
+      }
+    ]
+  },
+  "version": 1
+}

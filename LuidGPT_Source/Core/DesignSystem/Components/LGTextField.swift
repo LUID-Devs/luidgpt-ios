@@ -1,0 +1,245 @@
+//
+//  LGTextField.swift
+//  LuidGPT
+//
+//  Text field and text area components matching web inputs
+//
+
+import SwiftUI
+
+/// Text field style
+enum LGTextFieldStyle {
+    case standard
+    case password
+    case search
+}
+
+/// LuidGPT Text Field
+struct LGTextField: View {
+    let placeholder: String
+    let icon: String?
+    let style: LGTextFieldStyle
+    @Binding var text: String
+    @FocusState private var isFocused: Bool
+
+    var isError: Bool = false
+    var errorMessage: String? = nil
+    var onSubmit: (() -> Void)? = nil
+    var isSecure: Bool = false
+    var keyboardType: UIKeyboardType = .default
+    var autocapitalization: TextInputAutocapitalization = .sentences
+
+    init(
+        text: Binding<String>,
+        placeholder: String,
+        icon: String? = nil,
+        style: LGTextFieldStyle = .standard,
+        isError: Bool = false,
+        errorMessage: String? = nil,
+        onSubmit: (() -> Void)? = nil,
+        isSecure: Bool = false,
+        keyboardType: UIKeyboardType = .default,
+        autocapitalization: TextInputAutocapitalization = .sentences
+    ) {
+        self._text = text
+        self.placeholder = placeholder
+        self.icon = icon
+        self.style = style
+        self.isError = isError
+        self.errorMessage = errorMessage
+        self.onSubmit = onSubmit
+        self.isSecure = isSecure
+        self.keyboardType = keyboardType
+        self.autocapitalization = autocapitalization
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 12) {
+                if let icon = icon {
+                    Image(systemName: icon)
+                        .font(.system(size: 16))
+                        .foregroundColor(iconColor)
+                }
+
+                if isSecure || style == .password {
+                    SecureField(placeholder, text: $text)
+                        .focused($isFocused)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .keyboardType(keyboardType)
+                        .onSubmit {
+                            onSubmit?()
+                        }
+                } else {
+                    TextField(placeholder, text: $text)
+                        .focused($isFocused)
+                        .textInputAutocapitalization(autocapitalization)
+                        .autocorrectionDisabled(style == .search)
+                        .keyboardType(keyboardType)
+                        .onSubmit {
+                            onSubmit?()
+                        }
+                }
+            }
+            .font(LGFonts.body)
+            .foregroundColor(LGColors.foreground)
+            .padding(.horizontal, LGSpacing.md)
+            .padding(.vertical, 12)
+            .background(backgroundColor)
+            .cornerRadius(LGSpacing.buttonRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
+                    .stroke(borderColor, lineWidth: 1)
+            )
+
+            if let errorMessage = errorMessage, isError {
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .font(.system(size: 12))
+                    Text(errorMessage)
+                        .font(LGFonts.caption)
+                }
+                .foregroundColor(LGColors.errorText)
+            }
+        }
+    }
+
+    private var backgroundColor: Color {
+        isFocused ? LGColors.neutral800.opacity(0.8) : LGColors.neutral800
+    }
+
+    private var borderColor: Color {
+        if isError {
+            return LGColors.error
+        } else if isFocused {
+            return LGColors.blue500
+        } else {
+            return LGColors.neutral700
+        }
+    }
+
+    private var iconColor: Color {
+        isFocused ? LGColors.blue400 : LGColors.neutral500
+    }
+}
+
+/// LuidGPT Text Area (Multi-line)
+struct LGTextArea: View {
+    let placeholder: String
+    @Binding var text: String
+    let minHeight: CGFloat
+
+    var isError: Bool = false
+    var errorMessage: String? = nil
+
+    init(
+        placeholder: String,
+        text: Binding<String>,
+        minHeight: CGFloat = 100,
+        isError: Bool = false,
+        errorMessage: String? = nil
+    ) {
+        self.placeholder = placeholder
+        self._text = text
+        self.minHeight = minHeight
+        self.isError = isError
+        self.errorMessage = errorMessage
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            ZStack(alignment: .topLeading) {
+                // Placeholder
+                if text.isEmpty {
+                    Text(placeholder)
+                        .font(LGFonts.body)
+                        .foregroundColor(LGColors.neutral500)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                }
+
+                // Text Editor
+                TextEditor(text: $text)
+                    .font(LGFonts.body)
+                    .foregroundColor(LGColors.foreground)
+                    .scrollContentBackground(.hidden)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+            }
+            .frame(minHeight: minHeight)
+            .background(LGColors.neutral800)
+            .cornerRadius(LGSpacing.buttonRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
+                    .stroke(borderColor, lineWidth: 1)
+            )
+
+            if let errorMessage = errorMessage, isError {
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .font(.system(size: 12))
+                    Text(errorMessage)
+                        .font(LGFonts.caption)
+                }
+                .foregroundColor(LGColors.errorText)
+            }
+        }
+    }
+
+    private var borderColor: Color {
+        isError ? LGColors.error : LGColors.neutral700
+    }
+}
+
+// MARK: - Preview
+
+struct LGTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack(spacing: 24) {
+            LGTextField(
+                text: .constant(""),
+                placeholder: "Email",
+                icon: "envelope"
+            )
+
+            LGTextField(
+                text: .constant(""),
+                placeholder: "Password",
+                icon: "lock",
+                style: .password
+            )
+
+            LGTextField(
+                text: .constant(""),
+                placeholder: "Search models...",
+                icon: "magnifyingglass",
+                style: .search
+            )
+
+            LGTextField(
+                text: .constant("invalid@email"),
+                placeholder: "Email",
+                icon: "envelope",
+                isError: true,
+                errorMessage: "Please enter a valid email"
+            )
+
+            LGTextArea(
+                placeholder: "Enter your prompt...",
+                text: .constant(""),
+                minHeight: 120
+            )
+
+            LGTextArea(
+                placeholder: "Enter your prompt...",
+                text: .constant(""),
+                isError: true,
+                errorMessage: "Prompt is required"
+            )
+        }
+        .padding()
+        .background(LGColors.background)
+        .preferredColorScheme(.dark)
+    }
+}

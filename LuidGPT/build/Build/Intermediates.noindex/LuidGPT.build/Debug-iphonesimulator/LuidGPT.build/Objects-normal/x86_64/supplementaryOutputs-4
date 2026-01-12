@@ -1,0 +1,18 @@
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/Config/AppConfig.swift":
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/AppConfig-1c7a60d4f6141272c2e5ca00cb7ed132.swiftdeps"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/AppConfig-1c7a60d4f6141272c2e5ca00cb7ed132.swiftconstvalues"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/AppConfig-1c7a60d4f6141272c2e5ca00cb7ed132.o"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/AppConfig-1c7a60d4f6141272c2e5ca00cb7ed132.d"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/AppConfig-1c7a60d4f6141272c2e5ca00cb7ed132.dia"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/DesignSystem/Components/LGTextField.swift":
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/LGTextField-8ea9d2cf5c5f83532e6537f7ece82b81.swiftconstvalues"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/LGTextField-8ea9d2cf5c5f83532e6537f7ece82b81.d"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/LGTextField-8ea9d2cf5c5f83532e6537f7ece82b81.dia"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/LGTextField-8ea9d2cf5c5f83532e6537f7ece82b81.o"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/LGTextField-8ea9d2cf5c5f83532e6537f7ece82b81.swiftdeps"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Services/ModelsService.swift":
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/ModelsService.swiftdeps"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/ModelsService.d"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/ModelsService.dia"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/ModelsService.swiftconstvalues"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/x86_64/ModelsService.o"

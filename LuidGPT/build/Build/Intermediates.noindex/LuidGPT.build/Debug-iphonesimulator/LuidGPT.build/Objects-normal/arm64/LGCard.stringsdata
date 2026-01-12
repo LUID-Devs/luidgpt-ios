@@ -1,0 +1,24 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/DesignSystem/Components/LGCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Card Title"
+      },
+      {
+        "comment": "",
+        "key": "This is a standard card with default styling matching the web app."
+      },
+      {
+        "comment": "",
+        "key": "Card with shadow"
+      },
+      {
+        "comment": "",
+        "key": "Card with custom border"
+      }
+    ]
+  },
+  "version": 1
+}

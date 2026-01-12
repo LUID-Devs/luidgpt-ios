@@ -1,0 +1,40 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/TabBarView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Home"
+      },
+      {
+        "comment": "",
+        "key": "Models"
+      },
+      {
+        "comment": "",
+        "key": "History"
+      },
+      {
+        "comment": "",
+        "key": "Profile"
+      },
+      {
+        "comment": "",
+        "key": "Models Browser"
+      },
+      {
+        "comment": "",
+        "key": "Coming in Phase 5"
+      },
+      {
+        "comment": "",
+        "key": "Generation History"
+      },
+      {
+        "comment": "",
+        "key": "Coming in Phase 7"
+      }
+    ]
+  },
+  "version": 1
+}
