@@ -6,7 +6,7 @@
 	<integer>11</integer>
 	<key>logs</key>
 	<dict>
-		<key>200241EA-C958-4BA1-857E-BFE08623CF6E</key>
+		<key>176435CC-428A-4A05-AD26-862832EAA368</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>200241EA-C958-4BA1-857E-BFE08623CF6E.xcactivitylog</string>
+			<string>176435CC-428A-4A05-AD26-862832EAA368.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -38,15 +38,15 @@
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Cleaning project LuidGPT with scheme LuidGPT and configuration Debug</string>
+			<string>Cleaning project LuidGPT with scheme LuidGPT</string>
 			<key>timeStartedRecording</key>
-			<real>789935501.56595397</real>
+			<real>790074264.56975305</real>
 			<key>timeStoppedRecording</key>
-			<real>789935501.73079503</real>
+			<real>790074264.78607404</real>
 			<key>title</key>
-			<string>Cleaning project LuidGPT with scheme LuidGPT and configuration Debug</string>
+			<string>Cleaning project LuidGPT with scheme LuidGPT</string>
 			<key>uniqueIdentifier</key>
-			<string>200241EA-C958-4BA1-857E-BFE08623CF6E</string>
+			<string>176435CC-428A-4A05-AD26-862832EAA368</string>
 		</dict>
 	</dict>
 </dict>

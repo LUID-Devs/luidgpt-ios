@@ -7,23 +7,38 @@
 
 import Foundation
 
-/// Response models for API
-struct CategoriesResponse: Codable {
+/// Response models for API (matching backend format)
+struct CategoriesAPIResponse: Codable {
     let success: Bool
-    let categories: [Category]
+    let data: [Category]
 }
 
-struct ModelsResponse: Codable {
+struct ModelsAPIResponse: Codable {
     let success: Bool
-    let models: [ReplicateModel]
-    let total: Int?
-    let page: Int?
-    let limit: Int?
+    let data: [ReplicateModel]
+    let pagination: PaginationInfo?
+    let category: Category?
+
+    struct PaginationInfo: Codable {
+        let page: Int
+        let limit: Int
+        let total: Int
+        let pages: Int // Backend returns "pages" not "totalPages"
+
+        // Computed property for convenience
+        var hasMore: Bool {
+            return page < pages
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case page, limit, total, pages
+        }
+    }
 }
 
-struct ModelResponse: Codable {
+struct ModelAPIResponse: Codable {
     let success: Bool
-    let model: ReplicateModel
+    let data: ReplicateModel
 }
 
 struct ModelSchemaResponse: Codable {
@@ -71,71 +86,67 @@ class ModelsService {
 
     /// Get all categories
     func getCategories() async throws -> [Category] {
-        let response: CategoriesResponse = try await client.get("/models/categories", requiresAuth: false)
-        return response.categories
+        let response: CategoriesAPIResponse = try await client.get("/models/categories", requiresAuth: false)
+        return response.data
     }
 
     /// Get category by slug
     func getCategory(slug: String) async throws -> Category {
-        struct CategoryResponse: Codable {
-            let success: Bool
-            let category: Category
-        }
-        let response: CategoryResponse = try await client.get("/models/categories/\(slug)", requiresAuth: false)
-        return response.category
+        let response: CategoriesAPIResponse = try await client.get("/models/categories/\(slug)", requiresAuth: false)
+        return response.data.first ?? Category(_id: "", slug: slug, name: "", description: nil, iconEmoji: nil, creditCostDefault: 2, outputType: .utility, sortOrder: 0, isActive: true, metadata: nil, createdAt: nil, updatedAt: nil, modelCount: nil)
     }
 
-    /// Get models in a category
-    func getCategoryModels(slug: String, page: Int = 1, limit: Int = 20) async throws -> [ReplicateModel] {
+    /// Get models in a category (with pagination)
+    func getCategoryModels(slug: String, page: Int = 1, limit: Int = 20) async throws -> (models: [ReplicateModel], pagination: ModelsAPIResponse.PaginationInfo?, category: Category?) {
         let params: [String: Any] = [
             "page": page,
             "limit": limit
         ]
-        let response: ModelsResponse = try await client.get(
+        let response: ModelsAPIResponse = try await client.get(
             "/models/categories/\(slug)/models",
             parameters: params,
             requiresAuth: false
         )
-        return response.models
+        return (models: response.data, pagination: response.pagination, category: response.category)
     }
 
     // MARK: - Models
 
-    /// Search models
-    func searchModels(query: String, page: Int = 1, limit: Int = 20) async throws -> [ReplicateModel] {
+    /// Search models (with pagination)
+    func searchModels(query: String, page: Int = 1, limit: Int = 20) async throws -> (models: [ReplicateModel], pagination: ModelsAPIResponse.PaginationInfo?) {
         let params: [String: Any] = [
             "q": query,
             "page": page,
             "limit": limit
         ]
-        let response: ModelsResponse = try await client.get(
+        let response: ModelsAPIResponse = try await client.get(
             "/models/search",
             parameters: params,
             requiresAuth: false
         )
-        return response.models
+        return (models: response.data, pagination: response.pagination)
     }
 
     /// Get featured models
     func getFeaturedModels(limit: Int = 10) async throws -> [ReplicateModel] {
         let params: [String: Any] = ["limit": limit]
-        let response: ModelsResponse = try await client.get(
+        let response: ModelsAPIResponse = try await client.get(
             "/models/featured",
             parameters: params,
             requiresAuth: false
         )
-        return response.models
+        return response.data
     }
 
     /// Get model by ID
     func getModel(id: String) async throws -> ReplicateModel {
         // URL encode the model ID (contains slashes)
         let encodedId = id.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? id
-        let response: ModelResponse = try await client.get(
+        let response: ModelAPIResponse = try await client.get(
             "/models/\(encodedId)",
             requiresAuth: false
         )
-        return response.model
+        return response.data
     }
 
     /// Get model schema (parameters)

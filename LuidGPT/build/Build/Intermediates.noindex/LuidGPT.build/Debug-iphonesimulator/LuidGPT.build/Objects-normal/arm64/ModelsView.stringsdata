@@ -1,0 +1,44 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Models/ModelsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "AI Models"
+      },
+      {
+        "comment": "",
+        "key": "500+ AI Models"
+      },
+      {
+        "comment": "",
+        "key": "Browse and use powerful AI models"
+      },
+      {
+        "comment": "",
+        "key": "credits"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Search models..."
+      },
+      {
+        "comment": "",
+        "key": "Trending Now"
+      },
+      {
+        "comment": "",
+        "key": "%lld models"
+      },
+      {
+        "comment": "",
+        "key": "You've seen all %lld models"
+      }
+    ]
+  },
+  "version": 1
+}

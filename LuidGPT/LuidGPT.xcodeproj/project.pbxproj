@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4285EF72CC247D694DD4BAC6 /* ModelsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092DF3E5A524EA4403AE106 /* ModelsAPIService.swift */; };
+		46E03818EE56003E304A1D21 /* ModelGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404D4C9906FD2D879F994A3C /* ModelGeneration.swift */; };
+		4D3AF3EF2F16744400D68C66 /* CreditsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AF3EE2F16744400D68C66 /* CreditsViewModel.swift */; };
+		4D6443D1087E48639A5286AE /* ModelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C113BDCA4AD29E0190F6 /* ModelsViewModel.swift */; };
 		4D90D8AF2F15592F00E14205 /* GenerationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8812F15592F00E14205 /* GenerationsService.swift */; };
 		4D90D8B02F15592F00E14205 /* ModelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8822F15592F00E14205 /* ModelsService.swift */; };
 		4D90D8B12F15592F00E14205 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8832F15592F00E14205 /* UserService.swift */; };
 		4D90D8B32F15592F00E14205 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8872F15592F00E14205 /* Category.swift */; };
 		4D90D8B42F15592F00E14205 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8882F15592F00E14205 /* Generation.swift */; };
 		4D90D8B62F15592F00E14205 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D88A2F15592F00E14205 /* User.swift */; };
-		4D90D8B72F15592F00E14205 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D88C2F15592F00E14205 /* AuthViewModel.swift */; };
 		4D90D8BA2F15592F00E14205 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8902F15592F00E14205 /* LoginView.swift */; };
-		4D90D8BB2F15592F00E14205 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8912F15592F00E14205 /* RegisterView.swift */; };
 		4D90D8BC2F15592F00E14205 /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8922F15592F00E14205 /* VerifyEmailView.swift */; };
-		4D90D8BE2F15592F00E14205 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D89B2F15592F00E14205 /* AppConfig.swift */; };
-		4D90D8BF2F15592F00E14205 /* LGBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D89E2F15592F00E14205 /* LGBadge.swift */; };
 		4D90D8C02F15592F00E14205 /* LGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D89F2F15592F00E14205 /* LGButton.swift */; };
-		4D90D8C12F15592F00E14205 /* LGCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A02F15592F00E14205 /* LGCard.swift */; };
 		4D90D8C22F15592F00E14205 /* LGLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A12F15592F00E14205 /* LGLoadingView.swift */; };
-		4D90D8C32F15592F00E14205 /* LGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A22F15592F00E14205 /* LGTextField.swift */; };
 		4D90D8C42F15592F00E14205 /* LGColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A42F15592F00E14205 /* LGColors.swift */; };
 		4D90D8C52F15592F00E14205 /* LGSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A52F15592F00E14205 /* LGSpacing.swift */; };
 		4D90D8C62F15592F00E14205 /* LGTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8A62F15592F00E14205 /* LGTypography.swift */; };
@@ -31,31 +29,35 @@
 		4D90D8C92F15592F00E14205 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8AB2F15592F00E14205 /* KeychainManager.swift */; };
 		4D90D8CB2F15638B00E14205 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8CA2F15638B00E14205 /* TabBarView.swift */; };
 		4D90D8CD2F15647800E14205 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8CC2F15647800E14205 /* HomeView.swift */; };
+		4DAB12342F16800000A12345 /* CreditBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB12332F16800000A12345 /* CreditBalance.swift */; };
+		4DAB12362F16800000A12346 /* CreditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB12352F16800000A12346 /* CreditService.swift */; };
+		4DC44490D877EF4246DA6159 /* GenerationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CEE87307BD31F6A08F44F8 /* GenerationsListView.swift */; };
 		4DDB31D02F153AA200BA952B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB31CF2F153AA200BA952B /* Preview Assets.xcassets */; };
 		4DDB31DA2F153AA200BA952B /* LuidGPTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31D92F153AA200BA952B /* LuidGPTTests.swift */; };
 		4DDB31E42F153AA300BA952B /* LuidGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31E32F153AA300BA952B /* LuidGPTUITests.swift */; };
 		4DDB31E62F153AA300BA952B /* LuidGPTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31E52F153AA300BA952B /* LuidGPTUITestsLaunchTests.swift */; };
 		4DDB32182F153CBE00BA952B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F22F153CBE00BA952B /* AuthViewModel.swift */; };
-		4DDB32192F153CBE00BA952B /* LuidGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F42F153CBE00BA952B /* LuidGPTApp.swift */; };
-		4DDB321A2F153CBE00BA952B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F52F153CBE00BA952B /* Category.swift */; };
-		4DDB321B2F153CBE00BA952B /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F62F153CBE00BA952B /* Generation.swift */; };
 		4DDB321C2F153CBE00BA952B /* ReplicateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F72F153CBE00BA952B /* ReplicateModel.swift */; };
-		4DDB321D2F153CBE00BA952B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31F82F153CBE00BA952B /* User.swift */; };
 		4DDB321E2F153CBE00BA952B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31FA2F153CBE00BA952B /* AuthService.swift */; };
 		4DDB321F2F153CBE00BA952B /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31FC2F153CBE00BA952B /* AppConfig.swift */; };
 		4DDB32202F153CBE00BA952B /* LGBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB31FF2F153CBE00BA952B /* LGBadge.swift */; };
 		4DDB32222F153CBE00BA952B /* LGCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32012F153CBE00BA952B /* LGCard.swift */; };
-		4DDB32232F153CBE00BA952B /* LGLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32022F153CBE00BA952B /* LGLoadingView.swift */; };
 		4DDB32242F153CBE00BA952B /* LGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32032F153CBE00BA952B /* LGTextField.swift */; };
-		4DDB32252F153CBE00BA952B /* LGColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32052F153CBE00BA952B /* LGColors.swift */; };
-		4DDB32262F153CBE00BA952B /* LGSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32062F153CBE00BA952B /* LGSpacing.swift */; };
-		4DDB32272F153CBE00BA952B /* LGTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32072F153CBE00BA952B /* LGTypography.swift */; };
-		4DDB32282F153CBE00BA952B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB320A2F153CBE00BA952B /* KeychainManager.swift */; };
 		4DDB32292F153CBE00BA952B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB320D2F153CBE00BA952B /* AuthenticationView.swift */; };
 		4DDB322A2F153CBE00BA952B /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB320E2F153CBE00BA952B /* ForgotPasswordView.swift */; };
 		4DDB322C2F153CBE00BA952B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32102F153CBE00BA952B /* RegisterView.swift */; };
-		4DDB322D2F153CBE00BA952B /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB32112F153CBE00BA952B /* VerifyEmailView.swift */; };
 		4DDB322F2F1541A600BA952B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB322E2F1541A600BA952B /* Assets.xcassets */; };
+		53756BFC183B42D38AF8EFBC /* CategoryNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDB2810E6514E70B808AB48 /* CategoryNavigationView.swift */; };
+		5B4CFF83011747338C51F6E4 /* ModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F61AA7B263436C8571C2CE /* ModelConstants.swift */; };
+		5E75E42D443BDC549B70BD7B /* GenerationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B00114D053C999CB0664CB /* GenerationDetailView.swift */; };
+		60965A6468C88A3ECA141D34 /* GenerationResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F3DDBBC578408547D979D7 /* GenerationResultView.swift */; };
+		616CAF6E9F1F06DB5D9D2C13 /* DynamicFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F226C1A3FC76BEBBEF3E8 /* DynamicFormView.swift */; };
+		6A88E8EAAB714007A36B3573 /* ModelCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803DBE4CD6C243B8B2AF2B99 /* ModelCardView.swift */; };
+		6D30BA915B6B4A85B6F6FB44 /* ModelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354F2BE41AE4D2982A42E57 /* ModelsView.swift */; };
+		A19DDA06277ABD00C1A94472 /* ModelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68254B007F795E9010B8A2CB /* ModelDetailViewModel.swift */; };
+		AD9F172481424E6D816B2D5C /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE73D9699BF431188EF4A93 /* ModelDetailView.swift */; };
+		D1A9ADD3C00AF9C548A82EED /* GenerationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505F3FEA54ECEA5E630F437F /* GenerationsViewModel.swift */; };
+		E8D4ACE0C04CCC0F3C707A9D /* LuidGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +78,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1092DF3E5A524EA4403AE106 /* ModelsAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelsAPIService.swift; sourceTree = "<group>"; };
+		2EE73D9699BF431188EF4A93 /* ModelDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDetailView.swift; sourceTree = "<group>"; };
+		35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LuidGPTApp.swift; sourceTree = "<group>"; };
+		404D4C9906FD2D879F994A3C /* ModelGeneration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelGeneration.swift; sourceTree = "<group>"; };
+		4D3AF3EE2F16744400D68C66 /* CreditsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewModel.swift; sourceTree = "<group>"; };
 		4D90D8812F15592F00E14205 /* GenerationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerationsService.swift; sourceTree = "<group>"; };
 		4D90D8822F15592F00E14205 /* ModelsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsService.swift; sourceTree = "<group>"; };
 		4D90D8832F15592F00E14205 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		4D90D8852F15592F00E14205 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../LuidGPT_Source/Info.plist; sourceTree = "<group>"; };
 		4D90D8872F15592F00E14205 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4D90D8882F15592F00E14205 /* Generation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
 		4D90D8892F15592F00E14205 /* ReplicateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicateModel.swift; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 		4D90D8AB2F15592F00E14205 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4D90D8CA2F15638B00E14205 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		4D90D8CC2F15647800E14205 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4DAB12332F16800000A12345 /* CreditBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditBalance.swift; sourceTree = "<group>"; };
+		4DAB12352F16800000A12346 /* CreditService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditService.swift; sourceTree = "<group>"; };
 		4DDB31C52F153AA200BA952B /* LuidGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuidGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDB31CF2F153AA200BA952B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4DDB31D52F153AA200BA952B /* LuidGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuidGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +121,6 @@
 		4DDB31E32F153AA300BA952B /* LuidGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuidGPTUITests.swift; sourceTree = "<group>"; };
 		4DDB31E52F153AA300BA952B /* LuidGPTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuidGPTUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4DDB31F22F153CBE00BA952B /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		4DDB31F42F153CBE00BA952B /* LuidGPTApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LuidGPTApp.swift; path = ../../LuidGPT_Source/LuidGPTApp.swift; sourceTree = "<group>"; };
 		4DDB31F52F153CBE00BA952B /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4DDB31F62F153CBE00BA952B /* Generation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
 		4DDB31F72F153CBE00BA952B /* ReplicateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicateModel.swift; sourceTree = "<group>"; };
@@ -135,6 +142,17 @@
 		4DDB32102F153CBE00BA952B /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		4DDB32112F153CBE00BA952B /* VerifyEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
 		4DDB322E2F1541A600BA952B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		505F3FEA54ECEA5E630F437F /* GenerationsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationsViewModel.swift; sourceTree = "<group>"; };
+		56B00114D053C999CB0664CB /* GenerationDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationDetailView.swift; sourceTree = "<group>"; };
+		68254B007F795E9010B8A2CB /* ModelDetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelDetailViewModel.swift; sourceTree = "<group>"; };
+		7EB3C113BDCA4AD29E0190F6 /* ModelsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsViewModel.swift; sourceTree = "<group>"; };
+		803DBE4CD6C243B8B2AF2B99 /* ModelCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelCardView.swift; sourceTree = "<group>"; };
+		892F226C1A3FC76BEBBEF3E8 /* DynamicFormView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DynamicFormView.swift; sourceTree = "<group>"; };
+		91F61AA7B263436C8571C2CE /* ModelConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelConstants.swift; sourceTree = "<group>"; };
+		9354F2BE41AE4D2982A42E57 /* ModelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsView.swift; sourceTree = "<group>"; };
+		BDDB2810E6514E70B808AB48 /* CategoryNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryNavigationView.swift; sourceTree = "<group>"; };
+		C2F3DDBBC578408547D979D7 /* GenerationResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationResultView.swift; sourceTree = "<group>"; };
+		F8CEE87307BD31F6A08F44F8 /* GenerationsListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationsListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,9 +183,11 @@
 		4D90D8842F15592F00E14205 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4DAB12352F16800000A12346 /* CreditService.swift */,
 				4D90D8812F15592F00E14205 /* GenerationsService.swift */,
 				4D90D8822F15592F00E14205 /* ModelsService.swift */,
 				4D90D8832F15592F00E14205 /* UserService.swift */,
+				1092DF3E5A524EA4403AE106 /* ModelsAPIService.swift */,
 			);
 			name = Services;
 			path = ../../LuidGPT_Source/Services;
@@ -185,9 +205,11 @@
 			isa = PBXGroup;
 			children = (
 				4D90D8872F15592F00E14205 /* Category.swift */,
+				4DAB12332F16800000A12345 /* CreditBalance.swift */,
 				4D90D8882F15592F00E14205 /* Generation.swift */,
 				4D90D8892F15592F00E14205 /* ReplicateModel.swift */,
 				4D90D88A2F15592F00E14205 /* User.swift */,
+				404D4C9906FD2D879F994A3C /* ModelGeneration.swift */,
 			);
 			name = Models;
 			path = ../../LuidGPT_Source/Models;
@@ -196,7 +218,11 @@
 		4D90D88D2F15592F00E14205 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4D3AF3EE2F16744400D68C66 /* CreditsViewModel.swift */,
 				4D90D88C2F15592F00E14205 /* AuthViewModel.swift */,
+				7EB3C113BDCA4AD29E0190F6 /* ModelsViewModel.swift */,
+				68254B007F795E9010B8A2CB /* ModelDetailViewModel.swift */,
+				505F3FEA54ECEA5E630F437F /* GenerationsViewModel.swift */,
 			);
 			name = ViewModels;
 			path = ../../LuidGPT_Source/ViewModels;
@@ -217,6 +243,8 @@
 		4D90D8942F15592F00E14205 /* Generations */ = {
 			isa = PBXGroup;
 			children = (
+				F8CEE87307BD31F6A08F44F8 /* GenerationsListView.swift */,
+				56B00114D053C999CB0664CB /* GenerationDetailView.swift */,
 			);
 			path = Generations;
 			sourceTree = "<group>";
@@ -231,6 +259,12 @@
 		4D90D8962F15592F00E14205 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BDDB2810E6514E70B808AB48 /* CategoryNavigationView.swift */,
+				803DBE4CD6C243B8B2AF2B99 /* ModelCardView.swift */,
+				2EE73D9699BF431188EF4A93 /* ModelDetailView.swift */,
+				9354F2BE41AE4D2982A42E57 /* ModelsView.swift */,
+				892F226C1A3FC76BEBBEF3E8 /* DynamicFormView.swift */,
+				C2F3DDBBC578408547D979D7 /* GenerationResultView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,6 +310,7 @@
 		4D90D89D2F15592F00E14205 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				91F61AA7B263436C8571C2CE /* ModelConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -349,6 +384,7 @@
 				4DDB31D82F153AA200BA952B /* LuidGPTTests */,
 				4DDB31E22F153AA300BA952B /* LuidGPTUITests */,
 				4DDB31C62F153AA200BA952B /* Products */,
+				51278CF7DFBAB372C13DC378 /* LuidGPT_Source */,
 			);
 			sourceTree = "<group>";
 		};
@@ -366,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				4D90D8AD2F15592F00E14205 /* Core */,
-				4D90D8852F15592F00E14205 /* Info.plist */,
 				4D90D88B2F15592F00E14205 /* Models */,
 				4D90D8862F15592F00E14205 /* Preview Content */,
 				4D90D8AE2F15592F00E14205 /* Resources */,
@@ -375,7 +410,6 @@
 				4D90D8982F15592F00E14205 /* Views */,
 				4DDB322E2F1541A600BA952B /* Assets.xcassets */,
 				4DDB320C2F153CBE00BA952B /* Core */,
-				4DDB31F42F153CBE00BA952B /* LuidGPTApp.swift */,
 				4DDB31F92F153CBE00BA952B /* Models */,
 				4DDB31F32F153CBE00BA952B /* ViewModels */,
 				4DDB32172F153CBE00BA952B /* Views */,
@@ -558,6 +592,15 @@
 			path = ../../LuidGPT_Source/Views;
 			sourceTree = "<group>";
 		};
+		51278CF7DFBAB372C13DC378 /* LuidGPT_Source */ = {
+			isa = PBXGroup;
+			children = (
+				35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */,
+			);
+			name = LuidGPT_Source;
+			path = ../LuidGPT_Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -647,8 +690,6 @@
 				Base,
 			);
 			mainGroup = 4DDB31BC2F153AA100BA952B;
-			packageReferences = (
-			);
 			productRefGroup = 4DDB31C62F153AA200BA952B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -692,6 +733,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9F172481424E6D816B2D5C /* ModelDetailView.swift in Sources */,
+				4D6443D1087E48639A5286AE /* ModelsViewModel.swift in Sources */,
+				53756BFC183B42D38AF8EFBC /* CategoryNavigationView.swift in Sources */,
+				5B4CFF83011747338C51F6E4 /* ModelConstants.swift in Sources */,
+				6A88E8EAAB714007A36B3573 /* ModelCardView.swift in Sources */,
+				6D30BA915B6B4A85B6F6FB44 /* ModelsView.swift in Sources */,
+				4DAB12342F16800000A12345 /* CreditBalance.swift in Sources */,
+				4DAB12362F16800000A12346 /* CreditService.swift in Sources */,
 				4D90D8BC2F15592F00E14205 /* VerifyEmailView.swift in Sources */,
 				4DDB321C2F153CBE00BA952B /* ReplicateModel.swift in Sources */,
 				4D90D8B12F15592F00E14205 /* UserService.swift in Sources */,
@@ -699,7 +748,6 @@
 				4DDB32242F153CBE00BA952B /* LGTextField.swift in Sources */,
 				4D90D8B02F15592F00E14205 /* ModelsService.swift in Sources */,
 				4DDB322C2F153CBE00BA952B /* RegisterView.swift in Sources */,
-				4DDB322D2F153CBE00BA952B /* VerifyEmailView.swift in Sources */,
 				4D90D8B62F15592F00E14205 /* User.swift in Sources */,
 				4D90D8C42F15592F00E14205 /* LGColors.swift in Sources */,
 				4DDB32202F153CBE00BA952B /* LGBadge.swift in Sources */,
@@ -707,34 +755,29 @@
 				4D90D8C92F15592F00E14205 /* KeychainManager.swift in Sources */,
 				4D90D8C02F15592F00E14205 /* LGButton.swift in Sources */,
 				4D90D8B32F15592F00E14205 /* Category.swift in Sources */,
-				4D90D8C32F15592F00E14205 /* LGTextField.swift in Sources */,
+				4D3AF3EF2F16744400D68C66 /* CreditsViewModel.swift in Sources */,
 				4D90D8CD2F15647800E14205 /* HomeView.swift in Sources */,
 				4D90D8CB2F15638B00E14205 /* TabBarView.swift in Sources */,
 				4D90D8C62F15592F00E14205 /* LGTypography.swift in Sources */,
-				4DDB32282F153CBE00BA952B /* KeychainManager.swift in Sources */,
-				4DDB321D2F153CBE00BA952B /* User.swift in Sources */,
 				4D90D8C82F15592F00E14205 /* APIClient.swift in Sources */,
 				4D90D8C22F15592F00E14205 /* LGLoadingView.swift in Sources */,
-				4DDB32272F153CBE00BA952B /* LGTypography.swift in Sources */,
 				4D90D8C52F15592F00E14205 /* LGSpacing.swift in Sources */,
-				4DDB32232F153CBE00BA952B /* LGLoadingView.swift in Sources */,
 				4DDB322A2F153CBE00BA952B /* ForgotPasswordView.swift in Sources */,
 				4D90D8B42F15592F00E14205 /* Generation.swift in Sources */,
-				4DDB32262F153CBE00BA952B /* LGSpacing.swift in Sources */,
-				4D90D8B72F15592F00E14205 /* AuthViewModel.swift in Sources */,
 				4DDB32222F153CBE00BA952B /* LGCard.swift in Sources */,
-				4D90D8BE2F15592F00E14205 /* AppConfig.swift in Sources */,
-				4D90D8BF2F15592F00E14205 /* LGBadge.swift in Sources */,
 				4D90D8AF2F15592F00E14205 /* GenerationsService.swift in Sources */,
-				4DDB32192F153CBE00BA952B /* LuidGPTApp.swift in Sources */,
-				4D90D8BB2F15592F00E14205 /* RegisterView.swift in Sources */,
-				4DDB321A2F153CBE00BA952B /* Category.swift in Sources */,
 				4DDB32292F153CBE00BA952B /* AuthenticationView.swift in Sources */,
-				4DDB321B2F153CBE00BA952B /* Generation.swift in Sources */,
-				4DDB32252F153CBE00BA952B /* LGColors.swift in Sources */,
-				4D90D8C12F15592F00E14205 /* LGCard.swift in Sources */,
 				4D90D8BA2F15592F00E14205 /* LoginView.swift in Sources */,
 				4DDB321E2F153CBE00BA952B /* AuthService.swift in Sources */,
+				46E03818EE56003E304A1D21 /* ModelGeneration.swift in Sources */,
+				4285EF72CC247D694DD4BAC6 /* ModelsAPIService.swift in Sources */,
+				A19DDA06277ABD00C1A94472 /* ModelDetailViewModel.swift in Sources */,
+				D1A9ADD3C00AF9C548A82EED /* GenerationsViewModel.swift in Sources */,
+				616CAF6E9F1F06DB5D9D2C13 /* DynamicFormView.swift in Sources */,
+				60965A6468C88A3ECA141D34 /* GenerationResultView.swift in Sources */,
+				4DC44490D877EF4246DA6159 /* GenerationsListView.swift in Sources */,
+				5E75E42D443BDC549B70BD7B /* GenerationDetailView.swift in Sources */,
+				E8D4ACE0C04CCC0F3C707A9D /* LuidGPTApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,7 +943,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LuidGPT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -930,7 +974,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LuidGPT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -956,7 +1001,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luidgpt.LuidGPTTests;
@@ -975,7 +1021,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luidgpt.LuidGPTTests;
@@ -993,7 +1040,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luidgpt.LuidGPTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1010,7 +1058,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LuidGPT/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luidgpt.LuidGPTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -34,7 +34,7 @@ class CreditService {
         NSLog("💳 Fetching credit balance from Luidhub...")
         os_log("💳 Fetching credit balance from Luidhub...", log: logger, type: .info)
 
-        let endpoint = "/credit/balance"
+        let endpoint = "/api/credits/balance"
         let response: CreditBalanceResponse = try await makeRequest(
             endpoint: endpoint,
             method: "GET"
@@ -51,7 +51,7 @@ class CreditService {
         NSLog("💳 Fetching credit transactions (page: %d, limit: %d)...", page, limit)
         os_log("💳 Fetching credit transactions (page: %{public}d, limit: %{public}d)...", log: logger, type: .info, page, limit)
 
-        let endpoint = "/credit/transactions?page=\(page)&limit=\(limit)"
+        let endpoint = "/api/credits/transactions?page=\(page)&limit=\(limit)"
         let response: CreditTransactionsResponse = try await makeRequest(
             endpoint: endpoint,
             method: "GET"
@@ -68,7 +68,7 @@ class CreditService {
         NSLog("💳 Fetching credit packages...")
         os_log("💳 Fetching credit packages...", log: logger, type: .info)
 
-        let endpoint = "/credit/packages"
+        let endpoint = "/api/credits/packages"
         let response: CreditPackagesResponse = try await makeRequest(
             endpoint: endpoint,
             method: "GET"
@@ -85,7 +85,7 @@ class CreditService {
         NSLog("💳 Creating checkout session for package: %@", packageId)
         os_log("💳 Creating checkout session for package: %{public}@", log: logger, type: .info, packageId)
 
-        let endpoint = "/credit/purchase"
+        let endpoint = "/api/credits/purchase"
         let params: [String: Any] = [
             "packageId": packageId
         ]

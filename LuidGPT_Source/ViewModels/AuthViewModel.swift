@@ -52,9 +52,11 @@ class AuthViewModel: ObservableObject {
                     self.currentUser = nil
                 }
             } catch {
-                // Token invalid or expired
+                // Token invalid or expired - silently fail without showing error
+                // User will see login screen instead
                 self.isAuthenticated = false
                 self.currentUser = nil
+                self.errorMessage = nil // Clear any error message
             }
 
             self.isLoading = false

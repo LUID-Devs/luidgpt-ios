@@ -35,7 +35,6 @@ struct LoginView: View {
                 Spacer(minLength: 40)
             }
         }
-        .background(LGColors.background)
         .sheet(isPresented: $showingForgotPassword) {
             ForgotPasswordView()
         }
@@ -67,11 +66,11 @@ struct LoginView: View {
 
             Text("Welcome back")
                 .font(LGFonts.h2)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             Text("Login to continue creating with AI")
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(.gray)
         }
     }
 
@@ -109,7 +108,7 @@ struct LoginView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Email")
                     .font(LGFonts.label)
-                    .foregroundColor(LGColors.foreground)
+                    .foregroundColor(.black)
 
                 LGTextField(
                     text: $email,
@@ -130,7 +129,7 @@ struct LoginView: View {
                 HStack {
                     Text("Password")
                         .font(LGFonts.label)
-                        .foregroundColor(LGColors.foreground)
+                        .foregroundColor(.black)
 
                     Spacer()
 
@@ -169,7 +168,7 @@ struct LoginView: View {
             HStack(spacing: 4) {
                 Text("Don't have an account?")
                     .font(LGFonts.body)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(.gray)
 
                 Button(action: { showingRegister = true }) {
                     Text("Sign up")

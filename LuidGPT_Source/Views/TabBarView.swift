@@ -14,32 +14,27 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Home Tab
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                .tag(0)
-
-            // Models Tab
-            ModelsView()
-                .tabItem {
-                    Label("Models", systemImage: "sparkles")
-                }
-                .tag(1)
+            NavigationView {
+                HomeView()
+            }
+            .tabItem {
+                Label("Home", systemImage: "house.fill")
+            }
+            .tag(0)
 
             // Generations Tab
-            GenerationsView()
+            GenerationsListView()
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
-                .tag(2)
+                .tag(1)
 
             // Profile Tab
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
-                .tag(3)
+                .tag(2)
         }
         .accentColor(LGColors.VideoGeneration.main)
     }
@@ -47,57 +42,8 @@ struct TabBarView: View {
 
 // MARK: - Placeholder Views
 
-struct ModelsView: View {
-    var body: some View {
-        NavigationView {
-            ZStack {
-                LGColors.background.ignoresSafeArea()
-
-                VStack(spacing: 20) {
-                    Image(systemName: "sparkles")
-                        .font(.system(size: 60))
-                        .foregroundColor(LGColors.VideoGeneration.main)
-
-                    Text("Models Browser")
-                        .font(LGFonts.h2)
-                        .foregroundColor(LGColors.foreground)
-
-                    Text("Coming in Phase 5")
-                        .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral400)
-                }
-            }
-            .navigationTitle("Models")
-            .navigationBarTitleDisplayMode(.large)
-        }
-    }
-}
-
-struct GenerationsView: View {
-    var body: some View {
-        NavigationView {
-            ZStack {
-                LGColors.background.ignoresSafeArea()
-
-                VStack(spacing: 20) {
-                    Image(systemName: "clock.fill")
-                        .font(.system(size: 60))
-                        .foregroundColor(LGColors.VideoGeneration.main)
-
-                    Text("Generation History")
-                        .font(LGFonts.h2)
-                        .foregroundColor(LGColors.foreground)
-
-                    Text("Coming in Phase 7")
-                        .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral400)
-                }
-            }
-            .navigationTitle("History")
-            .navigationBarTitleDisplayMode(.large)
-        }
-    }
-}
+// ModelsView is now implemented in Views/Models/ModelsView.swift
+// GenerationsListView is now implemented in Views/Generations/GenerationsListView.swift
 
 struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -135,7 +81,7 @@ struct ProfileView: View {
 
                         Text(user.email)
                             .font(LGFonts.body)
-                            .foregroundColor(LGColors.neutral400)
+                            .foregroundColor(LGColors.neutral600)
 
                         // Logout button
                         LGButton(

@@ -3,7 +3,7 @@
 //  LuidGPT
 //
 //  Reusable Card Component
-//  Matches neutral-900 bg with rounded corners from web
+//  Light card with subtle background and borders
 //
 
 import SwiftUI
@@ -21,7 +21,7 @@ struct LGCard<Content: View>: View {
     init(
         padding: CGFloat = LGSpacing.cardPadding,
         cornerRadius: CGFloat = LGSpacing.cardRadius,
-        borderColor: Color? = LGColors.neutral800,
+        borderColor: Color? = LGColors.neutral200,
         borderWidth: CGFloat = 1,
         shadow: Bool = false,
         @ViewBuilder content: () -> Content
@@ -37,7 +37,7 @@ struct LGCard<Content: View>: View {
     var body: some View {
         content
             .padding(padding)
-            .background(LGColors.neutral900)
+            .background(LGColors.neutral50)
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
@@ -57,7 +57,7 @@ struct LGCardNoPadding<Content: View>: View {
 
     init(
         cornerRadius: CGFloat = LGSpacing.cardRadius,
-        borderColor: Color? = LGColors.neutral800,
+        borderColor: Color? = LGColors.neutral200,
         borderWidth: CGFloat = 1,
         shadow: Bool = false,
         @ViewBuilder content: () -> Content
@@ -71,7 +71,7 @@ struct LGCardNoPadding<Content: View>: View {
 
     var body: some View {
         content
-            .background(LGColors.neutral900)
+            .background(LGColors.neutral50)
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)

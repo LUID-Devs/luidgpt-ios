@@ -135,46 +135,6 @@ struct OrganizationMember: Identifiable, Codable, Hashable {
     }
 }
 
-// MARK: - Credits
-
-/// Credit transaction
-struct CreditTransaction: Identifiable, Codable, Hashable {
-    let id: String
-    let userId: String?
-    let organizationId: String?
-    let amount: Int
-    let operation: String
-    let description: String?
-    let referenceId: String?
-    let createdAt: Date
-
-    enum CodingKeys: String, CodingKey {
-        case id, userId, organizationId, amount, operation, description, referenceId, createdAt
-    }
-
-    /// Display amount with sign
-    var amountDisplay: String {
-        amount > 0 ? "+\(amount)" : "\(amount)"
-    }
-
-    /// Is debit (negative amount)
-    var isDebit: Bool {
-        amount < 0
-    }
-}
-
-/// Credit balance response
-struct CreditsResponse: Codable {
-    let available: Int
-    let reserved: Int?
-    let total: Int?
-    let transactions: [CreditTransaction]?
-
-    enum CodingKeys: String, CodingKey {
-        case available, reserved, total, transactions
-    }
-}
-
 // MARK: - Mock Data
 
 extension User {
@@ -222,30 +182,4 @@ extension Organization {
         createdAt: Date().addingTimeInterval(-86400 * 90),
         updatedAt: Date()
     )
-}
-
-extension CreditTransaction {
-    static let mockPurchase = CreditTransaction(
-        id: UUID().uuidString,
-        userId: UUID().uuidString,
-        organizationId: nil,
-        amount: 100,
-        operation: "purchase",
-        description: "Credit purchase",
-        referenceId: "stripe_123",
-        createdAt: Date().addingTimeInterval(-86400)
-    )
-
-    static let mockGeneration = CreditTransaction(
-        id: UUID().uuidString,
-        userId: UUID().uuidString,
-        organizationId: nil,
-        amount: -10,
-        operation: "generation",
-        description: "Video generation: Sora 2",
-        referenceId: "gen_123",
-        createdAt: Date().addingTimeInterval(-3600)
-    )
-
-    static let mockTransactions = [mockPurchase, mockGeneration]
 }

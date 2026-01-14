@@ -2,7 +2,8 @@
 //  HomeView.swift
 //  LuidGPT
 //
-//  Home dashboard with user info, credits, categories, and featured models
+//  Home screen with trending models, category tabs, filters, and Replicate models grid
+//  Matches luidgpt-frontend /models page structure
 //
 
 import SwiftUI
@@ -10,41 +11,62 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var creditsViewModel: CreditsViewModel
-    @State private var isLoadingCategories = false
-    @State private var categories: [Category] = []
-    @State private var featuredModels: [ReplicateModel] = []
+    @StateObject private var modelsViewModel = ModelsViewModel()
+
+    // State
+    @State private var selectedCategory: String = "all"
+    @State private var showFilters = false
+    @State private var selectedStyles: Set<String> = []
+    @State private var selectedSpeed: String? = nil
+    @State private var selectedQuality: String? = nil
+
+    // Filter options
+    let styleOptions = ["Photorealistic", "Artistic", "Anime", "Cinematic", "3D Render", "Illustration"]
+    let speedOptions = ["Instant (<5s)", "Fast (5-30s)", "Standard (30s-2m)", "Slow (2m+)"]
+    let qualityOptions = ["Best Quality", "Balanced", "Draft"]
 
     var body: some View {
-        NavigationView {
+        ZStack(alignment: .top) {
+            LGColors.background
+                .ignoresSafeArea()
+
             ScrollView {
-                VStack(spacing: 24) {
-                    // User greeting section
-                    greetingSection
+                VStack(spacing: 0) {
+                    // Header with credits
+                    headerSection
                         .padding(.horizontal, LGSpacing.lg)
-                        .padding(.top, LGSpacing.md)
+                        .padding(.top, 8)
+                        .padding(.bottom, 12)
 
-                    // Credit balance card
-                    creditBalanceCard
+                    // Trending Now Section
+                    if selectedCategory == "all" {
+                        trendingSection
+                            .padding(.top, 8)
+                    }
+
+                    // Category Tabs
+                    categoryTabsSection
+                        .padding(.top, 16)
+
+                    // Filters Button
+                    filtersButton
                         .padding(.horizontal, LGSpacing.lg)
+                        .padding(.top, 12)
 
-                    // Categories section
-                    categoriesSection
-                        .padding(.top, 8)
+                    // Filters Section (expandable)
+                    if showFilters {
+                        filtersSection
+                            .padding(.horizontal, LGSpacing.lg)
+                            .padding(.top, 12)
+                            .transition(.opacity)
+                    }
 
-                    // Featured models section
-                    featuredModelsSection
-                        .padding(.top, 8)
-
-                    Spacer(minLength: 40)
+                    // Models Grid
+                    modelsGridSection
+                        .padding(.horizontal, LGSpacing.lg)
+                        .padding(.top, 16)
                 }
-            }
-            .background(LGColors.background.ignoresSafeArea())
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    creditBalanceBadge
-                }
+                .padding(.bottom, 24)
             }
             .task {
                 await loadData()
@@ -55,31 +77,12 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Greeting Section
+    // MARK: - Header Section
 
-    private var greetingSection: some View {
-        HStack(spacing: 16) {
-            // User avatar
+    private var headerSection: some View {
+        HStack {
+            // User info
             if let user = authViewModel.currentUser {
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    LGColors.VideoGeneration.main,
-                                    LGColors.ImageGeneration.main
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 50, height: 50)
-
-                    Text(user.initials)
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                }
-
                 VStack(alignment: .leading, spacing: 4) {
                     Text(timeBasedGreeting)
                         .font(LGFonts.label)
@@ -92,10 +95,11 @@ struct HomeView: View {
             }
 
             Spacer()
+
+            // Credit balance badge
+            creditBalanceBadge
         }
     }
-
-    // MARK: - Credit Balance Badge (Toolbar)
 
     private var creditBalanceBadge: some View {
         HStack(spacing: 6) {
@@ -115,194 +119,258 @@ struct HomeView: View {
         .padding(.vertical, 6)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(LGColors.neutral900)
+                .fill(LGColors.neutral100)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(creditsViewModel.isLowBalance ? LGColors.warningText.opacity(0.3) : LGColors.neutral800, lineWidth: 1)
+                        .stroke(creditsViewModel.isLowBalance ? LGColors.warningText.opacity(0.3) : LGColors.neutral200, lineWidth: 1)
                 )
         )
     }
 
-    // MARK: - Credit Balance Card
+    // MARK: - Trending Now Section
 
-    private var creditBalanceCard: some View {
-        VStack(spacing: 0) {
-            // Card content
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Credits")
-                        .font(LGFonts.label)
-                        .foregroundColor(LGColors.neutral400)
-
-                    if let balance = creditsViewModel.balance {
-                        HStack(alignment: .firstTextBaseline, spacing: 4) {
-                            Text("\(balance.totalCredits)")
-                                .font(.system(size: 36, weight: .bold))
-                                .foregroundColor(LGColors.foreground)
-
-                            Text("credits")
-                                .font(LGFonts.body)
-                                .foregroundColor(LGColors.neutral500)
-                        }
-
-                        // Credit breakdown
-                        VStack(alignment: .leading, spacing: 4) {
-                            if balance.subscriptionCredits > 0 {
-                                creditBreakdownRow(
-                                    label: "Subscription",
-                                    amount: balance.subscriptionCredits,
-                                    color: LGColors.VideoGeneration.main
-                                )
-                            }
-                            if balance.purchasedCredits > 0 {
-                                creditBreakdownRow(
-                                    label: "Purchased",
-                                    amount: balance.purchasedCredits,
-                                    color: LGColors.ImageGeneration.main
-                                )
-                            }
-                            if balance.promotionalCredits > 0 {
-                                creditBreakdownRow(
-                                    label: "Promotional",
-                                    amount: balance.promotionalCredits,
-                                    color: Color.green
-                                )
-                            }
-                        }
-                        .padding(.top, 4)
-
-                        // Low credits warning
-                        if creditsViewModel.isLowBalance {
-                            HStack(spacing: 6) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .font(.caption)
-
-                                Text("Low balance")
-                                    .font(LGFonts.small)
-                            }
-                            .foregroundColor(LGColors.warningText)
-                            .padding(.top, 4)
-                        }
-                    } else if creditsViewModel.isLoading {
-                        ProgressView()
-                            .padding(.top, 8)
-                    } else {
-                        Text("Unable to load balance")
-                            .font(LGFonts.body)
-                            .foregroundColor(LGColors.neutral500)
-                    }
-                }
-
+    private var trendingSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "flame.fill")
+                    .foregroundColor(Color.orange)
+                Text("Trending Now")
+                    .font(LGFonts.h4)
+                    .foregroundColor(LGColors.foreground)
                 Spacer()
-
-                // Buy credits button
-                Button(action: {
-                    // TODO: Navigate to credits purchase
-                }) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Buy")
-                    }
-                    .font(LGFonts.small.weight(.semibold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .background(
-                        LinearGradient(
-                            colors: [
-                                LGColors.VideoGeneration.main,
-                                LGColors.ImageGeneration.main
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .cornerRadius(20)
-                }
             }
-            .padding(LGSpacing.lg)
-        }
-        .background(LGColors.neutral900)
-        .cornerRadius(LGSpacing.cardRadius)
-        .overlay(
-            RoundedRectangle(cornerRadius: LGSpacing.cardRadius)
-                .stroke(LGColors.neutral800, lineWidth: 1)
-        )
-    }
+            .padding(.horizontal, LGSpacing.lg)
 
-    // Credit breakdown row helper
-    private func creditBreakdownRow(label: String, amount: Int, color: Color) -> some View {
-        HStack(spacing: 4) {
-            Circle()
-                .fill(color)
-                .frame(width: 6, height: 6)
-
-            Text(label)
-                .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral500)
-
-            Text("\(amount)")
-                .font(LGFonts.small.weight(.semibold))
-                .foregroundColor(LGColors.neutral400)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(Array(modelsViewModel.featuredModels.prefix(10).enumerated()), id: \.element.id) { index, model in
+                        TrendingModelCard(model: model, rank: index + 1)
+                    }
+                }
+                .padding(.horizontal, LGSpacing.lg)
+            }
         }
     }
 
-    // MARK: - Categories Section
+    // MARK: - Category Tabs
 
-    private var categoriesSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Categories")
-                .font(LGFonts.h3)
+    private var categoryTabsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Browse by Category")
+                .font(LGFonts.h4)
                 .foregroundColor(LGColors.foreground)
                 .padding(.horizontal, LGSpacing.lg)
 
-            // Categories grid
-            LazyVGrid(
-                columns: [
-                    GridItem(.flexible(), spacing: 12),
-                    GridItem(.flexible(), spacing: 12)
-                ],
-                spacing: 12
-            ) {
-                ForEach(mockCategories, id: \.id) { category in
-                    CategoryCard(category: category)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    CategoryTab(title: "All Models", isSelected: selectedCategory == "all") {
+                        selectedCategory = "all"
+                        Task {
+                            await modelsViewModel.fetchModelsByCategory(slug: nil, page: 1)
+                        }
+                    }
+
+                    ForEach(categories, id: \.slug) { category in
+                        CategoryTab(
+                            title: category.name,
+                            count: modelsViewModel.categories.first(where: { $0.slug == category.slug })?.modelCountInt,
+                            isSelected: selectedCategory == category.slug
+                        ) {
+                            selectedCategory = category.slug
+                            Task {
+                                await modelsViewModel.fetchModelsByCategory(slug: category.slug, page: 1)
+                            }
+                        }
+                    }
                 }
+                .padding(.horizontal, LGSpacing.lg)
             }
-            .padding(.horizontal, LGSpacing.lg)
         }
     }
 
-    // MARK: - Featured Models Section
+    // MARK: - Filters
 
-    private var featuredModelsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
+    private var filtersButton: some View {
+        Button(action: {
+            withAnimation {
+                showFilters.toggle()
+            }
+        }) {
             HStack {
-                Text("Featured Models")
-                    .font(LGFonts.h3)
+                Image(systemName: "slider.horizontal.3")
+                    .foregroundColor(LGColors.foreground)
+                Text("Filters")
+                    .font(LGFonts.body)
                     .foregroundColor(LGColors.foreground)
 
                 Spacer()
 
-                Button(action: {
-                    // TODO: Navigate to all models
-                }) {
-                    Text("See all")
+                if !selectedStyles.isEmpty || selectedSpeed != nil || selectedQuality != nil {
+                    let count = selectedStyles.count + (selectedSpeed != nil ? 1 : 0) + (selectedQuality != nil ? 1 : 0)
+                    Text("\(count)")
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 2)
+                        .background(LGColors.VideoGeneration.main)
+                        .cornerRadius(10)
                 }
-            }
-            .padding(.horizontal, LGSpacing.lg)
 
-            // Featured models carousel
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(mockFeaturedModels, id: \.id) { model in
-                        FeaturedModelCard(model: model)
+                Image(systemName: showFilters ? "chevron.up" : "chevron.down")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(LGColors.neutral400)
+            }
+            .padding()
+            .background(LGColors.neutral100)
+            .cornerRadius(12)
+        }
+    }
+
+    private var filtersSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            // Style Filter
+            FilterGroup(title: "Style") {
+                FlowLayout(spacing: 8) {
+                    ForEach(styleOptions, id: \.self) { style in
+                        FilterChip(
+                            title: style,
+                            isSelected: selectedStyles.contains(style)
+                        ) {
+                            if selectedStyles.contains(style) {
+                                selectedStyles.remove(style)
+                            } else {
+                                selectedStyles.insert(style)
+                            }
+                            applyFilters()
+                        }
                     }
                 }
-                .padding(.horizontal, LGSpacing.lg)
+            }
+
+            // Speed Filter
+            FilterGroup(title: "Speed") {
+                FlowLayout(spacing: 8) {
+                    ForEach(speedOptions, id: \.self) { speed in
+                        FilterChip(
+                            title: speed,
+                            isSelected: selectedSpeed == speed
+                        ) {
+                            selectedSpeed = selectedSpeed == speed ? nil : speed
+                            applyFilters()
+                        }
+                    }
+                }
+            }
+
+            // Quality Filter
+            FilterGroup(title: "Quality") {
+                FlowLayout(spacing: 8) {
+                    ForEach(qualityOptions, id: \.self) { quality in
+                        FilterChip(
+                            title: quality,
+                            isSelected: selectedQuality == quality
+                        ) {
+                            selectedQuality = selectedQuality == quality ? nil : quality
+                            applyFilters()
+                        }
+                    }
+                }
+            }
+
+            // Clear Filters Button
+            if !selectedStyles.isEmpty || selectedSpeed != nil || selectedQuality != nil {
+                Button(action: clearFilters) {
+                    HStack {
+                        Image(systemName: "xmark.circle.fill")
+                        Text("Clear all filters")
+                            .font(LGFonts.small)
+                    }
+                    .foregroundColor(LGColors.errorText)
+                }
             }
         }
+        .padding()
+        .background(LGColors.neutral50)
+        .cornerRadius(12)
+    }
+
+    // MARK: - Models Grid
+
+    private var modelsGridSection: some View {
+        Group {
+            if modelsViewModel.modelsLoading && modelsViewModel.models.isEmpty {
+                // Loading skeleton
+                LazyVGrid(
+                    columns: [
+                        GridItem(.adaptive(minimum: 160, maximum: 200), spacing: 12)
+                    ],
+                    spacing: 16
+                ) {
+                    ForEach(0..<6, id: \.self) { _ in
+                        ModelCardSkeletonView()
+                    }
+                }
+            } else if filteredModels.isEmpty {
+                // Empty state
+                emptyStateView
+            } else {
+                // Models grid
+                LazyVGrid(
+                    columns: [
+                        GridItem(.adaptive(minimum: 160, maximum: 200), spacing: 12)
+                    ],
+                    spacing: 16
+                ) {
+                    ForEach(filteredModels) { model in
+                        NavigationLink(destination: ModelDetailView(modelId: model.modelId)) {
+                            ModelCardView(model: model, showCategory: selectedCategory == "all")
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .onAppear {
+                            // Load more when reaching near the end
+                            if model.id == filteredModels.suffix(4).first?.id {
+                                Task {
+                                    await modelsViewModel.loadMoreModels()
+                                }
+                            }
+                        }
+                    }
+
+                    // Loading more indicator
+                    if modelsViewModel.modelsLoading && !modelsViewModel.models.isEmpty {
+                        ForEach(0..<2, id: \.self) { _ in
+                            ModelCardSkeletonView()
+                        }
+                    }
+                }
+
+                // End of list message
+                if !modelsViewModel.hasMore && !modelsViewModel.modelsLoading {
+                    Text("You've seen all \(modelsViewModel.totalModels) models")
+                        .font(LGFonts.caption)
+                        .foregroundColor(LGColors.neutral500)
+                        .padding(.vertical, 12)
+                }
+            }
+        }
+    }
+
+    private var emptyStateView: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "square.stack.3d.up.slash")
+                .font(.system(size: 48))
+                .foregroundColor(LGColors.neutral400)
+
+            Text("No models found")
+                .font(LGFonts.h4)
+                .foregroundColor(LGColors.foreground)
+
+            Text("Try adjusting your filters or category")
+                .font(LGFonts.small)
+                .foregroundColor(LGColors.neutral500)
+                .multilineTextAlignment(.center)
+        }
+        .padding(40)
     }
 
     // MARK: - Helpers
@@ -320,173 +388,292 @@ struct HomeView: View {
     }
 
     private func loadData() async {
-        isLoadingCategories = true
-
-        // Fetch credit balance from Luidhub
+        // Fetch credit balance
         await creditsViewModel.fetchBalance()
 
-        // TODO: Load categories and featured models from API
-        // For now, using mock data
+        // Fetch categories
+        await modelsViewModel.fetchCategories()
 
-        isLoadingCategories = false
+        // Fetch featured models
+        await modelsViewModel.fetchFeaturedModels()
+
+        // Fetch all models
+        await modelsViewModel.fetchModelsByCategory(slug: nil, page: 1)
     }
 
     private func refreshData() async {
-        // Refresh credit balance
         await creditsViewModel.refreshBalance()
-
-        // TODO: Refresh categories and featured models
+        await modelsViewModel.refresh()
     }
 
-    // MARK: - Mock Data
+    // Computed property for filtered models
+    private var filteredModels: [ReplicateModel] {
+        var models = modelsViewModel.displayModels
 
-    private var mockCategories: [CategoryInfo] = [
-        CategoryInfo(id: "video", name: "Video", icon: "video.fill", gradient: [LGColors.VideoGeneration.main, Color.purple]),
-        CategoryInfo(id: "image", name: "Image", icon: "photo.fill", gradient: [LGColors.ImageGeneration.main, Color.pink]),
-        CategoryInfo(id: "text-to-speech", name: "Text to Speech", icon: "speaker.wave.3.fill", gradient: [Color.blue, Color.cyan]),
-        CategoryInfo(id: "image-editing", name: "Image Editing", icon: "paintbrush.fill", gradient: [Color.orange, Color.yellow]),
-        CategoryInfo(id: "music", name: "Music", icon: "music.note", gradient: [Color.green, Color.mint]),
-        CategoryInfo(id: "voice", name: "Voice Clone", icon: "waveform", gradient: [Color.yellow, Color.orange]),
-        CategoryInfo(id: "3d", name: "3D Models", icon: "cube.fill", gradient: [Color.cyan, Color.blue]),
-        CategoryInfo(id: "upscaling", name: "Upscaling", icon: "arrow.up.right.square.fill", gradient: [Color.red, Color.pink]),
-        CategoryInfo(id: "face", name: "Face & Avatar", icon: "person.crop.circle.fill", gradient: [Color.indigo, Color.purple]),
-        CategoryInfo(id: "background", name: "Background Removal", icon: "scissors", gradient: [Color.teal, Color.green]),
-        CategoryInfo(id: "video-editing", name: "Video Editing", icon: "film.fill", gradient: [Color.purple, Color.pink])
-    ]
+        // Apply style filters
+        if !selectedStyles.isEmpty {
+            models = models.filter { model in
+                let modelStyles = model.styleTags.map { $0.lowercased() }
+                return selectedStyles.contains { style in
+                    modelStyles.contains(style.lowercased().replacingOccurrences(of: " ", with: "-"))
+                }
+            }
+        }
 
-    private var mockFeaturedModels: [FeaturedModelInfo] = [
-        FeaturedModelInfo(id: "1", name: "Sora 2", description: "Text to video", icon: "video.fill", color: LGColors.VideoGeneration.main),
-        FeaturedModelInfo(id: "2", name: "FLUX 1.1 Pro", description: "Ultra-fast images", icon: "bolt.fill", color: LGColors.ImageGeneration.main),
-        FeaturedModelInfo(id: "3", name: "DALL-E 3", description: "Creative images", icon: "photo.fill", color: Color.blue),
-        FeaturedModelInfo(id: "4", name: "Stable Audio", description: "Music generation", icon: "music.note", color: Color.green)
+        // Apply speed filter
+        if let speedFilter = selectedSpeed {
+            let speedMap: [String: String] = [
+                "Instant (<5s)": "instant",
+                "Fast (5-30s)": "fast",
+                "Standard (30s-2m)": "standard",
+                "Slow (2m+)": "slow"
+            ]
+
+            if let speedTag = speedMap[speedFilter] {
+                models = models.filter { model in
+                    model.speedTag?.lowercased() == speedTag
+                }
+            }
+        }
+
+        // Apply quality filter
+        if let qualityFilter = selectedQuality {
+            let qualityMap: [String: String] = [
+                "Best Quality": "best",
+                "Balanced": "balanced",
+                "Draft": "draft"
+            ]
+
+            if let qualityTag = qualityMap[qualityFilter] {
+                models = models.filter { model in
+                    model.qualityTag?.lowercased() == qualityTag
+                }
+            }
+        }
+
+        return models
+    }
+
+    private func applyFilters() {
+        // Filters are now applied via computed property
+        // This function exists to trigger UI updates
+    }
+
+    private func clearFilters() {
+        selectedStyles.removeAll()
+        selectedSpeed = nil
+        selectedQuality = nil
+        applyFilters()
+    }
+
+    // Categories data
+    private let categories: [CategoryInfo] = [
+        CategoryInfo(slug: "video-generation", name: "Video Generation"),
+        CategoryInfo(slug: "image-generation", name: "Image Generation"),
+        CategoryInfo(slug: "image-editing", name: "Image Editing"),
+        CategoryInfo(slug: "text-generation", name: "Text Generation"),
+        CategoryInfo(slug: "audio-speech", name: "Audio & Speech"),
+        CategoryInfo(slug: "music-generation", name: "Music Generation"),
+        CategoryInfo(slug: "upscaling", name: "Upscaling"),
+        CategoryInfo(slug: "vision-documents", name: "Vision & Documents"),
+        CategoryInfo(slug: "3d-models", name: "3D Models"),
+        CategoryInfo(slug: "face-avatar", name: "Face & Avatar"),
+        CategoryInfo(slug: "utility", name: "Utility"),
     ]
 }
 
-// MARK: - Category Card
+// MARK: - Trending Model Card
 
-struct CategoryCard: View {
-    let category: CategoryInfo
+struct TrendingModelCard: View {
+    let model: ReplicateModel
+    let rank: Int
 
     var body: some View {
-        Button(action: {
-            // TODO: Navigate to category models
-        }) {
-            VStack(spacing: 12) {
-                // Icon with gradient background
+        NavigationLink(destination: ModelDetailView(modelId: model.modelId)) {
+            ZStack(alignment: .topLeading) {
+                // Background image - try multiple sources
+                if let displayImage = model.displayImage, let url = URL(string: displayImage) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        case .failure, .empty:
+                            gradientPlaceholder
+                        @unknown default:
+                            gradientPlaceholder
+                        }
+                    }
+                } else if let coverImage = model.coverImage, let url = URL(string: coverImage) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        case .failure, .empty:
+                            gradientPlaceholder
+                        @unknown default:
+                            gradientPlaceholder
+                        }
+                    }
+                } else if let thumbnailUrl = model.thumbnailUrl, let url = URL(string: thumbnailUrl) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        case .failure, .empty:
+                            gradientPlaceholder
+                        @unknown default:
+                            gradientPlaceholder
+                        }
+                    }
+                } else {
+                    gradientPlaceholder
+                }
+
+                // Overlay gradient
+                LinearGradient(
+                    colors: [Color.clear, Color.black.opacity(0.8)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+
+                // Ranking badge
                 ZStack {
                     Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: category.gradient,
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 50, height: 50)
+                        .fill(Color.orange)
+                        .frame(width: 28, height: 28)
 
-                    Image(systemName: category.icon)
-                        .font(.system(size: 24))
+                    Text("\(rank)")
+                        .font(.system(size: 14, weight: .bold))
                         .foregroundColor(.white)
                 }
+                .padding(8)
 
-                Text(category.name)
-                    .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(LGColors.foreground)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 20)
-            .background(LGColors.neutral900)
-            .cornerRadius(LGSpacing.cardRadius)
-            .overlay(
-                RoundedRectangle(cornerRadius: LGSpacing.cardRadius)
-                    .stroke(LGColors.neutral800, lineWidth: 1)
-            )
-        }
-        .buttonStyle(ScaleButtonStyle())
-    }
-}
-
-// MARK: - Featured Model Card
-
-struct FeaturedModelCard: View {
-    let model: FeaturedModelInfo
-
-    var body: some View {
-        Button(action: {
-            // TODO: Navigate to model details
-        }) {
-            VStack(alignment: .leading, spacing: 12) {
-                // Icon
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(model.color.opacity(0.2))
-                        .frame(width: 60, height: 60)
-
-                    Image(systemName: model.icon)
-                        .font(.system(size: 28))
-                        .foregroundColor(model.color)
-                }
-
+                // Model info
                 VStack(alignment: .leading, spacing: 4) {
+                    Spacer()
+
                     Text(model.name)
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(LGColors.foreground)
+                        .foregroundColor(.white)
+                        .lineLimit(1)
 
-                    Text(model.description)
-                        .font(LGFonts.small)
-                        .foregroundColor(LGColors.neutral400)
-                }
-
-                Spacer()
-
-                HStack {
-                    Image(systemName: "sparkles")
-                        .font(.caption)
-                    Text("Popular")
+                    Text("\(model.creditCost) credits")
                         .font(LGFonts.caption)
+                        .foregroundColor(LGColors.neutral300)
                 }
-                .foregroundColor(LGColors.VideoGeneration.main)
+                .padding(12)
             }
-            .frame(width: 140)
-            .padding(16)
-            .background(LGColors.neutral900)
-            .cornerRadius(LGSpacing.cardRadius)
+            .frame(width: 160, height: 100)
+            .cornerRadius(12)
             .overlay(
-                RoundedRectangle(cornerRadius: LGSpacing.cardRadius)
-                    .stroke(LGColors.neutral800, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.black.opacity(0.15), lineWidth: 1.5)
             )
+            .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+            .clipped()
         }
-        .buttonStyle(ScaleButtonStyle())
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    private var gradientPlaceholder: some View {
+        ZStack {
+            let colors = ModelCategoryConstants.colors(for: model.categorySlug)
+
+            colors.background
+
+            Image(systemName: Category.icon(for: model.categorySlug))
+                .font(.system(size: 36, weight: .regular))
+                .foregroundColor(colors.foreground)
+        }
     }
 }
 
-// MARK: - Scale Button Style
+// MARK: - Category Tab
 
-struct ScaleButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
-            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
+struct CategoryTab: View {
+    let title: String
+    var count: Int? = nil
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Text(title)
+                    .font(LGFonts.small.weight(isSelected ? .semibold : .regular))
+
+                if let count = count {
+                    Text("\(count)")
+                        .font(LGFonts.caption)
+                        .foregroundColor(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral500)
+                }
+            }
+            .foregroundColor(isSelected ? .white : LGColors.neutral500)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(isSelected ? LGColors.neutral700 : LGColors.neutral100)
+            .cornerRadius(20)
+        }
+    }
+}
+
+// MARK: - Filter Group
+
+struct FilterGroup<Content: View>: View {
+    let title: String
+    let content: Content
+
+    init(title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(LGFonts.label.weight(.semibold))
+                .foregroundColor(LGColors.foreground)
+
+            content
+        }
+    }
+}
+
+// MARK: - Filter Chip
+
+struct FilterChip: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(LGFonts.small)
+                .foregroundColor(isSelected ? .white : LGColors.foreground)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral100)
+                .cornerRadius(16)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral200, lineWidth: 1)
+                )
+        }
     }
 }
 
 // MARK: - Helper Models
 
 struct CategoryInfo {
-    let id: String
+    let slug: String
     let name: String
-    let icon: String
-    let gradient: [Color]
-}
-
-struct FeaturedModelInfo {
-    let id: String
-    let name: String
-    let description: String
-    let icon: String
-    let color: Color
 }
 
 // MARK: - Preview

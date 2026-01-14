@@ -13,10 +13,7 @@ struct AuthenticationView: View {
     @State private var showingRegister = false
 
     var body: some View {
-        ZStack {
-            LGColors.background
-                .ignoresSafeArea()
-
+        Group {
             if let email = authViewModel.pendingVerificationEmail {
                 // Show email verification screen
                 VerifyEmailView(email: email)

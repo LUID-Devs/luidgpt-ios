@@ -11,7 +11,7 @@ enum AppConfig {
     // MARK: - API Configuration
 
     /// Base API URL (luidgpt-backend)
-    static let apiBaseURL = "http://localhost:3000/api"
+    static let apiBaseURL = "http://localhost:3001/api"
 
     /// Luidhub API URL (credit system)
     static let luidhubBaseURL = "http://localhost:4000"

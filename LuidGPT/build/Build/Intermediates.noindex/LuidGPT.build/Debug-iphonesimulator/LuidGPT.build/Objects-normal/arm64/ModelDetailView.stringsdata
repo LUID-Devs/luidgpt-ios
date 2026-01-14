@@ -1,0 +1,44 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Models/ModelDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Loading model..."
+      },
+      {
+        "comment": "",
+        "key": "Provider"
+      },
+      {
+        "comment": "",
+        "key": "Version"
+      },
+      {
+        "comment": "",
+        "key": "Features"
+      },
+      {
+        "comment": "",
+        "key": "Tags"
+      },
+      {
+        "comment": "",
+        "key": "Run Model"
+      },
+      {
+        "comment": "",
+        "key": "%lld credits"
+      },
+      {
+        "comment": "",
+        "key": "Failed to load model"
+      },
+      {
+        "comment": "",
+        "key": "Please try again later"
+      }
+    ]
+  },
+  "version": 1
+}

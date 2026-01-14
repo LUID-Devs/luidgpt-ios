@@ -13,27 +13,29 @@ struct ReplicateModel: Identifiable, Codable, Hashable {
     let modelId: String // e.g., "openai/sora-2"
     let name: String
     let description: String?
-    let categoryId: String
-    let provider: String // e.g., "openai", "black-forest-labs"
+    let categoryId: String // UUID of category
+    let provider: String? // e.g., "openai", "black-forest-labs"
     let version: String?
     let creditCost: Int?
     let estimatedTimeSeconds: Int?
     let inputSchema: InputSchema?
-    let supportedFeatures: [String]
+    let supportedFeatures: [String]?
     let tier: Tier
     let maxResolution: String?
     let isActive: Bool
     let isFeatured: Bool
-    let isNew: Bool
+    let isNew: Bool?
     let thumbnailUrl: String?
-    let exampleOutputs: [String]
-    let tags: [String]
-    let runCount: Int
+    let coverImage: String? // Added to match backend
+    let outputType: String? // Added to match backend (video, image, audio, etc.)
+    let exampleOutputs: [String]?
+    let tags: [String]?
+    let runCount: Int?
     let metadata: [String: AnyCodable]?
-    let createdAt: Date?
-    let updatedAt: Date?
+    let createdAt: String? // Changed to String to match backend ISO format
+    let updatedAt: String? // Changed to String to match backend ISO format
 
-    // Relationship
+    // Relationship (may be populated by API)
     var category: Category?
 
     enum Tier: String, Codable {
@@ -41,14 +43,28 @@ struct ReplicateModel: Identifiable, Codable, Hashable {
         case standard
         case premium
         case enterprise
+
+        var displayName: String {
+            return rawValue.capitalized
+        }
     }
 
     enum CodingKeys: String, CodingKey {
         case id, modelId, name, description, categoryId, provider, version
         case creditCost, estimatedTimeSeconds, inputSchema, supportedFeatures
         case tier, maxResolution, isActive, isFeatured, isNew
-        case thumbnailUrl, exampleOutputs, tags, runCount, metadata
+        case thumbnailUrl, coverImage, outputType, exampleOutputs, tags, runCount, metadata
         case createdAt, updatedAt, category
+    }
+
+    // Computed property for display image
+    var displayImage: String? {
+        return coverImage ?? thumbnailUrl
+    }
+
+    // Computed property to get category slug
+    var categorySlug: String {
+        return category?.slug ?? "utility"
     }
 }
 
@@ -67,7 +83,7 @@ struct InputSchema: Codable, Hashable {
 
 /// Individual input property definition
 struct InputProperty: Codable, Hashable {
-    let type: String
+    let type: String? // Optional because some properties use allOf/ref instead
     let title: String?
     let description: String?
     let defaultValue: AnyCodable?
@@ -95,12 +111,13 @@ extension ReplicateModel {
         if let category = category {
             return category.creditCostDefault
         }
-        return categoryDefaults[categoryId] ?? Category.defaultCredits(for: categoryId)
+        // Fallback to category defaults if available
+        return category?.creditCostDefault ?? 2
     }
 
     /// Get display name for provider
-    var providerDisplayName: String {
-        provider.components(separatedBy: "-")
+    var providerDisplayName: String? {
+        provider?.components(separatedBy: "-")
             .map { $0.capitalized }
             .joined(separator: " ")
     }
@@ -121,13 +138,13 @@ extension ReplicateModel {
 
     /// Check if model has specific tag
     func hasTag(_ tag: String) -> Bool {
-        tags.contains(tag)
+        tags?.contains(tag) ?? false
     }
 
     /// Filter tags by prefix (e.g., "style:")
     func tags(withPrefix prefix: String) -> [String] {
-        tags.filter { $0.hasPrefix(prefix) }
-            .map { $0.replacingOccurrences(of: "\(prefix)", with: "") }
+        tags?.filter { $0.hasPrefix(prefix) }
+            .map { $0.replacingOccurrences(of: "\(prefix)", with: "") } ?? []
     }
 
     /// Get style tags
@@ -137,15 +154,38 @@ extension ReplicateModel {
 
     /// Get speed tag
     var speedTag: String? {
-        tags.first { $0.hasPrefix("speed:") }?
+        tags?.first { $0.hasPrefix("speed:") }?
             .replacingOccurrences(of: "speed:", with: "")
     }
 
     /// Get quality tag
     var qualityTag: String? {
-        tags.first { $0.hasPrefix("quality:") }?
+        tags?.first { $0.hasPrefix("quality:") }?
             .replacingOccurrences(of: "quality:", with: "")
     }
+}
+
+// MARK: - API Response Models
+
+struct ModelsResponse: Codable {
+    let models: [ReplicateModel]
+    let pagination: Pagination?
+
+    struct Pagination: Codable {
+        let page: Int
+        let limit: Int
+        let total: Int
+        let totalPages: Int
+        let hasMore: Bool
+    }
+}
+
+struct FeaturedModelsResponse: Codable {
+    let models: [ReplicateModel]
+}
+
+struct ModelDetailResponse: Codable {
+    let model: ReplicateModel
 }
 
 // MARK: - Mock Data
@@ -156,7 +196,7 @@ extension ReplicateModel {
         modelId: "openai/sora-2",
         name: "Sora 2",
         description: "OpenAI's state-of-the-art text-to-video model",
-        categoryId: "video-generation",
+        categoryId: UUID().uuidString,
         provider: "openai",
         version: "1.0",
         creditCost: 10,
@@ -194,12 +234,14 @@ extension ReplicateModel {
         isFeatured: true,
         isNew: true,
         thumbnailUrl: "https://example.com/sora2.jpg",
+        coverImage: nil,
+        outputType: "video",
         exampleOutputs: [],
         tags: ["style:cinematic", "speed:slow", "quality:best"],
         runCount: 1234,
         metadata: nil,
-        createdAt: Date(),
-        updatedAt: Date(),
+        createdAt: nil,
+        updatedAt: nil,
         category: Category.mockVideoGeneration
     )
 
@@ -208,7 +250,7 @@ extension ReplicateModel {
         modelId: "black-forest-labs/flux-1.1-pro",
         name: "FLUX 1.1 Pro",
         description: "Ultra-fast photorealistic image generation",
-        categoryId: "image-generation",
+        categoryId: UUID().uuidString,
         provider: "black-forest-labs",
         version: "1.1",
         creditCost: 2,
@@ -221,12 +263,14 @@ extension ReplicateModel {
         isFeatured: true,
         isNew: false,
         thumbnailUrl: "https://example.com/flux.jpg",
+        coverImage: nil,
+        outputType: "image",
         exampleOutputs: [],
         tags: ["style:photorealistic", "speed:instant", "quality:high"],
         runCount: 5678,
         metadata: nil,
-        createdAt: Date(),
-        updatedAt: Date(),
+        createdAt: nil,
+        updatedAt: nil,
         category: Category.mockImageGeneration
     )
 

@@ -122,7 +122,7 @@ class KeychainManager {
 
     // MARK: - Generic Keychain Operations
 
-    /// Save string value to Keychain
+    /// Save string value to Keychain (with UserDefaults fallback for simulator)
     private func save(_ value: String, forKey key: String) -> Bool {
         guard let data = value.data(using: .utf8) else {
             return false
@@ -140,10 +140,18 @@ class KeychainManager {
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
+
+        // If keychain fails with entitlement error (common in simulator), use UserDefaults fallback
+        if status == errSecMissingEntitlement || status == -34018 {
+            print("⚠️ Keychain unavailable (error \(status)), using UserDefaults fallback for: \(key)")
+            UserDefaults.standard.set(value, forKey: key)
+            return true
+        }
+
         return status == errSecSuccess
     }
 
-    /// Get string value from Keychain
+    /// Get string value from Keychain (with UserDefaults fallback for simulator)
     private func get(forKey key: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -155,16 +163,24 @@ class KeychainManager {
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
 
-        guard status == errSecSuccess,
-              let data = result as? Data,
-              let value = String(data: data, encoding: .utf8) else {
-            return nil
+        if status == errSecSuccess,
+           let data = result as? Data,
+           let value = String(data: data, encoding: .utf8) {
+            return value
         }
 
-        return value
+        // If keychain fails (common in simulator), try UserDefaults fallback
+        if status == errSecMissingEntitlement || status == -34018 || status == errSecItemNotFound {
+            if let value = UserDefaults.standard.string(forKey: key) {
+                print("📦 Retrieved from UserDefaults fallback: \(key)")
+                return value
+            }
+        }
+
+        return nil
     }
 
-    /// Delete item from Keychain
+    /// Delete item from Keychain (and UserDefaults fallback)
     private func delete(forKey key: String) -> Bool {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -172,6 +188,10 @@ class KeychainManager {
         ]
 
         let status = SecItemDelete(query as CFDictionary)
+
+        // Also remove from UserDefaults fallback storage
+        UserDefaults.standard.removeObject(forKey: key)
+
         return status == errSecSuccess || status == errSecItemNotFound
     }
 

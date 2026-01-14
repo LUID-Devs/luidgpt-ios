@@ -74,8 +74,8 @@ struct LGLoadingOverlay: View {
             .padding(32)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(LGColors.neutral900)
-                    .shadow(color: .black.opacity(0.5), radius: 20)
+                    .fill(LGColors.neutral100)
+                    .shadow(color: .black.opacity(0.2), radius: 20)
             )
         }
     }
@@ -108,7 +108,7 @@ struct LGEmptyState: View {
             // Icon
             ZStack {
                 Circle()
-                    .fill(LGColors.neutral800)
+                    .fill(LGColors.neutral200)
                     .frame(width: 80, height: 80)
 
                 Image(systemName: icon)
@@ -209,7 +209,7 @@ struct LGSkeletonCard: View {
                 // Image placeholder
                 if hasImage {
                     Rectangle()
-                        .fill(LGColors.neutral800)
+                        .fill(LGColors.neutral200)
                         .frame(height: 180)
                         .shimmer()
                 }
@@ -218,14 +218,14 @@ struct LGSkeletonCard: View {
                 VStack(alignment: .leading, spacing: 12) {
                     // Title
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(LGColors.neutral800)
+                        .fill(LGColors.neutral200)
                         .frame(height: 20)
                         .frame(maxWidth: .infinity)
                         .shimmer()
 
                     // Subtitle
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(LGColors.neutral800)
+                        .fill(LGColors.neutral200)
                         .frame(height: 16)
                         .frame(width: 150)
                         .shimmer()
@@ -233,12 +233,12 @@ struct LGSkeletonCard: View {
                     // Badges
                     HStack(spacing: 8) {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(LGColors.neutral800)
+                            .fill(LGColors.neutral200)
                             .frame(width: 80, height: 24)
                             .shimmer()
 
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(LGColors.neutral800)
+                            .fill(LGColors.neutral200)
                             .frame(width: 60, height: 24)
                             .shimmer()
                     }

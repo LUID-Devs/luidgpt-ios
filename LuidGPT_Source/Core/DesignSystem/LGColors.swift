@@ -14,26 +14,26 @@ struct LGColors {
 
     // MARK: - Base Colors
 
-    /// Pure black background (#000000)
-    static let background = Color(hex: "#000000")
+    /// Pure white background (#FFFFFF)
+    static let background = Color.white
 
-    /// Primary foreground text (#FFFFFF)
-    static let foreground = Color.white
+    /// Primary foreground text (#000000)
+    static let foreground = Color.black
 
-    /// Secondary foreground text (#EDEDED)
-    static let foregroundSecondary = Color(hex: "#EDEDED")
+    /// Secondary foreground text (#525252)
+    static let foregroundSecondary = Color(hex: "#525252")
 
     // MARK: - Surface Colors (Neutral Grays)
 
-    static let neutral950 = Color(hex: "#0A0A0A")
-    static let neutral900 = Color(hex: "#171717")
-    static let neutral800 = Color(hex: "#262626")
-    static let neutral700 = Color(hex: "#404040")
-    static let neutral600 = Color(hex: "#525252")
-    static let neutral500 = Color(hex: "#737373")
-    static let neutral400 = Color(hex: "#A3A3A3")
-    static let neutral300 = Color(hex: "#D4D4D4")
+    static let neutral50 = Color(hex: "#FAFAFA")
+    static let neutral100 = Color(hex: "#F5F5F5")
     static let neutral200 = Color(hex: "#E5E5E5")
+    static let neutral300 = Color(hex: "#D4D4D4")
+    static let neutral400 = Color(hex: "#A3A3A3")
+    static let neutral500 = Color(hex: "#737373")
+    static let neutral600 = Color(hex: "#525252")
+    static let neutral700 = Color(hex: "#404040")
+    static let neutral800 = Color(hex: "#262626")
 
     // MARK: - Primary Action Colors
 

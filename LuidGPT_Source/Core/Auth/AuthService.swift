@@ -142,11 +142,13 @@ class AuthService {
 
     /// Login with email and password
     func login(email: String, password: String) async throws -> User {
+        print("🟢 AuthService.login called with email: \(email)")
         let params: [String: Any] = [
             "email": email,
             "password": password
         ]
 
+        print("🟢 Calling API client.post for /auth/login")
         do {
             let response: AuthTokensResponse = try await client.post(
                 "/auth/login",

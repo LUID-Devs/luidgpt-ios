@@ -176,7 +176,7 @@ struct ForgotPasswordView: View {
                 }
             }
             .padding(LGSpacing.sm)
-            .background(LGColors.neutral900)
+            .background(LGColors.neutral100)
             .cornerRadius(LGSpacing.buttonRadius)
 
             // Code field

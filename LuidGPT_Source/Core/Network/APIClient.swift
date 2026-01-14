@@ -206,8 +206,29 @@ class APIClient {
 
             // Handle errors
             if httpResponse.statusCode == 401 {
-                keychainManager.clearAll()
-                throw APIError.unauthorized
+                // Log the 401 response for debugging
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("🔴 401 Response (requiresAuth=\(requiresAuth)): \(responseString)")
+                }
+
+                // Only clear keychain for authenticated endpoints
+                // Don't clear for login/register endpoints
+                if requiresAuth {
+                    print("🔴 401 on authenticated endpoint - clearing keychain")
+                    keychainManager.clearAll()
+                    throw APIError.unauthorized
+                } else {
+                    print("🔴 401 on unauthenticated endpoint - parsing error message")
+                    // For unauthenticated endpoints (like login), parse the actual error
+                    if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        let errorMsg = errorResponse.error ?? errorResponse.message ?? "Authentication failed"
+                        print("🔴 Parsed error message: \(errorMsg)")
+                        throw APIError.serverError(errorMsg)
+                    } else {
+                        print("🔴 Failed to parse error response, raw data: \(String(describing: String(data: data, encoding: .utf8)))")
+                        throw APIError.serverError("Authentication failed")
+                    }
+                }
             }
 
             if httpResponse.statusCode == 402 {

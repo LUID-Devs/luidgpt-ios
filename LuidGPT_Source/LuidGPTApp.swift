@@ -17,7 +17,6 @@ struct LuidGPTApp: App {
             RootView()
                 .environmentObject(authViewModel)
                 .environmentObject(creditsViewModel)
-                .preferredColorScheme(.dark) // Force dark mode
         }
     }
 }
@@ -36,7 +35,11 @@ struct RootView: View {
                 TabBarView()
             } else {
                 // Show authentication flow
-                AuthenticationView()
+                ZStack {
+                    Color.white
+                        .ignoresSafeArea()
+                    AuthenticationView()
+                }
             }
         }
     }

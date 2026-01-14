@@ -9,21 +9,61 @@ import Foundation
 
 /// Replicate Model Category
 struct Category: Identifiable, Codable, Hashable {
-    let id: String
+    private let _id: String? // Optional when nested in model response
     let slug: String
     let name: String
     let description: String?
     let iconEmoji: String?
     let creditCostDefault: Int
     let outputType: OutputType
-    let sortOrder: Int
-    let isActive: Bool
+    let sortOrder: Int? // Optional when nested in model response
+    let isActive: Bool? // Optional when nested in model response
     let metadata: [String: AnyCodable]?
-    let createdAt: Date?
-    let updatedAt: Date?
+    let createdAt: String? // ISO date string from API
+    let updatedAt: String? // ISO date string from API
+    let modelCount: String? // Backend returns as string
 
-    // Computed: Model count (from API relationship)
-    var modelCount: Int?
+    // Computed property for Identifiable protocol
+    var id: String {
+        return _id ?? slug // Use slug as fallback ID when id is not provided
+    }
+
+    // Computed property to get model count as Int
+    var modelCountInt: Int? {
+        guard let modelCount = modelCount else { return nil }
+        return Int(modelCount)
+    }
+
+    // Custom initializer (memberwise)
+    init(
+        _id: String?,
+        slug: String,
+        name: String,
+        description: String?,
+        iconEmoji: String?,
+        creditCostDefault: Int,
+        outputType: OutputType,
+        sortOrder: Int?,
+        isActive: Bool?,
+        metadata: [String: AnyCodable]?,
+        createdAt: String?,
+        updatedAt: String?,
+        modelCount: String?
+    ) {
+        self._id = _id
+        self.slug = slug
+        self.name = name
+        self.description = description
+        self.iconEmoji = iconEmoji
+        self.creditCostDefault = creditCostDefault
+        self.outputType = outputType
+        self.sortOrder = sortOrder
+        self.isActive = isActive
+        self.metadata = metadata
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.modelCount = modelCount
+    }
 
     enum OutputType: String, Codable {
         case video
@@ -35,7 +75,8 @@ struct Category: Identifiable, Codable, Hashable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, slug, name, description, iconEmoji, creditCostDefault
+        case _id = "id"
+        case slug, name, description, iconEmoji, creditCostDefault
         case outputType, sortOrder, isActive, metadata, createdAt, updatedAt
         case modelCount
     }
@@ -169,11 +210,23 @@ extension Category {
     }
 }
 
+// MARK: - API Response Models
+
+struct CategoriesResponse: Codable {
+    let categories: [Category]
+}
+
+struct CategoryModelsResponse: Codable {
+    let category: Category
+    let models: [ReplicateModel]
+    let pagination: ModelsResponse.Pagination?
+}
+
 // MARK: - Mock Data
 
 extension Category {
     static let mockVideoGeneration = Category(
-        id: UUID().uuidString,
+        _id: UUID().uuidString,
         slug: "video-generation",
         name: "Video Generation",
         description: "Generate videos from text prompts or images",
@@ -183,13 +236,13 @@ extension Category {
         sortOrder: 1,
         isActive: true,
         metadata: nil,
-        createdAt: Date(),
-        updatedAt: Date(),
-        modelCount: 15
+        createdAt: nil,
+        updatedAt: nil,
+        modelCount: "15"
     )
 
     static let mockImageGeneration = Category(
-        id: UUID().uuidString,
+        _id: UUID().uuidString,
         slug: "image-generation",
         name: "Image Generation",
         description: "Generate images from text prompts",
@@ -199,9 +252,9 @@ extension Category {
         sortOrder: 2,
         isActive: true,
         metadata: nil,
-        createdAt: Date(),
-        updatedAt: Date(),
-        modelCount: 45
+        createdAt: nil,
+        updatedAt: nil,
+        modelCount: "45"
     )
 
     static let mockCategories = [mockVideoGeneration, mockImageGeneration]
