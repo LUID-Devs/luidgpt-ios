@@ -39,6 +39,79 @@ struct ModelGeneration: Identifiable, Codable, Hashable {
         case createdAt, updatedAt, replicateModel
     }
 
+    // Memberwise initializer (restored since custom init removes automatic one)
+    init(
+        id: String,
+        userId: String,
+        organizationId: String?,
+        replicateModelId: String,
+        modelId: String,
+        categorySlug: String,
+        input: [String: AnyCodable],
+        output: AnyCodable?,
+        outputUrl: String?,
+        outputUrls: [String]?,
+        status: GenerationStatus,
+        errorMessage: String?,
+        creditsUsed: Int,
+        executionTimeMs: Int?,
+        title: String?,
+        tags: [String]?,
+        isFavorite: Bool,
+        createdAt: String,
+        updatedAt: String,
+        replicateModel: ReplicateModel?
+    ) {
+        self.id = id
+        self.userId = userId
+        self.organizationId = organizationId
+        self.replicateModelId = replicateModelId
+        self.modelId = modelId
+        self.categorySlug = categorySlug
+        self.input = input
+        self.output = output
+        self.outputUrl = outputUrl
+        self.outputUrls = outputUrls
+        self.status = status
+        self.errorMessage = errorMessage
+        self.creditsUsed = creditsUsed
+        self.executionTimeMs = executionTimeMs
+        self.title = title
+        self.tags = tags
+        self.isFavorite = isFavorite
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.replicateModel = replicateModel
+    }
+
+    // Custom decoding to handle null/missing replicateModel
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(String.self, forKey: .id)
+        userId = try container.decode(String.self, forKey: .userId)
+        organizationId = try container.decodeIfPresent(String.self, forKey: .organizationId)
+        replicateModelId = try container.decode(String.self, forKey: .replicateModelId)
+        modelId = try container.decode(String.self, forKey: .modelId)
+        categorySlug = try container.decode(String.self, forKey: .categorySlug)
+        input = try container.decode([String: AnyCodable].self, forKey: .input)
+        output = try container.decodeIfPresent(AnyCodable.self, forKey: .output)
+        outputUrl = try container.decodeIfPresent(String.self, forKey: .outputUrl)
+        outputUrls = try container.decodeIfPresent([String].self, forKey: .outputUrls)
+        status = try container.decode(GenerationStatus.self, forKey: .status)
+        errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
+        creditsUsed = try container.decode(Int.self, forKey: .creditsUsed)
+        executionTimeMs = try container.decodeIfPresent(Int.self, forKey: .executionTimeMs)
+        title = try container.decodeIfPresent(String.self, forKey: .title)
+        tags = try container.decodeIfPresent([String].self, forKey: .tags)
+        isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
+        createdAt = try container.decode(String.self, forKey: .createdAt)
+        updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+        // Handle replicateModel gracefully - it may be null or missing
+        replicateModel = try? container.decodeIfPresent(ReplicateModel.self, forKey: .replicateModel)
+    }
+
     enum GenerationStatus: String, Codable {
         case pending
         case processing

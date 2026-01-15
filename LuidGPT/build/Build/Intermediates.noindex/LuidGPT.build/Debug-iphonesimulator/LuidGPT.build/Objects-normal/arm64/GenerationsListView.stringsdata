@@ -1,0 +1,88 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Generations/GenerationsListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "History"
+      },
+      {
+        "comment": "",
+        "key": "Search generations..."
+      },
+      {
+        "comment": "",
+        "key": "Clear All"
+      },
+      {
+        "comment": "",
+        "key": "View Details"
+      },
+      {
+        "comment": "",
+        "key": "Remove from Favorites"
+      },
+      {
+        "comment": "",
+        "key": "Add to Favorites"
+      },
+      {
+        "comment": "",
+        "key": "Share"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      },
+      {
+        "comment": "",
+        "key": "Loading generations..."
+      },
+      {
+        "comment": "",
+        "key": "No Generations Yet"
+      },
+      {
+        "comment": "",
+        "key": "Your generation history will appear here"
+      },
+      {
+        "comment": "",
+        "key": "Clear Filters"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Processing..."
+      },
+      {
+        "comment": "",
+        "key": "Failed"
+      },
+      {
+        "comment": "",
+        "key": "Filters"
+      },
+      {
+        "comment": "",
+        "key": "Status"
+      },
+      {
+        "comment": "",
+        "key": "Favorites Only"
+      },
+      {
+        "comment": "",
+        "key": "Apply Filters"
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      }
+    ]
+  },
+  "version": 1
+}

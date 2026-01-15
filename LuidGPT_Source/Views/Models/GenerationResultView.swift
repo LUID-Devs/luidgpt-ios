@@ -51,9 +51,6 @@ struct GenerationResultView: View {
                 inputDetailsSection
             }
         }
-        .padding(LGSpacing.lg)
-        .background(LGColors.neutral800)
-        .cornerRadius(12)
         .sheet(isPresented: $showFullScreen) {
             fullScreenOutputView
         }
@@ -71,12 +68,12 @@ struct GenerationResultView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Generation Result")
                     .font(LGFonts.h4)
-                    .foregroundColor(LGColors.foreground)
+                    .foregroundColor(.black)
 
                 if let title = generation.title {
                     Text(title)
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(LGColors.neutral600)
                 }
             }
 
@@ -109,12 +106,12 @@ struct GenerationResultView: View {
 
             Text(status.displayText)
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.neutral700)
 
             if let estimatedTime = generation.executionTimeDisplay {
                 Text("Estimated time: \(estimatedTime)")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral500)
+                    .foregroundColor(LGColors.neutral600)
             }
         }
         .frame(maxWidth: .infinity)
@@ -131,11 +128,11 @@ struct GenerationResultView: View {
 
             Text("Generation Failed")
                 .font(LGFonts.h4)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             Text(error)
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.neutral700)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
@@ -163,16 +160,21 @@ struct GenerationResultView: View {
                 // Multiple outputs - show carousel
                 multipleOutputsView(urls: outputUrls)
             } else if let url = generation.outputUrl {
+                // Debug: Show URL
+                Text("Output URL: \(url.prefix(50))...")
+                    .font(.caption2)
+                    .foregroundColor(.blue)
+
                 // Single output
                 singleOutputView(url: url)
             } else {
                 // No output yet
                 Text("No output available")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.neutral600)
                     .frame(maxWidth: .infinity)
                     .padding(LGSpacing.xl)
-                    .background(LGColors.neutral800.opacity(0.5))
+                    .background(LGColors.neutral100)
                     .cornerRadius(8)
             }
         }
@@ -198,9 +200,16 @@ struct GenerationResultView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 300)
                         .cornerRadius(12)
-                case .failure:
-                    errorPlaceholder
+                case .failure(let error):
+                    VStack {
+                        errorPlaceholder
+                        Text("Error: \(error.localizedDescription)")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
                 case .empty:
                     loadingPlaceholder
                 @unknown default:
@@ -208,7 +217,7 @@ struct GenerationResultView: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .frame(maxHeight: 400)
+            .frame(height: 300)
         }
     }
 
@@ -246,7 +255,7 @@ struct GenerationResultView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(LGSpacing.xl)
-        .background(LGColors.neutral800.opacity(0.5))
+        .background(LGColors.neutral100)
         .cornerRadius(12)
     }
 
@@ -271,7 +280,7 @@ struct GenerationResultView: View {
 
     private var loadingPlaceholder: some View {
         ZStack {
-            LGColors.neutral800
+            LGColors.neutral100
             ProgressView()
                 .tint(LGColors.VideoGeneration.main)
         }
@@ -281,14 +290,14 @@ struct GenerationResultView: View {
 
     private var errorPlaceholder: some View {
         ZStack {
-            LGColors.neutral800
+            LGColors.neutral100
             VStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle")
                     .font(.system(size: 32))
                     .foregroundColor(LGColors.errorText)
                 Text("Failed to load")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.neutral600)
             }
         }
         .frame(height: 300)
@@ -345,7 +354,7 @@ struct GenerationResultView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 10)
-        .background(LGColors.neutral800.opacity(0.5))
+        .background(LGColors.neutral100)
         .cornerRadius(8)
     }
 
@@ -428,11 +437,11 @@ struct GenerationResultView: View {
 
                 Text(label)
                     .font(.system(size: 11))
-                    .foregroundColor(disabled ? LGColors.neutral600 : LGColors.neutral300)
+                    .foregroundColor(disabled ? LGColors.neutral600 : LGColors.neutral700)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .background(LGColors.neutral800.opacity(0.5))
+            .background(LGColors.neutral100)
             .cornerRadius(8)
         }
         .disabled(disabled)
@@ -446,13 +455,13 @@ struct GenerationResultView: View {
                 HStack {
                     Text("Input Parameters")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(LGColors.foreground)
+                        .foregroundColor(.black)
 
                     Spacer()
 
                     Image(systemName: showInputDetails ? "chevron.up" : "chevron.down")
                         .font(.system(size: 12))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(LGColors.neutral600)
                 }
             }
 
@@ -463,7 +472,7 @@ struct GenerationResultView: View {
                     }
                 }
                 .padding(LGSpacing.md)
-                .background(LGColors.neutral800.opacity(0.3))
+                .background(LGColors.neutral100)
                 .cornerRadius(8)
             }
         }
@@ -474,11 +483,11 @@ struct GenerationResultView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(key.capitalized)
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.neutral600)
 
             Text(formatInputValue(value))
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
                 .lineLimit(3)
         }
     }

@@ -86,18 +86,23 @@ class ModelsAPIService {
 
         let endpoint = "/models/\(encodedModelId)/run"
 
-        // Convert input to AnyCodable for JSON encoding
-        var inputCodable: [String: AnyCodable] = [:]
-        for (key, value) in input {
-            inputCodable[key] = AnyCodable(value)
+        // Build params dictionary with only non-nil values to avoid JSON serialization issues
+        // Input is already cleaned from DynamicFormView, no need to wrap in AnyCodable
+        var params: [String: Any] = [
+            "input": input
+        ]
+
+        if let organizationId = organizationId {
+            params["organizationId"] = organizationId
         }
 
-        let params: [String: Any] = [
-            "input": inputCodable,
-            "organizationId": organizationId as Any,
-            "title": title as Any,
-            "tags": tags as Any
-        ]
+        if let title = title {
+            params["title"] = title
+        }
+
+        if let tags = tags {
+            params["tags"] = tags
+        }
 
         let response: ExecuteModelResponse = try await apiClient.post(
             endpoint,
@@ -107,6 +112,12 @@ class ModelsAPIService {
 
         if !response.success {
             throw APIError.serverError("Failed to execute model")
+        }
+
+        // Convert input back to AnyCodable format for ModelGeneration storage
+        var inputCodable: [String: AnyCodable] = [:]
+        for (key, value) in input {
+            inputCodable[key] = AnyCodable(value)
         }
 
         // Convert execution result to ModelGeneration

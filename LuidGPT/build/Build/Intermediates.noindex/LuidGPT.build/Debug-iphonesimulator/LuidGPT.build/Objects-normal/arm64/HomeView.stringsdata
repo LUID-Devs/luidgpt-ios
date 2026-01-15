@@ -4,47 +4,35 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Home"
-      },
-      {
-        "comment": "",
         "key": "%lld"
       },
       {
         "comment": "",
-        "key": "Credits"
+        "key": "Trending Now"
       },
       {
         "comment": "",
-        "key": "Unable to load balance"
+        "key": "Browse by Category"
       },
       {
         "comment": "",
-        "key": "credits"
+        "key": "Filters"
       },
       {
         "comment": "",
-        "key": "Low balance"
+        "key": "Clear all filters"
       },
       {
         "comment": "",
-        "key": "Buy"
+        "key": "You've seen all %lld models"
       },
       {
         "comment": "",
-        "key": "Categories"
+        "key": "No models found"
       },
       {
         "comment": "",
-        "key": "Featured Models"
-      },
-      {
-        "comment": "",
-        "key": "See all"
-      },
-      {
-        "comment": "",
-        "key": "Popular"
+        "key": "Try adjusting your filters or category"
       }
     ]
   },

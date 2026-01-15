@@ -17,7 +17,7 @@ struct ModelDetailView: View {
 
     var body: some View {
         ZStack {
-            LGColors.background.ignoresSafeArea()
+            Color.white.ignoresSafeArea()
 
             if viewModel.modelLoading {
                 loadingView
@@ -28,6 +28,8 @@ struct ModelDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarBackground(Color.white, for: .navigationBar)
         .task {
             await viewModel.loadModel(modelId: modelId)
             await creditsViewModel.fetchBalance()
@@ -44,32 +46,12 @@ struct ModelDetailView: View {
                     .padding(.horizontal, LGSpacing.lg)
                     .padding(.vertical, LGSpacing.md)
 
-                // Main content with adaptive layout
-                GeometryReader { geometry in
-                    let isWide = geometry.size.width > 768
-
-                    if isWide {
-                        // Two-column layout for iPad/larger screens
-                        HStack(alignment: .top, spacing: LGSpacing.lg) {
-                            // Left column (sticky)
-                            leftColumn(model: model)
-                                .frame(width: geometry.size.width * 0.35)
-
-                            // Right column
-                            rightColumn(model: model)
-                                .frame(maxWidth: .infinity)
-                        }
-                        .padding(.horizontal, LGSpacing.lg)
-                    } else {
-                        // Stacked layout for iPhone
-                        VStack(spacing: LGSpacing.lg) {
-                            leftColumn(model: model)
-                            rightColumn(model: model)
-                        }
-                        .padding(.horizontal, LGSpacing.lg)
-                    }
+                // Main content - stacked layout for iPhone
+                VStack(spacing: LGSpacing.lg) {
+                    leftColumn(model: model)
+                    rightColumn(model: model)
                 }
-                .frame(minHeight: 800) // Ensure GeometryReader has height
+                .padding(.horizontal, LGSpacing.lg)
             }
             .padding(.bottom, LGSpacing.xl)
         }

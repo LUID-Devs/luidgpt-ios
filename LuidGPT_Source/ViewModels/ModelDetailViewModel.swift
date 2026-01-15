@@ -195,13 +195,17 @@ class ModelDetailViewModel: ObservableObject {
     func loadRecentGenerations(modelId: String) async {
         generationsLoading = true
 
+        print("📊 Loading recent generations for model: \(modelId)")
+
         do {
             let result = try await modelsAPI.fetchGenerations(
                 page: 1,
                 limit: 10,
                 modelId: modelId
             )
+            print("📊 Fetched \(result.generations.count) generations")
             recentGenerations = result.generations
+            print("📊 recentGenerations array now has \(recentGenerations.count) items")
         } catch {
             print("⚠️ Error loading recent generations: \(error)")
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3146E1CB280C76C912357D /* DrawerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F84A803940C8ED3749C6A0 /* DrawerMenuView.swift */; };
 		4285EF72CC247D694DD4BAC6 /* ModelsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092DF3E5A524EA4403AE106 /* ModelsAPIService.swift */; };
 		46E03818EE56003E304A1D21 /* ModelGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404D4C9906FD2D879F994A3C /* ModelGeneration.swift */; };
 		4D3AF3EF2F16744400D68C66 /* CreditsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AF3EE2F16744400D68C66 /* CreditsViewModel.swift */; };
@@ -29,6 +30,7 @@
 		4D90D8C92F15592F00E14205 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8AB2F15592F00E14205 /* KeychainManager.swift */; };
 		4D90D8CB2F15638B00E14205 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8CA2F15638B00E14205 /* TabBarView.swift */; };
 		4D90D8CD2F15647800E14205 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90D8CC2F15647800E14205 /* HomeView.swift */; };
+		4D9287562F193AA500388CE5 /* WorkspacesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9287552F193AA500388CE5 /* WorkspacesAPIService.swift */; };
 		4DAB12342F16800000A12345 /* CreditBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB12332F16800000A12345 /* CreditBalance.swift */; };
 		4DAB12362F16800000A12346 /* CreditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB12352F16800000A12346 /* CreditService.swift */; };
 		4DC44490D877EF4246DA6159 /* GenerationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CEE87307BD31F6A08F44F8 /* GenerationsListView.swift */; };
@@ -54,9 +56,15 @@
 		616CAF6E9F1F06DB5D9D2C13 /* DynamicFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F226C1A3FC76BEBBEF3E8 /* DynamicFormView.swift */; };
 		6A88E8EAAB714007A36B3573 /* ModelCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803DBE4CD6C243B8B2AF2B99 /* ModelCardView.swift */; };
 		6D30BA915B6B4A85B6F6FB44 /* ModelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354F2BE41AE4D2982A42E57 /* ModelsView.swift */; };
+		8957D1F7D56B8BD123D83174 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DDB8356D8CAA90E647679 /* DashboardView.swift */; };
+		9EA834E3C770EC86802DCAF7 /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B154383AD30C2D70781FA5A2 /* UsageView.swift */; };
 		A19DDA06277ABD00C1A94472 /* ModelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68254B007F795E9010B8A2CB /* ModelDetailViewModel.swift */; };
+		A4497148391BB4C977E06058 /* BillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5573DC2E99C1DB68726D8A /* BillingView.swift */; };
 		AD9F172481424E6D816B2D5C /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE73D9699BF431188EF4A93 /* ModelDetailView.swift */; };
+		C31F022C9809806C5BCA6D6D /* WorkspacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA12AAF41348A417B6037E3 /* WorkspacesView.swift */; };
 		D1A9ADD3C00AF9C548A82EED /* GenerationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505F3FEA54ECEA5E630F437F /* GenerationsViewModel.swift */; };
+		D33B1AE2AF1342ABF45E4E65 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB5617D109F58EEC3F7886 /* ProfileView.swift */; };
+		DE989E30A38AFBEA0F04A522 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8290D1D4EA4C695E82BAAC /* SettingsView.swift */; };
 		E8D4ACE0C04CCC0F3C707A9D /* LuidGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +87,9 @@
 
 /* Begin PBXFileReference section */
 		1092DF3E5A524EA4403AE106 /* ModelsAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelsAPIService.swift; sourceTree = "<group>"; };
+		167DDB8356D8CAA90E647679 /* DashboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DashboardView.swift; path = Views/Dashboard/DashboardView.swift; sourceTree = "<group>"; };
 		2EE73D9699BF431188EF4A93 /* ModelDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDetailView.swift; sourceTree = "<group>"; };
+		30CB5617D109F58EEC3F7886 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Views/Profile/ProfileView.swift; sourceTree = "<group>"; };
 		35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LuidGPTApp.swift; sourceTree = "<group>"; };
 		404D4C9906FD2D879F994A3C /* ModelGeneration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelGeneration.swift; sourceTree = "<group>"; };
 		4D3AF3EE2F16744400D68C66 /* CreditsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewModel.swift; sourceTree = "<group>"; };
@@ -111,6 +121,7 @@
 		4D90D8AB2F15592F00E14205 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4D90D8CA2F15638B00E14205 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		4D90D8CC2F15647800E14205 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4D9287552F193AA500388CE5 /* WorkspacesAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspacesAPIService.swift; sourceTree = "<group>"; };
 		4DAB12332F16800000A12345 /* CreditBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditBalance.swift; sourceTree = "<group>"; };
 		4DAB12352F16800000A12346 /* CreditService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditService.swift; sourceTree = "<group>"; };
 		4DDB31C52F153AA200BA952B /* LuidGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuidGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,15 +155,20 @@
 		4DDB322E2F1541A600BA952B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		505F3FEA54ECEA5E630F437F /* GenerationsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationsViewModel.swift; sourceTree = "<group>"; };
 		56B00114D053C999CB0664CB /* GenerationDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationDetailView.swift; sourceTree = "<group>"; };
+		5F8290D1D4EA4C695E82BAAC /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
 		68254B007F795E9010B8A2CB /* ModelDetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelDetailViewModel.swift; sourceTree = "<group>"; };
+		7D5573DC2E99C1DB68726D8A /* BillingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BillingView.swift; path = Views/Billing/BillingView.swift; sourceTree = "<group>"; };
 		7EB3C113BDCA4AD29E0190F6 /* ModelsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsViewModel.swift; sourceTree = "<group>"; };
 		803DBE4CD6C243B8B2AF2B99 /* ModelCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelCardView.swift; sourceTree = "<group>"; };
+		85F84A803940C8ED3749C6A0 /* DrawerMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DrawerMenuView.swift; path = Views/Navigation/DrawerMenuView.swift; sourceTree = "<group>"; };
 		892F226C1A3FC76BEBBEF3E8 /* DynamicFormView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DynamicFormView.swift; sourceTree = "<group>"; };
 		91F61AA7B263436C8571C2CE /* ModelConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelConstants.swift; sourceTree = "<group>"; };
 		9354F2BE41AE4D2982A42E57 /* ModelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsView.swift; sourceTree = "<group>"; };
+		B154383AD30C2D70781FA5A2 /* UsageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsageView.swift; path = Views/Usage/UsageView.swift; sourceTree = "<group>"; };
 		BDDB2810E6514E70B808AB48 /* CategoryNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryNavigationView.swift; sourceTree = "<group>"; };
 		C2F3DDBBC578408547D979D7 /* GenerationResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationResultView.swift; sourceTree = "<group>"; };
 		F8CEE87307BD31F6A08F44F8 /* GenerationsListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GenerationsListView.swift; sourceTree = "<group>"; };
+		FAA12AAF41348A417B6037E3 /* WorkspacesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WorkspacesView.swift; path = Views/Workspaces/WorkspacesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,9 +196,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		284F816EE6B2F6B08AA3326B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85F84A803940C8ED3749C6A0 /* DrawerMenuView.swift */,
+				167DDB8356D8CAA90E647679 /* DashboardView.swift */,
+				B154383AD30C2D70781FA5A2 /* UsageView.swift */,
+				7D5573DC2E99C1DB68726D8A /* BillingView.swift */,
+				5F8290D1D4EA4C695E82BAAC /* SettingsView.swift */,
+				FAA12AAF41348A417B6037E3 /* WorkspacesView.swift */,
+				30CB5617D109F58EEC3F7886 /* ProfileView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		4D90D8842F15592F00E14205 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4D9287552F193AA500388CE5 /* WorkspacesAPIService.swift */,
 				4DAB12352F16800000A12346 /* CreditService.swift */,
 				4D90D8812F15592F00E14205 /* GenerationsService.swift */,
 				4D90D8822F15592F00E14205 /* ModelsService.swift */,
@@ -596,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				35ACA0E99BED218FA1C21E8A /* LuidGPTApp.swift */,
+				284F816EE6B2F6B08AA3326B /* Views */,
 			);
 			name = LuidGPT_Source;
 			path = ../LuidGPT_Source;
@@ -778,6 +810,14 @@
 				4DC44490D877EF4246DA6159 /* GenerationsListView.swift in Sources */,
 				5E75E42D443BDC549B70BD7B /* GenerationDetailView.swift in Sources */,
 				E8D4ACE0C04CCC0F3C707A9D /* LuidGPTApp.swift in Sources */,
+				1C3146E1CB280C76C912357D /* DrawerMenuView.swift in Sources */,
+				8957D1F7D56B8BD123D83174 /* DashboardView.swift in Sources */,
+				4D9287562F193AA500388CE5 /* WorkspacesAPIService.swift in Sources */,
+				9EA834E3C770EC86802DCAF7 /* UsageView.swift in Sources */,
+				A4497148391BB4C977E06058 /* BillingView.swift in Sources */,
+				DE989E30A38AFBEA0F04A522 /* SettingsView.swift in Sources */,
+				C31F022C9809806C5BCA6D6D /* WorkspacesView.swift in Sources */,
+				D33B1AE2AF1342ABF45E4E65 /* ProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

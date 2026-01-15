@@ -20,7 +20,7 @@ struct GenerationsListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LGColors.background.ignoresSafeArea()
+                Color.white.ignoresSafeArea()
 
                 if viewModel.isLoading && viewModel.generations.isEmpty {
                     loadingView
@@ -113,21 +113,21 @@ struct GenerationsListView: View {
     private var searchBar: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(LGColors.neutral500)
+                .foregroundColor(.gray)
 
             TextField("Search generations...", text: $viewModel.searchText)
                 .textFieldStyle(.plain)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             if !viewModel.searchText.isEmpty {
                 Button(action: { viewModel.searchText = "" }) {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(LGColors.neutral500)
+                        .foregroundColor(.gray)
                 }
             }
         }
         .padding(12)
-        .background(LGColors.neutral800)
+        .background(Color(white: 0.95))
         .cornerRadius(10)
         .padding(.horizontal, LGSpacing.md)
     }
@@ -167,7 +167,7 @@ struct GenerationsListView: View {
             )
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(Color(white: 0.95))
         .cornerRadius(12)
         .padding(.horizontal, LGSpacing.md)
     }
@@ -180,11 +180,11 @@ struct GenerationsListView: View {
 
             Text(value)
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             Text(label)
                 .font(.system(size: 10))
-                .foregroundColor(LGColors.neutral500)
+                .foregroundColor(.gray)
         }
         .frame(maxWidth: .infinity)
     }
@@ -286,7 +286,7 @@ struct GenerationsListView: View {
 
             Text("Loading generations...")
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(.gray)
         }
     }
 
@@ -296,15 +296,15 @@ struct GenerationsListView: View {
         VStack(spacing: 20) {
             Image(systemName: "clock.badge.exclamationmark")
                 .font(.system(size: 60))
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(.gray)
 
             Text("No Generations Yet")
                 .font(LGFonts.h2)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             Text("Your generation history will appear here")
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
 
             if hasActiveFilters {
@@ -357,7 +357,7 @@ struct GenerationCardView: View {
 
                     Text(generation.title ?? "Untitled")
                         .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(LGColors.foreground)
+                        .foregroundColor(.black)
                         .lineLimit(1)
 
                     Spacer()
@@ -372,7 +372,7 @@ struct GenerationCardView: View {
                 if let model = generation.replicateModel {
                     Text(model.name)
                         .font(.system(size: 11))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(.gray)
                         .lineLimit(1)
                 }
 
@@ -387,11 +387,11 @@ struct GenerationCardView: View {
             .padding(8)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .background(LGColors.neutral800)
+        .background(Color.white)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(LGColors.neutral800, lineWidth: 1)
+                .stroke(Color(white: 0.9), lineWidth: 1)
         )
     }
 
@@ -412,13 +412,13 @@ struct GenerationCardView: View {
             }
         } else if generation.status.isRunning {
             ZStack {
-                LGColors.neutral800
+                Color(white: 0.95)
                 VStack(spacing: 8) {
                     ProgressView()
                         .tint(LGColors.VideoGeneration.main)
                     Text("Processing...")
                         .font(.system(size: 11))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(.gray)
                 }
             }
         } else {
@@ -432,12 +432,12 @@ struct GenerationCardView: View {
         }
 
         return ZStack {
-            colors?.background ?? LGColors.neutral800
+            colors?.background ?? Color(white: 0.95)
 
             VStack(spacing: 8) {
                 Image(systemName: generation.isImageOutput ? "photo" : generation.isVideoOutput ? "video" : "doc")
                     .font(.system(size: 32))
-                    .foregroundColor(colors?.foreground.opacity(0.6) ?? LGColors.neutral500)
+                    .foregroundColor(colors?.foreground.opacity(0.6) ?? .gray)
 
                 if generation.status == .failed {
                     Text("Failed")
@@ -470,17 +470,17 @@ struct GenerationsFilterChip: View {
         HStack(spacing: 6) {
             Text(label)
                 .font(.system(size: 12))
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.black)
 
             Button(action: onRemove) {
                 Image(systemName: "xmark")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(.gray)
             }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
-        .background(LGColors.neutral800)
+        .background(Color(white: 0.95))
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)

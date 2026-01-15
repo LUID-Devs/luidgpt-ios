@@ -1,24 +1,24 @@
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/HomeView.swift":
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/HomeView.swiftconstvalues"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/HomeView.swiftdeps"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/HomeView.dia"
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/HomeView.o"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/HomeView.d"
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/DesignSystem/Components/LGButton.swift":
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton.o"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton.dia"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton.d"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton.swiftdeps"
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGButton.swiftconstvalues"
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/ViewModels/CreditsViewModel.swift":
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/CreditsViewModel.dia"
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/CreditsViewModel.o"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/CreditsViewModel.d"
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/CreditsViewModel.swiftconstvalues"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/CreditsViewModel.swiftdeps"
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Models/Category.swift":
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-de82b7a4ec86f83fb6ae98d3ec7105c2.swiftdeps"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-de82b7a4ec86f83fb6ae98d3ec7105c2.dia"
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-de82b7a4ec86f83fb6ae98d3ec7105c2.swiftconstvalues"
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-de82b7a4ec86f83fb6ae98d3ec7105c2.o"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/Category-de82b7a4ec86f83fb6ae98d3ec7105c2.d"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/DesignSystem/Components/LGCard.swift":
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard.dia"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard.swiftdeps"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard.o"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard.d"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LGCard.swiftconstvalues"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Core/Auth/AuthService.swift":
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService.o"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService.swiftconstvalues"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService.swiftdeps"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService.dia"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthService.d"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Auth/LoginView.swift":
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView.swiftdeps"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView.d"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView.o"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView.dia"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LoginView.swiftconstvalues"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Auth/AuthenticationView.swift":
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.dia"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.swiftconstvalues"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.d"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.o"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.swiftdeps"

@@ -3,103 +3,128 @@
 //  LuidGPT
 //
 //  Main tab bar navigation with Home, Models, Generations, and Profile tabs
+//  Includes drawer menu for navigation
 //
 
 import SwiftUI
 
 struct TabBarView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var creditsViewModel: CreditsViewModel
     @State private var selectedTab = 0
+    @State private var isDrawerOpen = false
+    @State private var drawerDestination: DrawerDestination?
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            // Home Tab
-            NavigationView {
-                HomeView()
-            }
-            .tabItem {
-                Label("Home", systemImage: "house.fill")
-            }
-            .tag(0)
+        ZStack {
+            TabView(selection: $selectedTab) {
+                // Home Tab
+                NavigationView {
+                    HomeView()
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        isDrawerOpen = true
+                                    }
+                                }) {
+                                    Image(systemName: "line.3.horizontal")
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                }
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+                .tag(0)
 
-            // Generations Tab
-            GenerationsListView()
+                // Generations Tab
+                NavigationView {
+                    GenerationsListView()
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        isDrawerOpen = true
+                                    }
+                                }) {
+                                    Image(systemName: "line.3.horizontal")
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                }
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
                 .tag(1)
 
-            // Profile Tab
-            ProfileView()
+                // Profile Tab
+                NavigationView {
+                    ProfileView()
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        isDrawerOpen = true
+                                    }
+                                }) {
+                                    Image(systemName: "line.3.horizontal")
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                }
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
                 .tag(2)
+            }
+            .accentColor(LGColors.VideoGeneration.main)
+
+            // Drawer Menu Overlay
+            if isDrawerOpen {
+                DrawerMenuView(isOpen: $isDrawerOpen, destination: $drawerDestination)
+                    .transition(.move(edge: .leading))
+                    .zIndex(1)
+            }
         }
-        .accentColor(LGColors.VideoGeneration.main)
-    }
-}
-
-// MARK: - Placeholder Views
-
-// ModelsView is now implemented in Views/Models/ModelsView.swift
-// GenerationsListView is now implemented in Views/Generations/GenerationsListView.swift
-
-struct ProfileView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-
-    var body: some View {
-        NavigationView {
-            ZStack {
-                LGColors.background.ignoresSafeArea()
-
-                VStack(spacing: 24) {
-                    // Profile avatar
-                    if let user = authViewModel.currentUser {
-                        ZStack {
-                            Circle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [
-                                            LGColors.VideoGeneration.main,
-                                            LGColors.ImageGeneration.main
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .frame(width: 80, height: 80)
-
-                            Text(user.initials)
-                                .font(.system(size: 32, weight: .bold))
-                                .foregroundColor(.white)
-                        }
-
-                        Text(user.fullName)
-                            .font(LGFonts.h2)
-                            .foregroundColor(LGColors.foreground)
-
-                        Text(user.email)
-                            .font(LGFonts.body)
-                            .foregroundColor(LGColors.neutral600)
-
-                        // Logout button
-                        LGButton(
-                            "Logout",
-                            style: .outline,
-                            fullWidth: false
-                        ) {
-                            Task {
-                                await authViewModel.logout()
+        .sheet(item: $drawerDestination) { dest in
+            NavigationView {
+                destinationView(for: dest)
+                    .navigationBarTitleDisplayMode(.large)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Close") {
+                                drawerDestination = nil
                             }
                         }
-                        .padding(.top, 20)
                     }
-                }
-                .padding()
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.large)
+        }
+    }
+
+    @ViewBuilder
+    private func destinationView(for destination: DrawerDestination) -> some View {
+        switch destination {
+        case .home:
+            HomeView()
+        case .dashboard:
+            DashboardView()
+        case .usage:
+            UsageView()
+        case .workspaces:
+            WorkspacesView()
+        case .profile:
+            ProfileView()
+        case .billing:
+            BillingView()
+        case .settings:
+            SettingsView()
         }
     }
 }
@@ -111,6 +136,7 @@ struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarView()
             .environmentObject(AuthViewModel())
+            .environmentObject(CreditsViewModel())
     }
 }
 #endif

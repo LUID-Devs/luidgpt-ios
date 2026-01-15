@@ -1,0 +1,60 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Profile/ProfileView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Profile"
+      },
+      {
+        "comment": "",
+        "key": "Edit"
+      },
+      {
+        "comment": "",
+        "key": "Member since %@"
+      },
+      {
+        "comment": "",
+        "key": "Account Information"
+      },
+      {
+        "comment": "",
+        "key": "Your Statistics"
+      },
+      {
+        "comment": "",
+        "key": "Quick Actions"
+      },
+      {
+        "comment": "",
+        "key": "Edit Profile"
+      },
+      {
+        "comment": "",
+        "key": "Full Name"
+      },
+      {
+        "comment": "",
+        "key": "Enter your full name"
+      },
+      {
+        "comment": "",
+        "key": "Email"
+      },
+      {
+        "comment": "",
+        "key": "Enter your email"
+      },
+      {
+        "comment": "",
+        "key": "Save Changes"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,76 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Workspaces/WorkspacesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Workspaces"
+      },
+      {
+        "comment": "",
+        "key": "Your Workspaces"
+      },
+      {
+        "comment": "",
+        "key": "%lld workspace%@"
+      },
+      {
+        "comment": "",
+        "key": "New"
+      },
+      {
+        "comment": "",
+        "key": "Current Workspace"
+      },
+      {
+        "comment": "",
+        "key": "%lld members"
+      },
+      {
+        "comment": "",
+        "key": "Manage Workspace"
+      },
+      {
+        "comment": "",
+        "key": "All Workspaces"
+      },
+      {
+        "comment": "",
+        "key": "No workspaces yet"
+      },
+      {
+        "comment": "",
+        "key": "Create Your First Workspace"
+      },
+      {
+        "comment": "",
+        "key": "•"
+      },
+      {
+        "comment": "",
+        "key": "Switch"
+      },
+      {
+        "comment": "",
+        "key": "New Workspace"
+      },
+      {
+        "comment": "",
+        "key": "Workspace Name"
+      },
+      {
+        "comment": "",
+        "key": "Enter workspace name"
+      },
+      {
+        "comment": "",
+        "key": "Create Workspace"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

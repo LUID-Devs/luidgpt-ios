@@ -412,9 +412,16 @@ struct DynamicFormView: View {
 
         for (key, property) in schema.properties {
             if let value = inputValues[key] {
-                finalInput[key] = value
+                // Unwrap ALL values to ensure they're JSON-serializable
+                if let primitiveValue = extractPrimitiveValue(from: value) {
+                    finalInput[key] = primitiveValue
+                }
             } else if let defaultValue = property.defaultValue {
-                finalInput[key] = defaultValue.value
+                // Properly unwrap AnyCodable to get the actual primitive value
+                let unwrappedValue = extractPrimitiveValue(from: defaultValue.value)
+                if let primitiveValue = unwrappedValue {
+                    finalInput[key] = primitiveValue
+                }
             }
         }
 
@@ -425,10 +432,59 @@ struct DynamicFormView: View {
             }
         }
 
-        // If no validation errors, submit
+        // If no validation errors, serialize to JSON and back to ensure all values are JSON-safe
         if validationErrors.isEmpty {
-            onSubmit(finalInput)
+            // Convert to JSON Data and back to strip out any non-JSON-serializable types
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: finalInput, options: [])
+                if let cleanedInput = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                    onSubmit(cleanedInput)
+                } else {
+                    print("❌ Failed to deserialize JSON back to dictionary")
+                    validationErrors["_general"] = "Failed to prepare input data"
+                }
+            } catch {
+                print("❌ JSON serialization error: \(error)")
+                validationErrors["_general"] = "Invalid input data: \(error.localizedDescription)"
+            }
         }
+    }
+
+    /// Extract primitive JSON-serializable value from Any
+    private func extractPrimitiveValue(from value: Any) -> Any? {
+        // Handle NSNumber and numeric types
+        if let numberValue = value as? NSNumber {
+            // Check if it's a Bool first (NSNumber can also be Bool)
+            if CFBooleanGetTypeID() == CFGetTypeID(numberValue as CFTypeRef) {
+                return numberValue.boolValue
+            }
+            // Return as Double for all other numbers (most compatible JSON type)
+            return numberValue.doubleValue
+        }
+
+        // Handle basic Swift types
+        if let stringValue = value as? String {
+            return stringValue
+        } else if let intValue = value as? Int {
+            return intValue
+        } else if let doubleValue = value as? Double {
+            return doubleValue
+        } else if let floatValue = value as? Float {
+            return Double(floatValue)
+        } else if let boolValue = value as? Bool {
+            return boolValue
+        } else if let int64Value = value as? Int64 {
+            return Int(int64Value)
+        } else if let int32Value = value as? Int32 {
+            return Int(int32Value)
+        } else if let arrayValue = value as? [Any] {
+            return arrayValue.compactMap { extractPrimitiveValue(from: $0) }
+        } else if let dictValue = value as? [String: Any] {
+            return dictValue.compactMapValues { extractPrimitiveValue(from: $0) }
+        }
+
+        // If none of the above, return nil (unsupported type)
+        return nil
     }
 
     private func convertImageToBase64(_ image: UIImage) -> String {

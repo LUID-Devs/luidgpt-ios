@@ -1,0 +1,68 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Generations/GenerationDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Delete Generation"
+      },
+      {
+        "comment": "",
+        "key": "Close"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to delete this generation? This action cannot be undone."
+      },
+      {
+        "comment": "",
+        "key": "#%@"
+      },
+      {
+        "comment": "",
+        "key": "Details"
+      },
+      {
+        "comment": "",
+        "key": "Actions"
+      },
+      {
+        "comment": "",
+        "key": "Input Parameters"
+      },
+      {
+        "comment": "",
+        "key": "Model Information"
+      },
+      {
+        "comment": "",
+        "key": "by %@"
+      },
+      {
+        "comment": "",
+        "key": "Processing..."
+      },
+      {
+        "comment": "",
+        "key": "This may take a few minutes"
+      },
+      {
+        "comment": "",
+        "key": "Output available"
+      },
+      {
+        "comment": "",
+        "key": "Open in Browser"
+      }
+    ]
+  },
+  "version": 1
+}

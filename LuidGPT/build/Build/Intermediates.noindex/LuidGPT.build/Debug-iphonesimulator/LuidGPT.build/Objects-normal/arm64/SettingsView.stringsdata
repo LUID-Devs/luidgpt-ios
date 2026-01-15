@@ -1,0 +1,64 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Settings/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Account"
+      },
+      {
+        "comment": "",
+        "key": "Preferences"
+      },
+      {
+        "comment": "",
+        "key": "Notifications"
+      },
+      {
+        "comment": "",
+        "key": "Privacy & Security"
+      },
+      {
+        "comment": "",
+        "key": "About"
+      },
+      {
+        "comment": "",
+        "key": "Danger Zone"
+      },
+      {
+        "comment": "",
+        "key": "Log Out"
+      },
+      {
+        "comment": "",
+        "key": "Delete Account"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to log out?"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      },
+      {
+        "comment": "",
+        "key": "This action cannot be undone. All your data will be permanently deleted."
+      },
+      {
+        "comment": "",
+        "key": ""
+      }
+    ]
+  },
+  "version": 1
+}

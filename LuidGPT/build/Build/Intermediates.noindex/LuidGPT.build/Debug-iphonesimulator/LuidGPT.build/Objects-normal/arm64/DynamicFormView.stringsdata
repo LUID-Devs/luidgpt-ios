@@ -1,0 +1,60 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Models/DynamicFormView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Model schema not available"
+      },
+      {
+        "comment": "",
+        "key": "Fill out the parameters below to generate your output"
+      },
+      {
+        "comment": "",
+        "key": "Generate with %@"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "*"
+      },
+      {
+        "comment": "",
+        "key": ""
+      },
+      {
+        "comment": "",
+        "key": "Enter %@"
+      },
+      {
+        "comment": "",
+        "key": "Enter number"
+      },
+      {
+        "comment": "",
+        "key": "Change Image"
+      },
+      {
+        "comment": "",
+        "key": "Upload Image"
+      },
+      {
+        "comment": "",
+        "key": "Insufficient credits"
+      },
+      {
+        "comment": "",
+        "key": "Generate"
+      },
+      {
+        "comment": "",
+        "key": "(%lld credits)"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Billing/BillingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Billing"
+      },
+      {
+        "comment": "",
+        "key": "Choose Your Plan"
+      },
+      {
+        "comment": "",
+        "key": "Upgrade to unlock more credits and features"
+      },
+      {
+        "comment": "",
+        "key": "POPULAR"
+      },
+      {
+        "comment": "",
+        "key": "Selected"
+      },
+      {
+        "comment": "",
+        "key": "Select Plan"
+      }
+    ]
+  },
+  "version": 1
+}

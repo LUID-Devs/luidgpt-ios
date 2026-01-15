@@ -1,0 +1,40 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Usage/UsageView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Usage"
+      },
+      {
+        "comment": "",
+        "key": "Available Credits"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Get More Credits"
+      },
+      {
+        "comment": "",
+        "key": "Usage Statistics"
+      },
+      {
+        "comment": "",
+        "key": "Transaction History"
+      },
+      {
+        "comment": "",
+        "key": "No transactions yet"
+      },
+      {
+        "comment": "",
+        "key": "%@%lld"
+      }
+    ]
+  },
+  "version": 1
+}

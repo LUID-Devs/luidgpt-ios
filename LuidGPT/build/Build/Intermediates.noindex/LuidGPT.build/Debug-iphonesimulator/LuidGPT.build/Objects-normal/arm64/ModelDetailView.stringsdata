@@ -4,27 +4,15 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Loading model..."
+        "key": "Models"
       },
       {
         "comment": "",
-        "key": "Provider"
+        "key": "by %@"
       },
       {
         "comment": "",
-        "key": "Version"
-      },
-      {
-        "comment": "",
-        "key": "Features"
-      },
-      {
-        "comment": "",
-        "key": "Tags"
-      },
-      {
-        "comment": "",
-        "key": "Run Model"
+        "key": "Your Balance"
       },
       {
         "comment": "",
@@ -32,11 +20,23 @@
       },
       {
         "comment": "",
-        "key": "Failed to load model"
+        "key": "Loading form..."
       },
       {
         "comment": "",
-        "key": "Please try again later"
+        "key": "Recent Generations"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Loading model..."
+      },
+      {
+        "comment": "",
+        "key": "Model Not Found"
       }
     ]
   },

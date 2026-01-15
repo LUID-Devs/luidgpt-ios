@@ -1,18 +1,24 @@
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Auth/AuthenticationView.swift":
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.o"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.swiftdeps"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.dia"
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.swiftconstvalues"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/AuthenticationView.d"
-"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Services/GenerationsService.swift":
-  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GenerationsService.swiftconstvalues"
-  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GenerationsService.o"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GenerationsService.swiftdeps"
-  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GenerationsService.d"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/GenerationsService.dia"
 "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/LuidGPTApp.swift":
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.dia"
   object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.o"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.swiftdeps"
   dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.d"
   const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.swiftconstvalues"
-  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.swiftdeps"
-  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/LuidGPTApp.dia"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Usage/UsageView.swift":
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UsageView.swiftconstvalues"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UsageView.swiftdeps"
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UsageView.d"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UsageView.dia"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/UsageView.o"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Navigation/DrawerMenuView.swift":
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DrawerMenuView.d"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DrawerMenuView.o"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DrawerMenuView.dia"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DrawerMenuView.swiftdeps"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DrawerMenuView.swiftconstvalues"
+"/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Dashboard/DashboardView.swift":
+  dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DashboardView.d"
+  swift-dependencies: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DashboardView.swiftdeps"
+  object: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DashboardView.o"
+  diagnostics: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DashboardView.dia"
+  const-values: "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT/build/Build/Intermediates.noindex/LuidGPT.build/Debug-iphonesimulator/LuidGPT.build/Objects-normal/arm64/DashboardView.swiftconstvalues"

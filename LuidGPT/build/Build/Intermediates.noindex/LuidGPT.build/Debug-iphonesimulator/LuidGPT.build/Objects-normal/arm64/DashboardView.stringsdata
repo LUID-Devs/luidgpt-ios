@@ -1,0 +1,36 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Dashboard/DashboardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Dashboard"
+      },
+      {
+        "comment": "",
+        "key": "Overview"
+      },
+      {
+        "comment": "",
+        "key": "Quick Actions"
+      },
+      {
+        "comment": "",
+        "key": "Recent Activity"
+      },
+      {
+        "comment": "",
+        "key": "View All"
+      },
+      {
+        "comment": "",
+        "key": "No recent activity"
+      },
+      {
+        "comment": "",
+        "key": "%lld★"
+      }
+    ]
+  },
+  "version": 1
+}

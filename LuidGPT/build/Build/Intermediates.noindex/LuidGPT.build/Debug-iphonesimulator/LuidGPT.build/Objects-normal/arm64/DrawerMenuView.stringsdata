@@ -1,0 +1,28 @@
+{
+  "source": "/Users/alaindimabuyo/luid_projects/luidgpt-ios/LuidGPT_Source/Views/Navigation/DrawerMenuView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Close"
+      },
+      {
+        "comment": "",
+        "key": "LuidGPT"
+      },
+      {
+        "comment": "",
+        "key": "Credits"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Logout"
+      }
+    ]
+  },
+  "version": 1
+}
