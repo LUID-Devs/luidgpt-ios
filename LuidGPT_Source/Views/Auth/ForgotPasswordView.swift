@@ -51,7 +51,7 @@ struct ForgotPasswordView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(LGColors.neutral400)
+                            .foregroundColor(LGColors.foregroundSecondary)
                     }
                 }
             }
@@ -69,16 +69,33 @@ struct ForgotPasswordView: View {
 
     private var headerSection: some View {
         VStack(spacing: 16) {
-            // Icon
+            // Icon with elegant black and white design
             ZStack {
+                // Outer circle with white border
                 Circle()
-                    .fill(iconBackgroundColor)
+                    .stroke(LGColors.border, lineWidth: 1.5)
                     .frame(width: 60, height: 60)
+
+                // Inner circle with gradient fill
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                LGColors.neutral800,
+                                LGColors.background
+                            ],
+                            center: .center,
+                            startRadius: 5,
+                            endRadius: 30
+                        )
+                    )
+                    .frame(width: 57, height: 57)
 
                 Image(systemName: iconName)
                     .font(.system(size: 28))
-                    .foregroundColor(iconColor)
+                    .foregroundColor(LGColors.foreground)
             }
+            .shadow(color: LGColors.glow.opacity(0.5), radius: 15, x: 0, y: 0)
 
             Text(headerTitle)
                 .font(LGFonts.h3)
@@ -86,7 +103,7 @@ struct ForgotPasswordView: View {
 
             Text(headerSubtitle)
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, LGSpacing.md)
         }
@@ -161,7 +178,7 @@ struct ForgotPasswordView: View {
             HStack {
                 Text("Code sent to:")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral500)
+                    .foregroundColor(LGColors.foregroundTertiary)
 
                 Text(email)
                     .font(LGFonts.small.weight(.semibold))
@@ -172,12 +189,16 @@ struct ForgotPasswordView: View {
                 Button(action: { step = .requestCode }) {
                     Text("Change")
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(LGColors.foregroundSecondary)
                 }
             }
             .padding(LGSpacing.sm)
-            .background(LGColors.neutral100)
+            .background(LGColors.backgroundCard)
             .cornerRadius(LGSpacing.buttonRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
+                    .stroke(LGColors.border, lineWidth: 1)
+            )
 
             // Code field
             VStack(alignment: .leading, spacing: 8) {
@@ -212,7 +233,7 @@ struct ForgotPasswordView: View {
             Button(action: handleRequestCode) {
                 Text("Didn't receive the code? Resend")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral500)
+                    .foregroundColor(LGColors.foregroundTertiary)
             }
         }
     }
@@ -244,7 +265,7 @@ struct ForgotPasswordView: View {
                     focusedField = .confirmPassword
                 }
 
-                // Password strength
+                // Password strength (grayscale)
                 if !newPassword.isEmpty {
                     Text(authViewModel.passwordStrengthDescription(newPassword))
                         .font(LGFonts.caption)
@@ -340,20 +361,12 @@ struct ForgotPasswordView: View {
         }
     }
 
-    private var iconColor: Color {
-        LGColors.VideoGeneration.main
-    }
-
-    private var iconBackgroundColor: Color {
-        LGColors.VideoGeneration.main.opacity(0.2)
-    }
-
     private var passwordStrengthColor: Color {
         let strength = authViewModel.passwordStrengthDescription(newPassword)
         switch strength {
-        case "Weak": return LGColors.errorText
-        case "Fair": return LGColors.warningText
-        case "Good", "Strong": return LGColors.successText
+        case "Weak": return LGColors.neutral500      // Medium gray
+        case "Fair": return LGColors.neutral400      // Medium-light gray
+        case "Good", "Strong": return LGColors.foreground  // White
         default: return LGColors.neutral500
         }
     }

@@ -11,10 +11,14 @@ enum AppConfig {
     // MARK: - API Configuration
 
     /// Base API URL (luidgpt-backend)
-    static let apiBaseURL = "http://localhost:3001/api"
+    /// Note: Using 127.0.0.1 instead of localhost for iOS Simulator compatibility.
+    /// In the simulator, localhost refers to the simulator itself, not the host Mac.
+    /// 127.0.0.1 properly routes to the Mac's loopback interface where the backend runs.
+    static let apiBaseURL = "http://127.0.0.1:3001/api"
 
     /// Luidhub API URL (credit system)
-    static let luidhubBaseURL = "http://localhost:4000"
+    /// Note: Using 127.0.0.1 for iOS Simulator - see apiBaseURL comment above.
+    static let luidhubBaseURL = "http://127.0.0.1:4000"
 
     /// API timeout in seconds
     static let apiTimeout: TimeInterval = 30

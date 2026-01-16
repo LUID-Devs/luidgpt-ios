@@ -25,13 +25,13 @@ struct ModelCardView: View {
                 HStack(alignment: .top, spacing: 6) {
                     Text(model.name)
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(.white)
                         .lineLimit(1)
 
                     if model.isFeatured {
                         Image(systemName: "star.fill")
                             .font(.system(size: 10))
-                            .foregroundColor(.yellow)
+                            .foregroundColor(Color.white.opacity(0.8))
                     }
 
                     Spacer(minLength: 0)
@@ -41,7 +41,7 @@ struct ModelCardView: View {
                 if let provider = model.providerDisplayName {
                     Text("by \(provider)")
                         .font(.system(size: 11, weight: .medium))
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.white.opacity(0.5))
                         .lineLimit(1)
                 }
 
@@ -49,7 +49,7 @@ struct ModelCardView: View {
                 if let description = model.description {
                     Text(description)
                         .font(.system(size: 11))
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.white.opacity(0.6))
                         .lineLimit(2)
                 }
 
@@ -82,13 +82,13 @@ struct ModelCardView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
-        .background(Color(uiColor: .systemBackground))
+        .background(Color.black)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.black.opacity(0.2), lineWidth: 1)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .shadow(color: Color.white.opacity(0.05), radius: 8, x: 0, y: 4)
         .scaleEffect(isPressed ? ModelAnimationConstants.cardTapScale : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
     }
@@ -122,20 +122,19 @@ struct ModelCardView: View {
 
     private var placeholder: some View {
         ZStack {
-            let colors = ModelCategoryConstants.colors(for: model.categorySlug)
-
-            colors.background
+            // Grayscale category background
+            categoryGrayscaleColor(for: model.categorySlug)
 
             Image(systemName: Category.icon(for: model.categorySlug))
                 .font(.system(size: 36, weight: .regular))
-                .foregroundColor(colors.foreground)
+                .foregroundColor(.white)
         }
     }
 
     @ViewBuilder
     private var categoryBadge: some View {
         if let category = model.category {
-            let colors = ModelCategoryConstants.colors(for: category.slug)
+            let grayscale = categoryGrayscaleColor(for: category.slug)
 
             HStack(spacing: 3) {
                 Image(systemName: Category.icon(for: category.slug))
@@ -146,14 +145,14 @@ struct ModelCardView: View {
             }
             .padding(.horizontal, 7)
             .padding(.vertical, 4)
-            .background(colors.background)
-            .foregroundColor(colors.foreground)
+            .background(grayscale)
+            .foregroundColor(.white)
             .cornerRadius(5)
         }
     }
 
     private func speedBadge(_ speed: String) -> some View {
-        let badgeColor = SpeedTagConstants.color(for: speed)
+        let badgeColor = speedGrayscaleColor(for: speed)
 
         return HStack(spacing: 2) {
             Image(systemName: "bolt.fill")
@@ -171,7 +170,7 @@ struct ModelCardView: View {
 
     private var creditBadge: some View {
         let credits = model.creditCost ?? 2
-        let tierColors = ModelTierConstants.colors(for: model.tier)
+        let tierGrayscale = tierGrayscaleColor(for: model.tier)
 
         return HStack(spacing: 3) {
             Image(systemName: "sparkles")
@@ -181,9 +180,43 @@ struct ModelCardView: View {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
-        .background(tierColors.background)
-        .foregroundColor(tierColors.foreground)
+        .background(tierGrayscale)
+        .foregroundColor(.white)
         .cornerRadius(5)
+    }
+
+    // MARK: - Grayscale Colors
+
+    private func categoryGrayscaleColor(for slug: String) -> Color {
+        switch slug {
+        case "text-to-image": return Color(white: 0.2)
+        case "text-to-video": return Color(white: 0.25)
+        case "image-to-image": return Color(white: 0.3)
+        case "video-to-video": return Color(white: 0.35)
+        case "image-to-video": return Color(white: 0.4)
+        case "text-to-speech": return Color(white: 0.45)
+        case "speech-to-text": return Color(white: 0.5)
+        case "text-to-3d": return Color(white: 0.55)
+        default: return Color(white: 0.3)
+        }
+    }
+
+    private func speedGrayscaleColor(for speed: String) -> Color {
+        switch speed.lowercased() {
+        case "fast": return Color(white: 0.7)
+        case "medium": return Color(white: 0.5)
+        case "slow": return Color(white: 0.3)
+        default: return Color(white: 0.5)
+        }
+    }
+
+    private func tierGrayscaleColor(for tier: ReplicateModel.Tier) -> Color {
+        switch tier {
+        case .free: return Color(white: 0.4)
+        case .standard: return Color(white: 0.6)
+        case .premium: return Color(white: 0.8)
+        case .enterprise: return Color(white: 0.9)
+        }
     }
 }
 
@@ -196,13 +229,11 @@ struct ModelCardCompactView: View {
         HStack(spacing: 12) {
             // Icon
             ZStack {
-                let colors = ModelCategoryConstants.colors(for: model.categorySlug)
-
-                colors.background
+                categoryGrayscaleColor(for: model.categorySlug)
 
                 Image(systemName: Category.icon(for: model.categorySlug))
                     .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(colors.foreground)
+                    .foregroundColor(.white)
             }
             .frame(width: 48, height: 48)
             .cornerRadius(10)
@@ -212,12 +243,13 @@ struct ModelCardCompactView: View {
                 HStack(spacing: 6) {
                     Text(model.name)
                         .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(.white)
                         .lineLimit(1)
 
                     if model.isFeatured {
                         Image(systemName: "star.fill")
                             .font(.system(size: 10))
-                            .foregroundColor(.yellow)
+                            .foregroundColor(Color.white.opacity(0.8))
                     }
 
                     Spacer()
@@ -226,7 +258,7 @@ struct ModelCardCompactView: View {
                 if let provider = model.providerDisplayName {
                     Text(provider)
                         .font(.system(size: 12))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color.white.opacity(0.5))
                         .lineLimit(1)
                 }
             }
@@ -236,7 +268,6 @@ struct ModelCardCompactView: View {
             // Credits
             VStack(alignment: .trailing, spacing: 2) {
                 let credits = model.creditCost ?? 2
-                let tierColors = ModelTierConstants.colors(for: model.tier)
 
                 HStack(spacing: 3) {
                     Image(systemName: "sparkles")
@@ -244,27 +275,41 @@ struct ModelCardCompactView: View {
                     Text("\(credits)")
                         .font(.system(size: 13, weight: .semibold))
                 }
-                .foregroundColor(tierColors.foreground)
+                .foregroundColor(.white)
 
                 if let speedTag = model.speedTag {
                     Text(SpeedTagConstants.displayText(for: speedTag))
                         .font(.system(size: 11))
-                        .foregroundColor(SpeedTagConstants.color(for: speedTag))
+                        .foregroundColor(Color.white.opacity(0.6))
                 }
             }
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(.secondary)
+                .foregroundColor(Color.white.opacity(0.5))
         }
         .padding(12)
-        .background(Color.white)
+        .background(Color.black)
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+        .shadow(color: Color.white.opacity(0.05), radius: 4, x: 0, y: 2)
+    }
+
+    private func categoryGrayscaleColor(for slug: String) -> Color {
+        switch slug {
+        case "text-to-image": return Color(white: 0.2)
+        case "text-to-video": return Color(white: 0.25)
+        case "image-to-image": return Color(white: 0.3)
+        case "video-to-video": return Color(white: 0.35)
+        case "image-to-video": return Color(white: 0.4)
+        case "text-to-speech": return Color(white: 0.45)
+        case "speech-to-text": return Color(white: 0.5)
+        case "text-to-3d": return Color(white: 0.55)
+        default: return Color(white: 0.3)
+        }
     }
 }
 
@@ -297,12 +342,9 @@ struct ModelCardFeaturedView: View {
                 if let rank = rank {
                     Text("\(rank)")
                         .font(.system(size: 13, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 24, height: 24)
-                        .background(
-                            Circle()
-                                .fill(Color.orange)
-                        )
+                        .background(Circle().fill(.white))
                         .padding(8)
                 }
             }
@@ -313,35 +355,48 @@ struct ModelCardFeaturedView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(model.name)
                     .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(.white)
                     .lineLimit(1)
 
                 let credits = model.creditCost ?? 2
                 Text(CreditDisplayConstants.formatCreditsShort(credits))
                     .font(.system(size: 11))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
             .padding(8)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(width: 140)
-        .background(Color.white)
+        .background(Color.black)
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+        .shadow(color: Color.white.opacity(0.05), radius: 4, x: 0, y: 2)
     }
 
     private var placeholderView: some View {
         ZStack {
-            let colors = ModelCategoryConstants.colors(for: model.categorySlug)
-
-            colors.background
+            categoryGrayscaleColor(for: model.categorySlug)
 
             Image(systemName: Category.icon(for: model.categorySlug))
                 .font(.system(size: 32, weight: .regular))
-                .foregroundColor(colors.foreground)
+                .foregroundColor(.white)
+        }
+    }
+
+    private func categoryGrayscaleColor(for slug: String) -> Color {
+        switch slug {
+        case "text-to-image": return Color(white: 0.2)
+        case "text-to-video": return Color(white: 0.25)
+        case "image-to-image": return Color(white: 0.3)
+        case "video-to-video": return Color(white: 0.35)
+        case "image-to-video": return Color(white: 0.4)
+        case "text-to-speech": return Color(white: 0.45)
+        case "speech-to-text": return Color(white: 0.5)
+        case "text-to-3d": return Color(white: 0.55)
+        default: return Color(white: 0.3)
         }
     }
 }
@@ -352,22 +407,22 @@ struct ModelCardSkeletonView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Rectangle()
-                .fill(Color(.systemGray5))
+                .fill(Color.white.opacity(0.1))
                 .frame(height: 110)
 
             VStack(alignment: .leading, spacing: 6) {
                 Rectangle()
-                    .fill(Color(.systemGray5))
+                    .fill(Color.white.opacity(0.1))
                     .frame(height: 16)
                     .frame(maxWidth: .infinity)
 
                 Rectangle()
-                    .fill(Color(.systemGray5))
+                    .fill(Color.white.opacity(0.1))
                     .frame(height: 12)
                     .frame(maxWidth: 100)
 
                 Rectangle()
-                    .fill(Color(.systemGray5))
+                    .fill(Color.white.opacity(0.1))
                     .frame(height: 12)
                     .frame(maxWidth: .infinity)
 
@@ -375,24 +430,24 @@ struct ModelCardSkeletonView: View {
 
                 HStack {
                     Rectangle()
-                        .fill(Color(.systemGray5))
+                        .fill(Color.white.opacity(0.1))
                         .frame(width: 60, height: 20)
                     Spacer()
                     Rectangle()
-                        .fill(Color(.systemGray5))
+                        .fill(Color.white.opacity(0.1))
                         .frame(width: 40, height: 20)
                 }
             }
             .padding(10)
         }
         .frame(maxWidth: .infinity)
-        .background(Color(uiColor: .systemBackground))
+        .background(Color.black)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.black.opacity(0.2), lineWidth: 1)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .shadow(color: Color.white.opacity(0.05), radius: 8, x: 0, y: 4)
     }
 }
 
@@ -412,6 +467,7 @@ struct ModelCardView_Previews: PreviewProvider {
                 }
                 .padding()
             }
+            .background(Color.black)
             .preferredColorScheme(.dark)
 
             VStack(spacing: 12) {
@@ -420,7 +476,8 @@ struct ModelCardView_Previews: PreviewProvider {
                 }
             }
             .padding()
-            .preferredColorScheme(.light)
+            .background(Color.black)
+            .preferredColorScheme(.dark)
 
             ScrollView(.horizontal) {
                 HStack(spacing: 12) {
@@ -430,6 +487,7 @@ struct ModelCardView_Previews: PreviewProvider {
                 }
                 .padding()
             }
+            .background(Color.black)
             .preferredColorScheme(.dark)
         }
     }

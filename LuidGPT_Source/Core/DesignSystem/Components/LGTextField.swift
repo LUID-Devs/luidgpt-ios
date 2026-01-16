@@ -90,8 +90,9 @@ struct LGTextField: View {
             .cornerRadius(LGSpacing.buttonRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
-                    .stroke(borderColor, lineWidth: 1)
+                    .stroke(borderColor, lineWidth: borderWidth)
             )
+            .animation(.easeInOut(duration: 0.2), value: isFocused)
 
             if let errorMessage = errorMessage, isError {
                 HStack(spacing: 4) {
@@ -106,21 +107,31 @@ struct LGTextField: View {
     }
 
     private var backgroundColor: Color {
-        isFocused ? LGColors.neutral800.opacity(0.8) : LGColors.neutral800
+        if isError {
+            return LGColors.errorBg
+        }
+        return isFocused ? LGColors.background : LGColors.neutral50
     }
 
     private var borderColor: Color {
         if isError {
             return LGColors.error
         } else if isFocused {
-            return LGColors.blue500
+            return LGColors.foreground
         } else {
-            return LGColors.neutral700
+            return LGColors.neutral300
         }
     }
 
+    private var borderWidth: CGFloat {
+        isFocused ? 2 : 1
+    }
+
     private var iconColor: Color {
-        isFocused ? LGColors.blue400 : LGColors.neutral500
+        if isError {
+            return LGColors.error
+        }
+        return isFocused ? LGColors.foreground : LGColors.neutral500
     }
 }
 
@@ -129,6 +140,7 @@ struct LGTextArea: View {
     let placeholder: String
     @Binding var text: String
     let minHeight: CGFloat
+    @FocusState private var isFocused: Bool
 
     var isError: Bool = false
     var errorMessage: String? = nil
@@ -166,14 +178,16 @@ struct LGTextArea: View {
                     .scrollContentBackground(.hidden)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
+                    .focused($isFocused)
             }
             .frame(minHeight: minHeight)
-            .background(LGColors.neutral800)
+            .background(backgroundColor)
             .cornerRadius(LGSpacing.buttonRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
-                    .stroke(borderColor, lineWidth: 1)
+                    .stroke(borderColor, lineWidth: borderWidth)
             )
+            .animation(.easeInOut(duration: 0.2), value: isFocused)
 
             if let errorMessage = errorMessage, isError {
                 HStack(spacing: 4) {
@@ -187,8 +201,95 @@ struct LGTextArea: View {
         }
     }
 
+    private var backgroundColor: Color {
+        if isError {
+            return LGColors.errorBg
+        }
+        return isFocused ? LGColors.background : LGColors.neutral50
+    }
+
     private var borderColor: Color {
-        isError ? LGColors.error : LGColors.neutral700
+        if isError {
+            return LGColors.error
+        } else if isFocused {
+            return LGColors.foreground
+        } else {
+            return LGColors.neutral300
+        }
+    }
+
+    private var borderWidth: CGFloat {
+        isFocused ? 2 : 1
+    }
+}
+
+/// Minimal text field variant with underline style
+struct LGTextFieldUnderlined: View {
+    let placeholder: String
+    @Binding var text: String
+    @FocusState private var isFocused: Bool
+
+    var label: String? = nil
+    var isError: Bool = false
+    var errorMessage: String? = nil
+
+    init(
+        text: Binding<String>,
+        placeholder: String,
+        label: String? = nil,
+        isError: Bool = false,
+        errorMessage: String? = nil
+    ) {
+        self._text = text
+        self.placeholder = placeholder
+        self.label = label
+        self.isError = isError
+        self.errorMessage = errorMessage
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if let label = label {
+                Text(label)
+                    .font(LGFonts.caption)
+                    .foregroundColor(LGColors.neutral600)
+            }
+
+            TextField(placeholder, text: $text)
+                .font(LGFonts.body)
+                .foregroundColor(LGColors.foreground)
+                .focused($isFocused)
+                .padding(.vertical, 8)
+
+            Rectangle()
+                .fill(underlineColor)
+                .frame(height: underlineHeight)
+                .animation(.easeInOut(duration: 0.2), value: isFocused)
+
+            if let errorMessage = errorMessage, isError {
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .font(.system(size: 12))
+                    Text(errorMessage)
+                        .font(LGFonts.caption)
+                }
+                .foregroundColor(LGColors.errorText)
+            }
+        }
+    }
+
+    private var underlineColor: Color {
+        if isError {
+            return LGColors.error
+        } else if isFocused {
+            return LGColors.foreground
+        } else {
+            return LGColors.neutral300
+        }
+    }
+
+    private var underlineHeight: CGFloat {
+        isFocused ? 2 : 1
     }
 }
 
@@ -196,50 +297,82 @@ struct LGTextArea: View {
 
 struct LGTextField_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(spacing: 24) {
-            LGTextField(
-                text: .constant(""),
-                placeholder: "Email",
-                icon: "envelope"
-            )
+        ScrollView {
+            VStack(spacing: 24) {
+                Text("Standard Text Fields")
+                    .font(LGFonts.h4)
+                    .foregroundColor(LGColors.foreground)
 
-            LGTextField(
-                text: .constant(""),
-                placeholder: "Password",
-                icon: "lock",
-                style: .password
-            )
+                LGTextField(
+                    text: .constant(""),
+                    placeholder: "Email",
+                    icon: "envelope"
+                )
 
-            LGTextField(
-                text: .constant(""),
-                placeholder: "Search models...",
-                icon: "magnifyingglass",
-                style: .search
-            )
+                LGTextField(
+                    text: .constant(""),
+                    placeholder: "Password",
+                    icon: "lock",
+                    style: .password
+                )
 
-            LGTextField(
-                text: .constant("invalid@email"),
-                placeholder: "Email",
-                icon: "envelope",
-                isError: true,
-                errorMessage: "Please enter a valid email"
-            )
+                LGTextField(
+                    text: .constant(""),
+                    placeholder: "Search models...",
+                    icon: "magnifyingglass",
+                    style: .search
+                )
 
-            LGTextArea(
-                placeholder: "Enter your prompt...",
-                text: .constant(""),
-                minHeight: 120
-            )
+                LGTextField(
+                    text: .constant("invalid@email"),
+                    placeholder: "Email",
+                    icon: "envelope",
+                    isError: true,
+                    errorMessage: "Please enter a valid email"
+                )
 
-            LGTextArea(
-                placeholder: "Enter your prompt...",
-                text: .constant(""),
-                isError: true,
-                errorMessage: "Prompt is required"
-            )
+                Divider().background(LGColors.neutral300)
+
+                Text("Text Areas")
+                    .font(LGFonts.h4)
+                    .foregroundColor(LGColors.foreground)
+
+                LGTextArea(
+                    placeholder: "Enter your prompt...",
+                    text: .constant(""),
+                    minHeight: 120
+                )
+
+                LGTextArea(
+                    placeholder: "Enter your prompt...",
+                    text: .constant(""),
+                    isError: true,
+                    errorMessage: "Prompt is required"
+                )
+
+                Divider().background(LGColors.neutral300)
+
+                Text("Underlined Style")
+                    .font(LGFonts.h4)
+                    .foregroundColor(LGColors.foreground)
+
+                LGTextFieldUnderlined(
+                    text: .constant(""),
+                    placeholder: "Enter name",
+                    label: "Full Name"
+                )
+
+                LGTextFieldUnderlined(
+                    text: .constant("invalid"),
+                    placeholder: "Enter email",
+                    label: "Email Address",
+                    isError: true,
+                    errorMessage: "Invalid email format"
+                )
+            }
+            .padding()
         }
-        .padding()
         .background(LGColors.background)
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
     }
 }

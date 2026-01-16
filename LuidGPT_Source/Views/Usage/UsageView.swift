@@ -14,7 +14,7 @@ struct UsageView: View {
 
     var body: some View {
         ZStack {
-            LGColors.background.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: LGSpacing.lg) {
@@ -45,7 +45,7 @@ struct UsageView: View {
                 VStack(alignment: .leading, spacing: LGSpacing.xs) {
                     Text("Available Credits")
                         .font(LGFonts.small)
-                        .foregroundColor(.white.opacity(0.8))
+                        .foregroundColor(Color(white: 0.5))
 
                     if creditsViewModel.isLoading {
                         ProgressView()
@@ -61,37 +61,32 @@ struct UsageView: View {
 
                 Image(systemName: "sparkles")
                     .font(.system(size: 48))
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(Color(white: 0.3))
             }
 
             NavigationLink(destination: BillingView()) {
                 HStack {
                     Text("Get More Credits")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
 
                     Spacer()
 
                     Image(systemName: "arrow.right")
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 .padding(LGSpacing.md)
-                .background(.white.opacity(0.2))
+                .background(.white)
                 .cornerRadius(10)
             }
         }
         .padding(LGSpacing.lg)
-        .background(
-            LinearGradient(
-                colors: [
-                    LGColors.VideoGeneration.main,
-                    LGColors.ImageGeneration.main
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
+        .background(Color(white: 0.07))
         .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 
     // MARK: - Usage Stats
@@ -100,29 +95,26 @@ struct UsageView: View {
         VStack(spacing: LGSpacing.md) {
             Text("Usage Statistics")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             VStack(spacing: LGSpacing.sm) {
                 UsageStatRow(
                     icon: "calendar",
                     title: "This Month",
-                    value: "\(monthlyUsage) credits",
-                    color: LGColors.blue500
+                    value: "\(monthlyUsage) credits"
                 )
 
                 UsageStatRow(
                     icon: "arrow.down.circle",
                     title: "Total Used",
-                    value: "\(totalUsed) credits",
-                    color: LGColors.AudioSpeech.main
+                    value: "\(totalUsed) credits"
                 )
 
                 UsageStatRow(
                     icon: "arrow.up.circle",
                     title: "Total Earned",
-                    value: "\(totalEarned) credits",
-                    color: LGColors.ImageEditing.main
+                    value: "\(totalEarned) credits"
                 )
             }
         }
@@ -134,26 +126,31 @@ struct UsageView: View {
         VStack(spacing: LGSpacing.md) {
             Text("Transaction History")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             if isLoading {
                 ProgressView()
+                    .tint(.white)
                     .padding(LGSpacing.xl)
             } else if transactions.isEmpty {
                 VStack(spacing: LGSpacing.md) {
                     Image(systemName: "doc.text")
                         .font(.system(size: 48))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(Color(white: 0.3))
 
                     Text("No transactions yet")
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(Color(white: 0.5))
                 }
                 .padding(LGSpacing.xl)
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                .background(Color(white: 0.07))
                 .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                )
             } else {
                 VStack(spacing: LGSpacing.xs) {
                     ForEach(transactions) { transaction in
@@ -200,35 +197,38 @@ struct UsageStatRow: View {
     let icon: String
     let title: String
     let value: String
-    let color: Color
 
     var body: some View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.2))
+                    .fill(Color(white: 0.15))
                     .frame(width: 40, height: 40)
 
                 Image(systemName: icon)
                     .font(.system(size: 18))
-                    .foregroundColor(color)
+                    .foregroundColor(.white)
             }
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color(white: 0.5))
 
                 Text(value)
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
 
             Spacer()
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -243,34 +243,38 @@ struct TransactionRow: View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
                 Circle()
-                    .fill(isCredit ? LGColors.success.opacity(0.2) : LGColors.error.opacity(0.2))
+                    .fill(Color(white: 0.15))
                     .frame(width: 40, height: 40)
 
                 Image(systemName: isCredit ? "plus" : "minus")
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(isCredit ? LGColors.success : LGColors.error)
+                    .foregroundColor(isCredit ? Color(white: 0.8) : Color(white: 0.4))
             }
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(transaction.description ?? "Transaction")
                     .font(LGFonts.body)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .lineLimit(1)
 
                 Text(formatDate(transaction.createdAt))
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color(white: 0.5))
             }
 
             Spacer()
 
             Text("\(isCredit ? "+" : "-")\(transaction.amount)")
                 .font(LGFonts.body.weight(.semibold))
-                .foregroundColor(isCredit ? LGColors.success : LGColors.error)
+                .foregroundColor(isCredit ? Color(white: 0.8) : Color(white: 0.4))
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 
     private func formatDate(_ date: Date) -> String {

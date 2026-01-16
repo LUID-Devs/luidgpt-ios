@@ -32,7 +32,7 @@ struct CategoryNavigationView: View {
                         title: category.name,
                         icon: Category.icon(for: category.slug),
                         isSelected: selectedCategory?.id == category.id,
-                        colors: ModelCategoryConstants.colors(for: category.slug),
+                        categorySlug: category.slug,
                         count: category.modelCountInt
                     ) {
                         selectedCategory = category
@@ -43,7 +43,7 @@ struct CategoryNavigationView: View {
             .padding(.horizontal)
             .padding(.vertical, 8)
         }
-        .background(Color(.systemBackground))
+        .background(Color.black)
     }
 
     private var totalModelCount: Int? {
@@ -58,10 +58,7 @@ struct CategoryButton: View {
     let title: String
     let icon: String
     let isSelected: Bool
-    var colors: (background: Color, foreground: Color) = (
-        background: Color.blue.opacity(0.2),
-        foreground: Color.blue
-    )
+    var categorySlug: String?
     var count: Int?
     let action: () -> Void
 
@@ -81,8 +78,8 @@ struct CategoryButton: View {
                         .padding(.vertical, 2)
                         .background(
                             isSelected
-                                ? Color.white.opacity(0.3)
-                                : Color.secondary.opacity(0.2)
+                                ? Color.white.opacity(0.2)
+                                : Color.white.opacity(0.1)
                         )
                         .cornerRadius(8)
                 }
@@ -91,24 +88,38 @@ struct CategoryButton: View {
             .padding(.vertical, 8)
             .background(
                 isSelected
-                    ? colors.background
-                    : Color(.systemGray6)
+                    ? grayscaleColor
+                    : Color.white.opacity(0.05)
             )
-            .foregroundColor(
-                isSelected
-                    ? colors.foreground
-                    : Color.primary
-            )
+            .foregroundColor(.white)
             .cornerRadius(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(
-                        isSelected ? colors.foreground.opacity(0.3) : Color.clear,
+                        isSelected ? Color.white.opacity(0.3) : Color.white.opacity(0.1),
                         lineWidth: 1
                     )
             )
         }
         .buttonStyle(PlainButtonStyle())
+    }
+
+    private var grayscaleColor: Color {
+        guard let slug = categorySlug else {
+            return Color(white: 0.3)
+        }
+
+        switch slug {
+        case "text-to-image": return Color(white: 0.2)
+        case "text-to-video": return Color(white: 0.25)
+        case "image-to-image": return Color(white: 0.3)
+        case "video-to-video": return Color(white: 0.35)
+        case "image-to-video": return Color(white: 0.4)
+        case "text-to-speech": return Color(white: 0.45)
+        case "speech-to-text": return Color(white: 0.5)
+        case "text-to-3d": return Color(white: 0.55)
+        default: return Color(white: 0.3)
+        }
     }
 }
 
@@ -141,7 +152,7 @@ struct CompactCategorySelector: View {
                             if let count = category.modelCountInt, count > 0 {
                                 Spacer()
                                 Text("\(count)")
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Color.white.opacity(0.6))
                             }
                         }
                     }
@@ -152,14 +163,21 @@ struct CompactCategorySelector: View {
                 Image(systemName: selectedCategory == nil
                       ? "square.grid.2x2"
                       : Category.icon(for: selectedCategory?.slug ?? ""))
+                    .foregroundColor(.white)
                 Text(selectedCategory?.name ?? "All Models")
+                    .foregroundColor(.white)
                 Spacer()
                 Image(systemName: "chevron.down")
                     .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(Color.white.opacity(0.6))
             }
             .padding()
-            .background(Color(.systemGray6))
+            .background(Color.white.opacity(0.05))
             .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+            )
         }
     }
 }
@@ -178,6 +196,7 @@ struct CategoryNavigationView_Previews: PreviewProvider {
 
             Spacer()
         }
+        .background(Color.black)
         .preferredColorScheme(.dark)
     }
 }

@@ -16,7 +16,7 @@ struct ModelsView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            Color.white
+            Color.black
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
@@ -24,20 +24,20 @@ struct ModelsView: View {
                 HStack {
                     Text("AI Models")
                         .font(.largeTitle.bold())
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     Spacer()
 
                     Button(action: { showSearch.toggle() }) {
                         Image(systemName: "magnifyingglass")
                             .font(.system(size: 20))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
                 .padding(.bottom, 8)
-                .background(Color.white)
+                .background(Color.black)
 
                 ScrollView {
                     VStack(spacing: 16) {
@@ -98,10 +98,10 @@ struct ModelsView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("500+ AI Models")
                     .font(.title3.weight(.bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                 Text("Browse and use powerful AI models")
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
 
             Spacer()
@@ -111,20 +111,24 @@ struct ModelsView: View {
                 HStack(spacing: 4) {
                     Image(systemName: "sparkles")
                         .font(.system(size: 12))
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(.white)
                     Text("\(creditsViewModel.totalCredits)")
                         .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
 
                 Text("credits")
                     .font(.system(size: 11))
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.white.opacity(0.5))
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color(white: 0.95))
+            .background(Color.white.opacity(0.1))
             .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white.opacity(0.2), lineWidth: 1)
+            )
         }
         .padding(.horizontal)
     }
@@ -134,12 +138,12 @@ struct ModelsView: View {
     private var searchSection: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
+                .foregroundColor(Color.white.opacity(0.5))
 
             TextField("Search models...", text: $searchText)
                 .textFieldStyle(.plain)
                 .autocapitalization(.none)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .onChange(of: searchText) { newValue in
                     Task {
                         if newValue.count >= ModelSearchConstants.minSearchLength {
@@ -159,13 +163,17 @@ struct ModelsView: View {
                     viewModel.clearSearch()
                 }) {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.white.opacity(0.5))
                 }
             }
         }
         .padding()
-        .background(Color(white: 0.95))
+        .background(Color.white.opacity(0.05))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
         .padding(.horizontal)
     }
 
@@ -175,9 +183,10 @@ struct ModelsView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "flame.fill")
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color.white.opacity(0.8))
                 Text("Trending Now")
                     .font(.headline)
+                    .foregroundColor(.white)
                 Spacer()
             }
             .padding(.horizontal)
@@ -202,21 +211,21 @@ struct ModelsView: View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Image(systemName: Category.icon(for: category.slug))
-                    .foregroundColor(ModelCategoryConstants.colors(for: category.slug).foreground)
+                    .foregroundColor(.white)
                 Text(category.name)
                     .font(.title2.weight(.bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
 
             if let description = category.description {
                 Text(description)
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
 
             Text("\(viewModel.totalModels) models")
                 .font(.caption)
-                .foregroundColor(.gray)
+                .foregroundColor(Color.white.opacity(0.5))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
@@ -268,7 +277,7 @@ struct ModelsView: View {
                 if !viewModel.hasMore && !viewModel.modelsLoading {
                     Text("You've seen all \(viewModel.totalModels) models")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.white.opacity(0.5))
                         .padding(.vertical, 12)
                         .padding(.bottom, 8)
                 }
@@ -282,19 +291,19 @@ struct ModelsView: View {
         VStack(spacing: 12) {
             Image(systemName: viewModel.isSearching ? "magnifyingglass" : "square.stack.3d.up.slash")
                 .font(.system(size: 48))
-                .foregroundColor(.gray)
+                .foregroundColor(Color.white.opacity(0.3))
 
             Text(viewModel.isSearching
                  ? ModelEmptyStateConstants.noSearchResults
                  : ModelEmptyStateConstants.noModels)
                 .font(.headline)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Text(viewModel.isSearching
                  ? ModelEmptyStateConstants.noSearchResultsDescription
                  : ModelEmptyStateConstants.noModelsDescription)
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(Color.white.opacity(0.6))
                 .multilineTextAlignment(.center)
         }
         .padding(40)
@@ -308,7 +317,7 @@ struct ModelsView_Previews: PreviewProvider {
     static var previews: some View {
         ModelsView()
             .environmentObject(CreditsViewModel())
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
     }
 }
 #endif

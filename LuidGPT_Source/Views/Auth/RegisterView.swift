@@ -51,32 +51,41 @@ struct RegisterView: View {
                         Image(systemName: "chevron.left")
                         Text("Back")
                     }
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundSecondary)
                 }
 
                 Spacer()
             }
             .padding(.horizontal, LGSpacing.lg)
 
-            // App logo
+            // Elegant black and white logo
             ZStack {
+                // Outer circle with white border
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                LGColors.VideoGeneration.main,
-                                LGColors.ImageGeneration.main
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .stroke(LGColors.border, lineWidth: 1.5)
                     .frame(width: 60, height: 60)
 
+                // Inner circle with gradient fill
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                LGColors.neutral800,
+                                LGColors.background
+                            ],
+                            center: .center,
+                            startRadius: 5,
+                            endRadius: 30
+                        )
+                    )
+                    .frame(width: 57, height: 57)
+
+                // Sparkles icon in white
                 Image(systemName: "sparkles")
                     .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(LGColors.foreground)
             }
+            .shadow(color: LGColors.glow, radius: 15, x: 0, y: 0)
 
             Text("Create your account")
                 .font(LGFonts.h3)
@@ -84,7 +93,7 @@ struct RegisterView: View {
 
             Text("Start creating with 100+ AI models")
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundSecondary)
         }
     }
 
@@ -191,7 +200,7 @@ struct RegisterView: View {
                     focusedField = .confirmPassword
                 }
 
-                // Password strength indicator
+                // Password strength indicator (grayscale)
                 if !password.isEmpty {
                     HStack(spacing: 8) {
                         ForEach(0..<4, id: \.self) { index in
@@ -232,7 +241,7 @@ struct RegisterView: View {
             // Terms & Privacy
             Text("By creating an account, you agree to our Terms of Service and Privacy Policy")
                 .font(LGFonts.caption)
-                .foregroundColor(LGColors.neutral500)
+                .foregroundColor(LGColors.foregroundTertiary)
                 .multilineTextAlignment(.center)
                 .padding(.top, 4)
 
@@ -251,19 +260,19 @@ struct RegisterView: View {
             HStack(spacing: 4) {
                 Text("Already have an account?")
                     .font(LGFonts.body)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundSecondary)
 
                 Button(action: { showingRegister = false }) {
                     Text("Login")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(LGColors.foreground)
                 }
             }
             .padding(.top, 8)
         }
     }
 
-    // MARK: - Password Strength Indicator
+    // MARK: - Password Strength Indicator (Grayscale)
 
     private func passwordStrengthColor(index: Int) -> Color {
         let strength = calculatePasswordStrength()
@@ -274,10 +283,10 @@ struct RegisterView: View {
 
         if index < strength {
             switch strength {
-            case 1: return LGColors.error
-            case 2: return LGColors.warning
-            case 3: return LGColors.success
-            case 4: return LGColors.success
+            case 1: return LGColors.neutral500  // Weak - Medium gray
+            case 2: return LGColors.neutral400  // Fair - Medium-light gray
+            case 3: return LGColors.neutral300  // Good - Light gray
+            case 4: return LGColors.foreground  // Strong - White
             default: return LGColors.neutral700
             }
         }
@@ -288,9 +297,9 @@ struct RegisterView: View {
     private var passwordStrengthTextColor: Color {
         let strength = calculatePasswordStrength()
         switch strength {
-        case 1: return LGColors.errorText
-        case 2: return LGColors.warningText
-        case 3, 4: return LGColors.successText
+        case 1: return LGColors.neutral500      // Weak - Medium gray
+        case 2: return LGColors.neutral400      // Fair - Medium-light gray
+        case 3, 4: return LGColors.foreground   // Good/Strong - White
         default: return LGColors.neutral500
         }
     }

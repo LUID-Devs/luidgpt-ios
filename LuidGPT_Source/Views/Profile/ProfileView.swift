@@ -13,7 +13,7 @@ struct ProfileView: View {
 
     var body: some View {
         ZStack {
-            LGColors.background.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: LGSpacing.lg) {
@@ -41,7 +41,7 @@ struct ProfileView: View {
                 }) {
                     Text("Edit")
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.blue500)
+                        .foregroundColor(.white)
                 }
             }
         }
@@ -55,14 +55,14 @@ struct ProfileView: View {
     private var profileHeader: some View {
         VStack(spacing: LGSpacing.md) {
             if let user = authViewModel.currentUser {
-                // Avatar
+                // Avatar with grayscale gradient
                 ZStack {
                     Circle()
                         .fill(
                             LinearGradient(
                                 colors: [
-                                    LGColors.VideoGeneration.main,
-                                    LGColors.ImageGeneration.main
+                                    Color.white,
+                                    Color(white: 0.7)
                                 ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
@@ -72,30 +72,34 @@ struct ProfileView: View {
 
                     Text(user.initials)
                         .font(.system(size: 40, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
 
                 // User Info
                 VStack(spacing: 4) {
                     Text(user.fullName)
                         .font(LGFonts.h2)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     Text(user.email)
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(Color(white: 0.6))
                 }
 
                 // Member Since
                 Text("Member since \(formatDateShort(user.createdAt))")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral500)
+                    .foregroundColor(Color(white: 0.5))
             }
         }
         .padding(LGSpacing.xl)
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 
     // MARK: - Account Information
@@ -104,7 +108,7 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             Text("Account Information")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             VStack(spacing: LGSpacing.xs) {
                 if let user = authViewModel.currentUser {
@@ -142,21 +146,19 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             Text("Your Statistics")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             HStack(spacing: LGSpacing.sm) {
                 ProfileStatCard(
                     icon: "photo.stack",
                     title: "Generations",
-                    value: "142",
-                    color: LGColors.ImageGeneration.main
+                    value: "142"
                 )
 
                 ProfileStatCard(
                     icon: "sparkles",
                     title: "Credits Used",
-                    value: "3.2K",
-                    color: LGColors.VideoGeneration.main
+                    value: "3.2K"
                 )
             }
 
@@ -164,15 +166,13 @@ struct ProfileView: View {
                 ProfileStatCard(
                     icon: "heart.fill",
                     title: "Favorites",
-                    value: "28",
-                    color: LGColors.error
+                    value: "28"
                 )
 
                 ProfileStatCard(
                     icon: "building.2",
                     title: "Workspaces",
-                    value: "2",
-                    color: LGColors.blue500
+                    value: "2"
                 )
             }
         }
@@ -184,38 +184,34 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             Text("Quick Actions")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             VStack(spacing: LGSpacing.xs) {
                 NavigationLink(destination: UsageView()) {
                     ProfileActionRow(
                         icon: "chart.bar",
-                        title: "View Usage",
-                        color: LGColors.blue500
+                        title: "View Usage"
                     )
                 }
 
                 NavigationLink(destination: BillingView()) {
                     ProfileActionRow(
                         icon: "creditcard",
-                        title: "Manage Billing",
-                        color: LGColors.MusicGeneration.main
+                        title: "Manage Billing"
                     )
                 }
 
                 NavigationLink(destination: SettingsView()) {
                     ProfileActionRow(
                         icon: "gearshape",
-                        title: "Settings",
-                        color: LGColors.neutral700
+                        title: "Settings"
                     )
                 }
 
                 NavigationLink(destination: GenerationsListView()) {
                     ProfileActionRow(
                         icon: "photo.on.rectangle",
-                        title: "My Generations",
-                        color: LGColors.ImageEditing.main
+                        title: "My Generations"
                     )
                 }
             }
@@ -248,29 +244,33 @@ struct ProfileInfoRow: View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
                 Circle()
-                    .fill(LGColors.neutral100)
+                    .fill(Color(white: 0.15))
                     .frame(width: 40, height: 40)
 
                 Image(systemName: icon)
                     .font(.system(size: 16))
-                    .foregroundColor(LGColors.neutral700)
+                    .foregroundColor(.white)
             }
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color(white: 0.5))
 
                 Text(value)
                     .font(LGFonts.body)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
 
             Spacer()
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -280,32 +280,35 @@ struct ProfileStatCard: View {
     let icon: String
     let title: String
     let value: String
-    let color: Color
 
     var body: some View {
         VStack(spacing: LGSpacing.sm) {
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.2))
+                    .fill(Color(white: 0.15))
                     .frame(width: 48, height: 48)
 
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(color)
+                    .foregroundColor(.white)
             }
 
             Text(value)
                 .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Text(title)
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color(white: 0.5))
         }
         .frame(maxWidth: .infinity)
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -314,33 +317,36 @@ struct ProfileStatCard: View {
 struct ProfileActionRow: View {
     let icon: String
     let title: String
-    let color: Color
 
     var body: some View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.2))
+                    .fill(Color(white: 0.15))
                     .frame(width: 40, height: 40)
 
                 Image(systemName: icon)
                     .font(.system(size: 16))
-                    .foregroundColor(color)
+                    .foregroundColor(.white)
             }
 
             Text(title)
                 .font(LGFonts.body)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Spacer()
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 14))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(Color(white: 0.4))
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -355,33 +361,43 @@ struct EditProfileSheet: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LGColors.background.ignoresSafeArea()
+                Color.black.ignoresSafeArea()
 
                 VStack(spacing: LGSpacing.lg) {
                     VStack(alignment: .leading, spacing: LGSpacing.sm) {
                         Text("Full Name")
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         TextField("Enter your full name", text: $fullName)
                             .font(LGFonts.body)
+                            .foregroundColor(.white)
                             .padding(LGSpacing.md)
-                            .background(Color.white)
+                            .background(Color(white: 0.07))
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                            )
                     }
 
                     VStack(alignment: .leading, spacing: LGSpacing.sm) {
                         Text("Email")
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         TextField("Enter your email", text: $email)
                             .font(LGFonts.body)
+                            .foregroundColor(.white)
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
                             .padding(LGSpacing.md)
-                            .background(Color.white)
+                            .background(Color(white: 0.07))
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                            )
                     }
 
                     Button(action: {
@@ -390,10 +406,10 @@ struct EditProfileSheet: View {
                     }) {
                         Text("Save Changes")
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, LGSpacing.md)
-                            .background(LGColors.VideoGeneration.main)
+                            .background(.white)
                             .cornerRadius(10)
                     }
 
@@ -408,6 +424,7 @@ struct EditProfileSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .foregroundColor(.white)
                 }
             }
         }

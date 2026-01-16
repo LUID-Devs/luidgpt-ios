@@ -3,7 +3,7 @@
 //  LuidGPT
 //
 //  Home screen with trending models, category tabs, filters, and Replicate models grid
-//  Matches luidgpt-frontend /models page structure
+//  Redesigned with premium black & white aesthetic
 //
 
 import SwiftUI
@@ -86,11 +86,11 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(timeBasedGreeting)
                         .font(LGFonts.label)
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(LGColors.foregroundTertiary)
 
                     Text(user.fullName)
                         .font(LGFonts.h3)
-                        .foregroundColor(LGColors.foreground)
+                        .foregroundColor(.white)
                 }
             }
 
@@ -109,20 +109,21 @@ struct HomeView: View {
             if creditsViewModel.isLoading && creditsViewModel.balance == nil {
                 ProgressView()
                     .scaleEffect(0.7)
+                    .tint(.white)
             } else {
                 Text("\(creditsViewModel.totalCredits)")
                     .font(.system(size: 16, weight: .bold))
             }
         }
-        .foregroundColor(creditsViewModel.isLowBalance ? LGColors.warningText : LGColors.VideoGeneration.main)
+        .foregroundColor(creditsViewModel.isLowBalance ? LGColors.warningText : .white)
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(LGColors.neutral100)
+                .fill(creditsViewModel.isLowBalance ? LGColors.warningBg : Color.white.opacity(0.1))
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(creditsViewModel.isLowBalance ? LGColors.warningText.opacity(0.3) : LGColors.neutral200, lineWidth: 1)
+                        .stroke(creditsViewModel.isLowBalance ? LGColors.warningBorder : Color.white.opacity(0.2), lineWidth: 1)
                 )
         )
     }
@@ -133,10 +134,10 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "flame.fill")
-                    .foregroundColor(Color.orange)
+                    .foregroundColor(.white)
                 Text("Trending Now")
                     .font(LGFonts.h4)
-                    .foregroundColor(LGColors.foreground)
+                    .foregroundColor(.white)
                 Spacer()
             }
             .padding(.horizontal, LGSpacing.lg)
@@ -158,7 +159,7 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Browse by Category")
                 .font(LGFonts.h4)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.white)
                 .padding(.horizontal, LGSpacing.lg)
 
             ScrollView(.horizontal, showsIndicators: false) {
@@ -198,10 +199,10 @@ struct HomeView: View {
         }) {
             HStack {
                 Image(systemName: "slider.horizontal.3")
-                    .foregroundColor(LGColors.foreground)
+                    .foregroundColor(.white)
                 Text("Filters")
                     .font(LGFonts.body)
-                    .foregroundColor(LGColors.foreground)
+                    .foregroundColor(.white)
 
                 Spacer()
 
@@ -209,20 +210,24 @@ struct HomeView: View {
                     let count = selectedStyles.count + (selectedSpeed != nil ? 1 : 0) + (selectedQuality != nil ? 1 : 0)
                     Text("\(count)")
                         .font(LGFonts.small)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
-                        .background(LGColors.VideoGeneration.main)
+                        .background(.white)
                         .cornerRadius(10)
                 }
 
                 Image(systemName: showFilters ? "chevron.up" : "chevron.down")
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundSecondary)
             }
             .padding()
-            .background(LGColors.neutral100)
+            .background(LGColors.backgroundCard)
             .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(LGColors.border, lineWidth: 1)
+            )
         }
     }
 
@@ -290,8 +295,12 @@ struct HomeView: View {
             }
         }
         .padding()
-        .background(LGColors.neutral50)
+        .background(LGColors.backgroundElevated)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
     }
 
     // MARK: - Models Grid
@@ -348,7 +357,7 @@ struct HomeView: View {
                 if !modelsViewModel.hasMore && !modelsViewModel.modelsLoading {
                     Text("You've seen all \(modelsViewModel.totalModels) models")
                         .font(LGFonts.caption)
-                        .foregroundColor(LGColors.neutral500)
+                        .foregroundColor(LGColors.foregroundTertiary)
                         .padding(.vertical, 12)
                 }
             }
@@ -359,15 +368,15 @@ struct HomeView: View {
         VStack(spacing: 12) {
             Image(systemName: "square.stack.3d.up.slash")
                 .font(.system(size: 48))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundTertiary)
 
             Text("No models found")
                 .font(LGFonts.h4)
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.white)
 
             Text("Try adjusting your filters or category")
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral500)
+                .foregroundColor(LGColors.foregroundSecondary)
                 .multilineTextAlignment(.center)
         }
         .padding(40)
@@ -537,7 +546,7 @@ struct TrendingModelCard: View {
 
                 // Overlay gradient
                 LinearGradient(
-                    colors: [Color.clear, Color.black.opacity(0.8)],
+                    colors: [Color.clear, Color.black.opacity(0.9)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -545,12 +554,12 @@ struct TrendingModelCard: View {
                 // Ranking badge
                 ZStack {
                     Circle()
-                        .fill(Color.orange)
+                        .fill(.white)
                         .frame(width: 28, height: 28)
 
                     Text("\(rank)")
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 .padding(8)
 
@@ -565,7 +574,7 @@ struct TrendingModelCard: View {
 
                     Text("\(model.creditCost) credits")
                         .font(LGFonts.caption)
-                        .foregroundColor(LGColors.neutral300)
+                        .foregroundColor(LGColors.foregroundSecondary)
                 }
                 .padding(12)
             }
@@ -573,9 +582,9 @@ struct TrendingModelCard: View {
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.black.opacity(0.15), lineWidth: 1.5)
+                    .stroke(LGColors.border, lineWidth: 1)
             )
-            .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+            .shadow(color: .black.opacity(0.4), radius: 6, x: 0, y: 3)
             .clipped()
         }
         .buttonStyle(PlainButtonStyle())
@@ -585,11 +594,12 @@ struct TrendingModelCard: View {
         ZStack {
             let colors = ModelCategoryConstants.colors(for: model.categorySlug)
 
-            colors.background
+            // Convert to grayscale gradient
+            LGColors.categoryGradient(for: model.categorySlug)
 
             Image(systemName: Category.icon(for: model.categorySlug))
                 .font(.system(size: 36, weight: .regular))
-                .foregroundColor(colors.foreground)
+                .foregroundColor(.white.opacity(0.6))
         }
     }
 }
@@ -611,14 +621,18 @@ struct CategoryTab: View {
                 if let count = count {
                     Text("\(count)")
                         .font(LGFonts.caption)
-                        .foregroundColor(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral500)
+                        .foregroundColor(isSelected ? .black : LGColors.foregroundTertiary)
                 }
             }
-            .foregroundColor(isSelected ? .white : LGColors.neutral500)
+            .foregroundColor(isSelected ? .black : LGColors.foregroundSecondary)
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(isSelected ? LGColors.neutral700 : LGColors.neutral100)
+            .background(isSelected ? .white : LGColors.backgroundCard)
             .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(isSelected ? .white : LGColors.border, lineWidth: 1)
+            )
         }
     }
 }
@@ -638,7 +652,7 @@ struct FilterGroup<Content: View>: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(LGFonts.label.weight(.semibold))
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.white)
 
             content
         }
@@ -656,14 +670,14 @@ struct FilterChip: View {
         Button(action: action) {
             Text(title)
                 .font(LGFonts.small)
-                .foregroundColor(isSelected ? .white : LGColors.foreground)
+                .foregroundColor(isSelected ? .black : .white)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral100)
+                .background(isSelected ? .white : LGColors.backgroundCard)
                 .cornerRadius(16)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(isSelected ? LGColors.VideoGeneration.main : LGColors.neutral200, lineWidth: 1)
+                        .stroke(isSelected ? .white : LGColors.border, lineWidth: 1)
                 )
         }
     }
@@ -684,6 +698,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
             .environmentObject(AuthViewModel())
             .environmentObject(CreditsViewModel())
+            .preferredColorScheme(.dark)
     }
 }
 #endif

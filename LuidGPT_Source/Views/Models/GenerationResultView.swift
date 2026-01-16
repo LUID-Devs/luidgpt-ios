@@ -68,12 +68,12 @@ struct GenerationResultView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Generation Result")
                     .font(LGFonts.h4)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 if let title = generation.title {
                     Text(title)
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(Color.white.opacity(0.6))
                 }
             }
 
@@ -91,7 +91,7 @@ struct GenerationResultView: View {
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
-            .background(statusColor.opacity(0.1))
+            .background(statusColor.opacity(0.2))
             .cornerRadius(8)
         }
     }
@@ -102,16 +102,16 @@ struct GenerationResultView: View {
         VStack(spacing: LGSpacing.md) {
             ProgressView()
                 .scaleEffect(1.2)
-                .tint(LGColors.VideoGeneration.main)
+                .tint(.white)
 
             Text(status.displayText)
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral700)
+                .foregroundColor(.white)
 
             if let estimatedTime = generation.executionTimeDisplay {
                 Text("Estimated time: \(estimatedTime)")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
         }
         .frame(maxWidth: .infinity)
@@ -124,15 +124,15 @@ struct GenerationResultView: View {
         VStack(spacing: LGSpacing.md) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 32))
-                .foregroundColor(LGColors.errorText)
+                .foregroundColor(.red)
 
             Text("Generation Failed")
                 .font(LGFonts.h4)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Text(error)
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral700)
+                .foregroundColor(Color.white.opacity(0.7))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
@@ -142,10 +142,10 @@ struct GenerationResultView: View {
                     Text("Try Again")
                 }
                 .font(LGFonts.body.weight(.semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .background(LGColors.VideoGeneration.main)
+                .background(.white)
                 .cornerRadius(8)
             }
         }
@@ -280,9 +280,9 @@ struct GenerationResultView: View {
 
     private var loadingPlaceholder: some View {
         ZStack {
-            LGColors.neutral100
+            Color(white: 0.1)
             ProgressView()
-                .tint(LGColors.VideoGeneration.main)
+                .tint(.white)
         }
         .frame(height: 300)
         .cornerRadius(12)
@@ -290,14 +290,14 @@ struct GenerationResultView: View {
 
     private var errorPlaceholder: some View {
         ZStack {
-            LGColors.neutral100
+            Color(white: 0.1)
             VStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle")
                     .font(.system(size: 32))
-                    .foregroundColor(LGColors.errorText)
+                    .foregroundColor(.red)
                 Text("Failed to load")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
         }
         .frame(height: 300)
@@ -346,15 +346,15 @@ struct GenerationResultView: View {
                 Text(value)
                     .font(.system(size: 13, weight: .bold))
             }
-            .foregroundColor(color)
+            .foregroundColor(.white)
 
             Text(label)
                 .font(.system(size: 10))
-                .foregroundColor(LGColors.neutral500)
+                .foregroundColor(Color.white.opacity(0.5))
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 10)
-        .background(LGColors.neutral100)
+        .background(Color.white.opacity(0.05))
         .cornerRadius(8)
     }
 
@@ -413,11 +413,11 @@ struct GenerationResultView: View {
             if case .failed(let message) = downloadStatus {
                 Text(message)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.errorText)
+                    .foregroundColor(.red)
             } else if case .success = downloadStatus {
                 Text("Saved to Photos")
                     .font(LGFonts.small)
-                    .foregroundColor(.green)
+                    .foregroundColor(Color(white: 0.8))
             }
         }
     }
@@ -433,16 +433,20 @@ struct GenerationResultView: View {
             VStack(spacing: 6) {
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(disabled ? LGColors.neutral600 : color)
+                    .foregroundColor(disabled ? Color.white.opacity(0.3) : .white)
 
                 Text(label)
                     .font(.system(size: 11))
-                    .foregroundColor(disabled ? LGColors.neutral600 : LGColors.neutral700)
+                    .foregroundColor(disabled ? Color.white.opacity(0.3) : Color.white.opacity(0.7))
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .background(LGColors.neutral100)
+            .background(Color.white.opacity(0.05))
             .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+            )
         }
         .disabled(disabled)
     }
@@ -455,13 +459,13 @@ struct GenerationResultView: View {
                 HStack {
                     Text("Input Parameters")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     Spacer()
 
                     Image(systemName: showInputDetails ? "chevron.up" : "chevron.down")
                         .font(.system(size: 12))
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(Color.white.opacity(0.6))
                 }
             }
 
@@ -472,8 +476,12 @@ struct GenerationResultView: View {
                     }
                 }
                 .padding(LGSpacing.md)
-                .background(LGColors.neutral100)
+                .background(Color.white.opacity(0.05))
                 .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                )
             }
         }
         .padding(.vertical, LGSpacing.sm)
@@ -483,11 +491,11 @@ struct GenerationResultView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(key.capitalized)
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color.white.opacity(0.6))
 
             Text(formatInputValue(value))
                 .font(LGFonts.small)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .lineLimit(3)
         }
     }
@@ -562,13 +570,13 @@ struct GenerationResultView: View {
     private var statusColor: Color {
         switch status {
         case .idle, .preparing, .submitting:
-            return LGColors.neutral400
+            return Color(white: 0.5)
         case .processing:
-            return .orange
+            return Color(white: 0.8)
         case .completed:
-            return .green
+            return Color(white: 0.9)
         case .failed:
-            return LGColors.errorText
+            return .red
         }
     }
 

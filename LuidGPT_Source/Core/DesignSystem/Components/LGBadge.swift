@@ -13,6 +13,7 @@ enum LGBadgeStyle {
     case category(String) // category slug
     case tier(String) // tier name
     case status(Status)
+    case neutral
     case custom(bg: Color, text: Color, border: Color?)
 
     enum Status {
@@ -68,7 +69,7 @@ struct LGBadge: View {
     init(
         _ text: String,
         icon: String? = nil,
-        style: LGBadgeStyle = .custom(bg: LGColors.neutral800, text: LGColors.neutral300, border: nil),
+        style: LGBadgeStyle = .neutral,
         size: LGBadgeSize = .medium
     ) {
         self.text = text
@@ -119,8 +120,10 @@ struct LGBadge: View {
             case .info:
                 return LGColors.infoBg
             case .processing:
-                return LGColors.blue500.opacity(0.2)
+                return LGColors.neutral400.opacity(0.1)
             }
+        case .neutral:
+            return LGColors.neutral100
         case .custom(let bg, _, _):
             return bg
         }
@@ -145,8 +148,10 @@ struct LGBadge: View {
             case .info:
                 return LGColors.infoText
             case .processing:
-                return LGColors.blue400
+                return LGColors.neutral400
             }
+        case .neutral:
+            return LGColors.neutral600
         case .custom(_, let text, _):
             return text
         }
@@ -154,6 +159,8 @@ struct LGBadge: View {
 
     private var borderColor: Color? {
         switch style {
+        case .neutral:
+            return LGColors.neutral300
         case .custom(_, _, let border):
             return border
         default:
@@ -162,7 +169,7 @@ struct LGBadge: View {
     }
 
     private var borderWidth: CGFloat {
-        borderColor != nil ? 1 : 0
+        borderColor != nil ? 0.5 : 0
     }
 }
 
@@ -247,7 +254,7 @@ struct LGStatusBadge: View {
         case .info:
             return LGColors.info
         case .processing:
-            return LGColors.blue500
+            return LGColors.neutral400
         }
     }
 
@@ -262,7 +269,7 @@ struct LGStatusBadge: View {
         case .info:
             return LGColors.infoText
         case .processing:
-            return LGColors.blue400
+            return LGColors.neutral400
         }
     }
 
@@ -277,8 +284,51 @@ struct LGStatusBadge: View {
         case .info:
             return LGColors.infoBg
         case .processing:
-            return LGColors.blue500.opacity(0.1)
+            return LGColors.neutral400.opacity(0.1)
         }
+    }
+}
+
+// MARK: - Outlined Badge for B&W aesthetic
+
+/// Badge with outline style for minimal B&W look
+struct LGBadgeOutlined: View {
+    let text: String
+    let icon: String?
+    let size: LGBadgeSize
+    let isActive: Bool
+
+    init(
+        _ text: String,
+        icon: String? = nil,
+        size: LGBadgeSize = .medium,
+        isActive: Bool = false
+    ) {
+        self.text = text
+        self.icon = icon
+        self.size = size
+        self.isActive = isActive
+    }
+
+    var body: some View {
+        HStack(spacing: 4) {
+            if let icon = icon {
+                Image(systemName: icon)
+                    .font(.system(size: size.iconSize, weight: .semibold))
+            }
+
+            Text(text)
+                .font(size.fontSize)
+                .fontWeight(.medium)
+        }
+        .foregroundColor(isActive ? LGColors.background : LGColors.foreground)
+        .padding(size.padding)
+        .background(isActive ? LGColors.foreground : LGColors.background)
+        .cornerRadius(LGSpacing.badgeRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: LGSpacing.badgeRadius)
+                .stroke(LGColors.foreground, lineWidth: 1)
+        )
     }
 }
 
@@ -306,7 +356,7 @@ struct LGBadge_Previews: PreviewProvider {
                     LGBadge("Utility", style: .category("utility"))
                 }
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Tier Badges")
                     .font(LGFonts.h4)
@@ -318,7 +368,7 @@ struct LGBadge_Previews: PreviewProvider {
                     LGBadge("Premium", style: .tier("premium"))
                 }
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Credit Badges")
                     .font(LGFonts.h4)
@@ -330,7 +380,7 @@ struct LGBadge_Previews: PreviewProvider {
                     LGCreditBadge(credits: 10, tier: "premium", size: .large)
                 }
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Status Badges")
                     .font(LGFonts.h4)
@@ -344,7 +394,26 @@ struct LGBadge_Previews: PreviewProvider {
                     LGBadge("Processing", icon: "arrow.clockwise", style: .status(.processing))
                 }
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
+
+                Text("Neutral & Outlined")
+                    .font(LGFonts.h4)
+                    .foregroundColor(LGColors.foreground)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 8) {
+                        LGBadge("Neutral", style: .neutral)
+                        LGBadge("Tag", icon: "tag", style: .neutral)
+                    }
+
+                    HStack(spacing: 8) {
+                        LGBadgeOutlined("Outlined")
+                        LGBadgeOutlined("Active", isActive: true)
+                        LGBadgeOutlined("Filter", icon: "line.3.horizontal.decrease.circle")
+                    }
+                }
+
+                Divider().background(LGColors.neutral300)
 
                 Text("Status Badges with Dots")
                     .font(LGFonts.h4)
@@ -357,7 +426,7 @@ struct LGBadge_Previews: PreviewProvider {
                     LGStatusBadge("Processing", status: .processing)
                 }
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Badge Sizes")
                     .font(LGFonts.h4)
@@ -372,7 +441,7 @@ struct LGBadge_Previews: PreviewProvider {
             .padding()
         }
         .background(LGColors.background)
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
     }
 }
 

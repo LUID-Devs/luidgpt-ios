@@ -35,7 +35,22 @@ enum APIError: Error {
         case .insufficientCredits(let required, let available):
             return "Insufficient credits. Need \(required) but only have \(available)."
         case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+            // Provide specific error messages based on NSURLError codes
+            let nsError = error as NSError
+            switch nsError.code {
+            case NSURLErrorTimedOut:
+                return "Connection timed out. Please check your internet connection and try again."
+            case NSURLErrorCannotConnectToHost:
+                return "Cannot connect to server. Please check if the server is running and accessible."
+            case NSURLErrorCannotFindHost:
+                return "Cannot find server. Please check the server address and your DNS settings."
+            case NSURLErrorNotConnectedToInternet:
+                return "No internet connection. Please check your network settings."
+            case NSURLErrorSecureConnectionFailed:
+                return "Secure connection failed. There may be an SSL/TLS certificate issue."
+            default:
+                return "Network error: \(error.localizedDescription) (Code: \(nsError.code), Domain: \(nsError.domain))"
+            }
         case .unknown:
             return "An unknown error occurred"
         }
@@ -140,6 +155,109 @@ class APIClient {
             parameters: parameters,
             requiresAuth: requiresAuth
         )
+    }
+
+    /// Test connection to the backend server
+    /// - Returns: Tuple with success status and descriptive message
+    func testConnection() async -> (success: Bool, message: String) {
+        NSLog("🔍 Testing connection to backend server...")
+        os_log("🔍 Testing connection to backend server...", log: logger, type: .info)
+
+        guard let url = URL(string: baseURL + "/health") else {
+            let errorMsg = "Invalid base URL: \(baseURL)"
+            NSLog("❌ Connection test failed: \(errorMsg)")
+            os_log("❌ Connection test failed: %{public}@", log: logger, type: .error, errorMsg)
+            return (false, errorMsg)
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 10
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        NSLog("🌐 Testing URL: \(url.absoluteString)")
+        os_log("🌐 Testing URL: %{public}@", log: logger, type: .info, url.absoluteString)
+
+        do {
+            let startTime = Date()
+            let (data, response) = try await session.data(for: request)
+            let duration = Date().timeIntervalSince(startTime)
+
+            guard let httpResponse = response as? HTTPURLResponse else {
+                let errorMsg = "Invalid response type from server"
+                NSLog("❌ \(errorMsg)")
+                os_log("❌ %{public}@", log: logger, type: .error, errorMsg)
+                return (false, errorMsg)
+            }
+
+            NSLog("📊 Connection test response:")
+            NSLog("   Status Code: \(httpResponse.statusCode)")
+            NSLog("   Response Time: \(String(format: "%.2f", duration * 1000))ms")
+            NSLog("   Data Size: \(data.count) bytes")
+
+            os_log("📊 Status: %{public}d, Time: %.2fms, Size: %{public}d bytes",
+                   log: logger, type: .info,
+                   httpResponse.statusCode, duration * 1000, data.count)
+
+            if let responseString = String(data: data, encoding: .utf8) {
+                NSLog("   Response: \(responseString)")
+                os_log("   Response: %{public}@", log: logger, type: .info, responseString)
+            }
+
+            if (200...299).contains(httpResponse.statusCode) {
+                let successMsg = "Successfully connected to server (Status: \(httpResponse.statusCode), Time: \(String(format: "%.0f", duration * 1000))ms)"
+                NSLog("✅ \(successMsg)")
+                os_log("✅ %{public}@", log: logger, type: .info, successMsg)
+                return (true, successMsg)
+            } else {
+                let errorMsg = "Server returned status code \(httpResponse.statusCode)"
+                NSLog("⚠️ \(errorMsg)")
+                os_log("⚠️ %{public}@", log: logger, type: .error, errorMsg)
+                return (false, errorMsg)
+            }
+
+        } catch {
+            let nsError = error as NSError
+            var errorMsg = "Connection failed: "
+
+            NSLog("❌ Connection test error:")
+            NSLog("   Domain: \(nsError.domain)")
+            NSLog("   Code: \(nsError.code)")
+            NSLog("   Description: \(nsError.localizedDescription)")
+
+            os_log("❌ Connection error - Domain: %{public}@, Code: %{public}d",
+                   log: logger, type: .error, nsError.domain, nsError.code)
+
+            // Provide specific error messages based on error codes
+            switch nsError.code {
+            case NSURLErrorTimedOut:
+                errorMsg += "Request timed out. Server may be slow or unreachable."
+            case NSURLErrorCannotConnectToHost:
+                errorMsg += "Cannot connect to \(baseURL). Server may be offline."
+            case NSURLErrorCannotFindHost:
+                errorMsg += "Cannot find host. Check server address: \(baseURL)"
+            case NSURLErrorNotConnectedToInternet:
+                errorMsg += "No internet connection. Check network settings."
+            case NSURLErrorSecureConnectionFailed:
+                errorMsg += "SSL/TLS connection failed. Certificate may be invalid."
+            case NSURLErrorNetworkConnectionLost:
+                errorMsg += "Network connection lost during request."
+            case NSURLErrorDNSLookupFailed:
+                errorMsg += "DNS lookup failed. Check server hostname."
+            default:
+                errorMsg += "\(nsError.localizedDescription) (Code: \(nsError.code))"
+            }
+
+            if let underlyingError = nsError.userInfo[NSUnderlyingErrorKey] as? NSError {
+                NSLog("   Underlying Error: \(underlyingError.localizedDescription)")
+                os_log("   Underlying: %{public}@", log: logger, type: .error, underlyingError.localizedDescription)
+            }
+
+            NSLog("❌ \(errorMsg)")
+            os_log("❌ %{public}@", log: logger, type: .error, errorMsg)
+
+            return (false, errorMsg)
+        }
     }
 
     // MARK: - Core Request Method
@@ -286,6 +404,33 @@ class APIClient {
         } catch let error as APIError {
             throw error
         } catch {
+            // Enhanced network error logging
+            let nsError = error as NSError
+            NSLog("❌ NETWORK ERROR DETAILS:")
+            NSLog("   Domain: \(nsError.domain)")
+            NSLog("   Code: \(nsError.code)")
+            NSLog("   Description: \(nsError.localizedDescription)")
+            NSLog("   Failure Reason: \(nsError.localizedFailureReason ?? "N/A")")
+            NSLog("   Recovery Suggestion: \(nsError.localizedRecoverySuggestion ?? "N/A")")
+
+            os_log("❌ NETWORK ERROR - Domain: %{public}@, Code: %{public}d, Description: %{public}@",
+                   log: logger, type: .error,
+                   nsError.domain, nsError.code, nsError.localizedDescription)
+
+            if let underlyingError = nsError.userInfo[NSUnderlyingErrorKey] as? NSError {
+                NSLog("   Underlying Error Domain: \(underlyingError.domain)")
+                NSLog("   Underlying Error Code: \(underlyingError.code)")
+                NSLog("   Underlying Error Description: \(underlyingError.localizedDescription)")
+                os_log("   Underlying Error: %{public}@ (Code: %{public}d)",
+                       log: logger, type: .error,
+                       underlyingError.domain, underlyingError.code)
+            }
+
+            if let url = nsError.userInfo[NSURLErrorFailingURLErrorKey] as? URL {
+                NSLog("   Failing URL: \(url.absoluteString)")
+                os_log("   Failing URL: %{public}@", log: logger, type: .error, url.absoluteString)
+            }
+
             throw APIError.networkError(error)
         }
     }

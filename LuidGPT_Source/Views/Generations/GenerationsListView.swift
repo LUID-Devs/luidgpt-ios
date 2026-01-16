@@ -3,6 +3,7 @@
 //  LuidGPT
 //
 //  Generation history list with grid layout, filters, and search
+//  Black & White Premium Aesthetic
 //
 
 import SwiftUI
@@ -18,38 +19,36 @@ struct GenerationsListView: View {
     ]
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.white.ignoresSafeArea()
+        ZStack {
+            LGColors.background.ignoresSafeArea()
 
-                if viewModel.isLoading && viewModel.generations.isEmpty {
-                    loadingView
-                } else if viewModel.generations.isEmpty {
-                    emptyView
-                } else {
-                    contentView
+            if viewModel.isLoading && viewModel.generations.isEmpty {
+                loadingView
+            } else if viewModel.generations.isEmpty {
+                emptyView
+            } else {
+                contentView
+            }
+        }
+        .navigationTitle("History")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { showFilters.toggle() }) {
+                    Image(systemName: hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                        .foregroundColor(LGColors.foreground)
                 }
             }
-            .navigationTitle("History")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showFilters.toggle() }) {
-                        Image(systemName: hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
-                            .foregroundColor(LGColors.VideoGeneration.main)
-                    }
-                }
-            }
-            .sheet(isPresented: $showFilters) {
-                FiltersView(viewModel: viewModel)
-            }
-            .sheet(item: $selectedGeneration) { generation in
-                GenerationDetailView(generation: generation, viewModel: viewModel)
-            }
-            .task {
-                if viewModel.generations.isEmpty {
-                    await viewModel.loadGenerations()
-                }
+        }
+        .sheet(isPresented: $showFilters) {
+            FiltersView(viewModel: viewModel)
+        }
+        .sheet(item: $selectedGeneration) { generation in
+            GenerationDetailView(generation: generation, viewModel: viewModel)
+        }
+        .task {
+            if viewModel.generations.isEmpty {
+                await viewModel.loadGenerations()
             }
         }
     }
@@ -97,7 +96,7 @@ struct GenerationsListView: View {
                 // Loading more indicator
                 if viewModel.isLoadingMore {
                     ProgressView()
-                        .tint(LGColors.VideoGeneration.main)
+                        .tint(LGColors.foreground)
                         .padding()
                 }
             }
@@ -111,25 +110,39 @@ struct GenerationsListView: View {
     // MARK: - Search Bar
 
     private var searchBar: some View {
-        HStack {
+        HStack(spacing: 10) {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(LGColors.foregroundSecondary)
 
             TextField("Search generations...", text: $viewModel.searchText)
                 .textFieldStyle(.plain)
-                .foregroundColor(.black)
+                .foregroundColor(LGColors.foreground)
+                .font(.system(size: 15))
+                .placeholder(when: viewModel.searchText.isEmpty) {
+                    Text("Search generations...")
+                        .foregroundColor(LGColors.foregroundSecondary)
+                        .font(.system(size: 15))
+                }
 
             if !viewModel.searchText.isEmpty {
                 Button(action: { viewModel.searchText = "" }) {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
+                        .font(.system(size: 16))
+                        .foregroundColor(LGColors.foregroundSecondary)
                 }
             }
         }
-        .padding(12)
-        .background(Color(white: 0.95))
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background(LGColors.backgroundCard)
         .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(LGColors.borderElevated, lineWidth: 1)
+        )
         .padding(.horizontal, LGSpacing.md)
+        .padding(.top, 8)
     }
 
     // MARK: - Stats Banner
@@ -140,14 +153,14 @@ struct GenerationsListView: View {
                 icon: "photo.stack.fill",
                 label: "Total",
                 value: "\(viewModel.totalGenerations)",
-                color: .blue
+                color: LGColors.foreground
             )
 
             statItem(
                 icon: "checkmark.circle.fill",
                 label: "Completed",
                 value: "\(viewModel.completedCount)",
-                color: .green
+                color: LGColors.success
             )
 
             if viewModel.processingCount > 0 {
@@ -155,7 +168,7 @@ struct GenerationsListView: View {
                     icon: "clock.fill",
                     label: "Processing",
                     value: "\(viewModel.processingCount)",
-                    color: .orange
+                    color: LGColors.info
                 )
             }
 
@@ -163,12 +176,17 @@ struct GenerationsListView: View {
                 icon: "heart.fill",
                 label: "Favorites",
                 value: "\(viewModel.favoritesCount)",
-                color: .red
+                color: LGColors.foregroundSecondary
             )
         }
         .padding(LGSpacing.md)
-        .background(Color(white: 0.95))
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 4, x: 0, y: 2)
         .padding(.horizontal, LGSpacing.md)
     }
 
@@ -180,11 +198,11 @@ struct GenerationsListView: View {
 
             Text(value)
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundColor(LGColors.foreground)
 
             Text(label)
                 .font(.system(size: 10))
-                .foregroundColor(.gray)
+                .foregroundColor(LGColors.foregroundTertiary)
         }
         .frame(maxWidth: .infinity)
     }
@@ -230,8 +248,12 @@ struct GenerationsListView: View {
                         .foregroundColor(LGColors.errorText)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(LGColors.errorText.opacity(0.1))
+                        .background(LGColors.errorBg)
                         .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(LGColors.errorBorder, lineWidth: 1)
+                        )
                 }
             }
             .padding(.horizontal, LGSpacing.md)
@@ -282,11 +304,11 @@ struct GenerationsListView: View {
         VStack(spacing: LGSpacing.lg) {
             ProgressView()
                 .scaleEffect(1.5)
-                .tint(LGColors.VideoGeneration.main)
+                .tint(LGColors.foreground)
 
             Text("Loading generations...")
                 .font(LGFonts.body)
-                .foregroundColor(.gray)
+                .foregroundColor(LGColors.foregroundSecondary)
         }
     }
 
@@ -296,15 +318,15 @@ struct GenerationsListView: View {
         VStack(spacing: 20) {
             Image(systemName: "clock.badge.exclamationmark")
                 .font(.system(size: 60))
-                .foregroundColor(.gray)
+                .foregroundColor(LGColors.foregroundTertiary)
 
             Text("No Generations Yet")
                 .font(LGFonts.h2)
-                .foregroundColor(.black)
+                .foregroundColor(LGColors.foreground)
 
             Text("Your generation history will appear here")
                 .font(LGFonts.body)
-                .foregroundColor(.gray)
+                .foregroundColor(LGColors.foregroundSecondary)
                 .multilineTextAlignment(.center)
 
             if hasActiveFilters {
@@ -313,10 +335,10 @@ struct GenerationsListView: View {
                 }) {
                     Text("Clear Filters")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(LGColors.background)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 12)
-                        .background(LGColors.VideoGeneration.main)
+                        .background(LGColors.foreground)
                         .cornerRadius(10)
                 }
                 .padding(.top)
@@ -357,7 +379,7 @@ struct GenerationCardView: View {
 
                     Text(generation.title ?? "Untitled")
                         .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(LGColors.foreground)
                         .lineLimit(1)
 
                     Spacer()
@@ -365,34 +387,37 @@ struct GenerationCardView: View {
                     if generation.isFavorite {
                         Image(systemName: "heart.fill")
                             .font(.system(size: 10))
-                            .foregroundColor(.red)
+                            .foregroundColor(LGColors.foregroundSecondary)
                     }
                 }
 
                 if let model = generation.replicateModel {
                     Text(model.name)
                         .font(.system(size: 11))
-                        .foregroundColor(.gray)
+                        .foregroundColor(LGColors.foregroundTertiary)
                         .lineLimit(1)
                 }
 
                 HStack(spacing: 4) {
                     Image(systemName: "sparkles")
                         .font(.system(size: 9))
+                        .foregroundColor(LGColors.foregroundSecondary)
                     Text("\(generation.creditsUsed)")
                         .font(.system(size: 10, weight: .medium))
+                        .foregroundColor(LGColors.foreground)
                 }
-                .foregroundColor(LGColors.VideoGeneration.main)
             }
             .padding(8)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(LGColors.backgroundCard)
         }
-        .background(Color.white)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color(white: 0.9), lineWidth: 1)
+                .stroke(LGColors.border, lineWidth: 1)
         )
+        .shadow(color: LGColors.innerShadow, radius: 4, x: 0, y: 2)
     }
 
     @ViewBuilder
@@ -412,13 +437,13 @@ struct GenerationCardView: View {
             }
         } else if generation.status.isRunning {
             ZStack {
-                Color(white: 0.95)
+                LGColors.backgroundElevated
                 VStack(spacing: 8) {
                     ProgressView()
-                        .tint(LGColors.VideoGeneration.main)
+                        .tint(LGColors.foreground)
                     Text("Processing...")
                         .font(.system(size: 11))
-                        .foregroundColor(.gray)
+                        .foregroundColor(LGColors.foregroundSecondary)
                 }
             }
         } else {
@@ -432,12 +457,13 @@ struct GenerationCardView: View {
         }
 
         return ZStack {
-            colors?.background ?? Color(white: 0.95)
+            // Use grayscale category color background
+            (colors?.background ?? LGColors.backgroundElevated)
 
             VStack(spacing: 8) {
                 Image(systemName: generation.isImageOutput ? "photo" : generation.isVideoOutput ? "video" : "doc")
                     .font(.system(size: 32))
-                    .foregroundColor(colors?.foreground.opacity(0.6) ?? .gray)
+                    .foregroundColor(colors?.foreground ?? LGColors.foregroundTertiary)
 
                 if generation.status == .failed {
                     Text("Failed")
@@ -451,11 +477,11 @@ struct GenerationCardView: View {
     private var statusColor: Color {
         switch generation.status {
         case .pending, .processing:
-            return .orange
+            return LGColors.foregroundSecondary // Light gray for processing
         case .completed:
-            return .green
+            return LGColors.foreground // White for success
         case .failed, .cancelled:
-            return LGColors.errorText
+            return LGColors.foregroundTertiary // Medium gray for error
         }
     }
 }
@@ -470,21 +496,21 @@ struct GenerationsFilterChip: View {
         HStack(spacing: 6) {
             Text(label)
                 .font(.system(size: 12))
-                .foregroundColor(.black)
+                .foregroundColor(LGColors.foreground)
 
             Button(action: onRemove) {
                 Image(systemName: "xmark")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(.gray)
+                    .foregroundColor(LGColors.foregroundTertiary)
             }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
-        .background(Color(white: 0.95))
+        .background(LGColors.backgroundCard)
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(LGColors.VideoGeneration.main.opacity(0.5), lineWidth: 1)
+                .stroke(LGColors.border, lineWidth: 1)
         )
     }
 }
@@ -497,54 +523,63 @@ struct FiltersView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Status")) {
-                    ForEach([
-                        ModelGeneration.GenerationStatus.pending,
-                        .processing,
-                        .completed,
-                        .failed
-                    ], id: \.self) { status in
-                        Button(action: {
-                            viewModel.selectedStatus = viewModel.selectedStatus == status ? nil : status
-                        }) {
-                            HStack {
-                                Text(status.displayName)
-                                    .foregroundColor(LGColors.foreground)
-                                Spacer()
-                                if viewModel.selectedStatus == status {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(LGColors.VideoGeneration.main)
+            ZStack {
+                LGColors.background.ignoresSafeArea()
+
+                Form {
+                    Section(header: Text("Status").foregroundColor(LGColors.foregroundSecondary)) {
+                        ForEach([
+                            ModelGeneration.GenerationStatus.pending,
+                            .processing,
+                            .completed,
+                            .failed
+                        ], id: \.self) { status in
+                            Button(action: {
+                                viewModel.selectedStatus = viewModel.selectedStatus == status ? nil : status
+                            }) {
+                                HStack {
+                                    Text(status.displayName)
+                                        .foregroundColor(LGColors.foreground)
+                                    Spacer()
+                                    if viewModel.selectedStatus == status {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(LGColors.success)
+                                    }
                                 }
                             }
                         }
+                        .listRowBackground(LGColors.backgroundCard)
                     }
-                }
 
-                Section {
-                    Toggle("Favorites Only", isOn: $viewModel.showFavoritesOnly)
-                        .tint(LGColors.VideoGeneration.main)
-                }
+                    Section {
+                        Toggle("Favorites Only", isOn: $viewModel.showFavoritesOnly)
+                            .tint(LGColors.foreground)
+                            .foregroundColor(LGColors.foreground)
+                    }
+                    .listRowBackground(LGColors.backgroundCard)
 
-                Section {
-                    Button("Apply Filters") {
-                        Task {
-                            await viewModel.applyFilters()
-                            dismiss()
+                    Section {
+                        Button("Apply Filters") {
+                            Task {
+                                await viewModel.applyFilters()
+                                dismiss()
+                            }
                         }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundColor(LGColors.foreground)
 
-                    Button("Clear All") {
-                        Task {
-                            await viewModel.clearFilters()
-                            dismiss()
+                        Button("Clear All") {
+                            Task {
+                                await viewModel.clearFilters()
+                                dismiss()
+                            }
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundColor(LGColors.errorText)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .foregroundColor(LGColors.errorText)
+                    .listRowBackground(LGColors.backgroundCard)
                 }
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("Filters")
             .navigationBarTitleDisplayMode(.inline)
@@ -553,8 +588,24 @@ struct FiltersView: View {
                     Button("Done") {
                         dismiss()
                     }
+                    .foregroundColor(LGColors.foreground)
                 }
             }
+        }
+    }
+}
+
+// MARK: - View Extension for Placeholder
+
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content
+    ) -> some View {
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
         }
     }
 }

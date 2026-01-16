@@ -130,7 +130,8 @@ struct LGButton: View {
                 RoundedRectangle(cornerRadius: LGSpacing.buttonRadius)
                     .stroke(borderColor, lineWidth: borderWidth)
             )
-            .opacity(isDisabled || isLoading ? 0.6 : 1.0)
+            .shadow(color: shadowColor, radius: shadowRadius, x: 0, y: shadowY)
+            .opacity(isDisabled || isLoading ? 0.5 : 1.0)
         }
         .disabled(isDisabled || isLoading)
     }
@@ -147,9 +148,9 @@ struct LGButton: View {
     private var baseBackgroundColor: Color {
         switch style {
         case .primary:
-            return LGColors.blue600
+            return LGColors.foreground // Black
         case .secondary:
-            return LGColors.neutral800
+            return LGColors.neutral100 // Very light gray
         case .outline:
             return .clear
         case .ghost:
@@ -162,13 +163,13 @@ struct LGButton: View {
     private var textColor: Color {
         switch style {
         case .primary:
-            return .white
+            return LGColors.background // White text on black
         case .secondary:
-            return LGColors.foreground
+            return LGColors.foreground // Black text on light gray
         case .outline:
-            return LGColors.blue400
+            return LGColors.foreground // Black text
         case .ghost:
-            return LGColors.neutral300
+            return LGColors.neutral600 // Medium gray
         case .danger:
             return .white
         }
@@ -177,7 +178,9 @@ struct LGButton: View {
     private var borderColor: Color {
         switch style {
         case .outline:
-            return LGColors.neutral700
+            return LGColors.neutral300 // Light gray border
+        case .ghost:
+            return .clear
         default:
             return .clear
         }
@@ -186,6 +189,39 @@ struct LGButton: View {
     private var borderWidth: CGFloat {
         switch style {
         case .outline:
+            return 1.5
+        default:
+            return 0
+        }
+    }
+
+    private var shadowColor: Color {
+        switch style {
+        case .primary:
+            return Color.black.opacity(0.1)
+        case .secondary:
+            return Color.black.opacity(0.05)
+        default:
+            return .clear
+        }
+    }
+
+    private var shadowRadius: CGFloat {
+        switch style {
+        case .primary:
+            return 4
+        case .secondary:
+            return 2
+        default:
+            return 0
+        }
+    }
+
+    private var shadowY: CGFloat {
+        switch style {
+        case .primary:
+            return 2
+        case .secondary:
             return 1
         default:
             return 0
@@ -230,33 +266,60 @@ struct LGIconButton: View {
                 .frame(width: size, height: size)
                 .background(backgroundColor)
                 .cornerRadius(size / 4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: size / 4)
+                        .stroke(borderColor, lineWidth: borderWidth)
+                )
         }
         .disabled(isDisabled)
+        .opacity(isDisabled ? 0.5 : 1.0)
     }
 
     private var backgroundColor: Color {
         switch style {
         case .primary:
-            return LGColors.blue600
+            return LGColors.foreground // Black
         case .secondary:
-            return LGColors.neutral800
+            return LGColors.neutral100 // Light gray
         case .ghost:
             return .clear
         case .outline:
             return .clear
         case .danger:
-            return LGColors.error.opacity(0.2)
+            return LGColors.errorBg
         }
     }
 
     private var textColor: Color {
         switch style {
         case .primary:
-            return .white
+            return LGColors.background // White
+        case .secondary:
+            return LGColors.foreground // Black
+        case .ghost:
+            return LGColors.neutral600 // Medium gray
+        case .outline:
+            return LGColors.foreground // Black
         case .danger:
             return LGColors.error
-        default:
+        }
+    }
+
+    private var borderColor: Color {
+        switch style {
+        case .outline:
             return LGColors.neutral300
+        default:
+            return .clear
+        }
+    }
+
+    private var borderWidth: CGFloat {
+        switch style {
+        case .outline:
+            return 1.5
+        default:
+            return 0
         }
     }
 }
@@ -277,7 +340,7 @@ struct LGButton_Previews: PreviewProvider {
                 LGButton("Ghost Button", style: .ghost, action: {})
                 LGButton("Danger Button", style: .danger, action: {})
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("With Icons")
                     .font(LGFonts.h3)
@@ -286,7 +349,7 @@ struct LGButton_Previews: PreviewProvider {
                 LGButton("Generate", icon: "play.fill", style: .primary, action: {})
                 LGButton("Download", icon: "arrow.down.circle", iconPosition: .trailing, style: .secondary, action: {})
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Sizes")
                     .font(LGFonts.h3)
@@ -296,7 +359,7 @@ struct LGButton_Previews: PreviewProvider {
                 LGButton("Medium", size: .medium, action: {})
                 LGButton("Large", size: .large, action: {})
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("States")
                     .font(LGFonts.h3)
@@ -306,7 +369,7 @@ struct LGButton_Previews: PreviewProvider {
                 LGButton("Disabled", isDisabled: true, action: {})
                 LGButton("Full Width", fullWidth: true, action: {})
 
-                Divider().background(LGColors.neutral700)
+                Divider().background(LGColors.neutral300)
 
                 Text("Icon Buttons")
                     .font(LGFonts.h3)
@@ -317,11 +380,12 @@ struct LGButton_Previews: PreviewProvider {
                     LGIconButton(icon: "star.fill", style: .primary, action: {})
                     LGIconButton(icon: "trash", style: .danger, action: {})
                     LGIconButton(icon: "square.and.arrow.up", style: .secondary, action: {})
+                    LGIconButton(icon: "ellipsis", style: .outline, action: {})
                 }
             }
             .padding()
         }
         .background(LGColors.background)
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
     }
 }

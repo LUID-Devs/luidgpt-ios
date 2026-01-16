@@ -3,6 +3,7 @@
 //  LuidGPT
 //
 //  Full-screen detail view for a single generation
+//  Black & White Premium Aesthetic
 //
 
 import SwiftUI
@@ -50,14 +51,14 @@ struct GenerationDetailView: View {
                     Button("Close") {
                         dismiss()
                     }
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                    .foregroundColor(LGColors.foreground)
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
                         Button(action: { showShareSheet = true }) {
                             Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(LGColors.VideoGeneration.main)
+                                .foregroundColor(LGColors.foreground)
                         }
 
                         Button(action: {
@@ -66,7 +67,7 @@ struct GenerationDetailView: View {
                             }
                         }) {
                             Image(systemName: generation.isFavorite ? "heart.fill" : "heart")
-                                .foregroundColor(generation.isFavorite ? .red : LGColors.VideoGeneration.main)
+                                .foregroundColor(generation.isFavorite ? LGColors.foregroundSecondary : LGColors.foreground)
                         }
                     }
                 }
@@ -120,11 +121,15 @@ struct GenerationDetailView: View {
                         ForEach(tags.prefix(3), id: \.self) { tag in
                             Text("#\(tag)")
                                 .font(.system(size: 11))
-                                .foregroundColor(LGColors.neutral400)
+                                .foregroundColor(LGColors.foregroundSecondary)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
-                                .background(LGColors.neutral800)
+                                .background(LGColors.backgroundElevated)
                                 .cornerRadius(6)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .stroke(LGColors.border, lineWidth: 0.5)
+                                )
                         }
                     }
                 }
@@ -140,6 +145,10 @@ struct GenerationDetailView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(LGColors.border, lineWidth: 1)
+                                )
                         case .failure:
                             errorPlaceholder
                         case .empty:
@@ -151,9 +160,15 @@ struct GenerationDetailView: View {
                     .frame(maxWidth: .infinity)
                     .frame(maxHeight: 500)
                 } else if generation.isVideoOutput {
-                    VideoPlayer(player: AVPlayer(url: URL(string: url)!))
-                        .frame(height: 400)
-                        .cornerRadius(12)
+                    ZStack {
+                        VideoPlayer(player: AVPlayer(url: URL(string: url)!))
+                            .frame(height: 400)
+                            .cornerRadius(12)
+
+                        // Dark overlay for video
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(LGColors.border, lineWidth: 1)
+                    }
                 } else {
                     genericOutputView(url: url)
                 }
@@ -164,8 +179,13 @@ struct GenerationDetailView: View {
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 6, x: 0, y: 3)
     }
 
     // MARK: - Metadata Section
@@ -184,7 +204,7 @@ struct GenerationDetailView: View {
                     icon: "sparkles",
                     label: "Credits Used",
                     value: "\(generation.creditsUsed)",
-                    color: LGColors.VideoGeneration.main
+                    color: LGColors.foreground
                 )
 
                 if let execTime = generation.executionTimeDisplay {
@@ -192,7 +212,7 @@ struct GenerationDetailView: View {
                         icon: "clock.fill",
                         label: "Execution Time",
                         value: execTime,
-                        color: .blue
+                        color: LGColors.foregroundSecondary
                     )
                 }
 
@@ -200,20 +220,25 @@ struct GenerationDetailView: View {
                     icon: "calendar",
                     label: "Created",
                     value: formatDate(generation.createdDate),
-                    color: .purple
+                    color: LGColors.foregroundSecondary
                 )
 
                 metadataRow(
                     icon: "number",
                     label: "Generation ID",
                     value: String(generation.id.prefix(8)) + "...",
-                    color: LGColors.neutral400
+                    color: LGColors.foregroundTertiary
                 )
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 6, x: 0, y: 3)
     }
 
     private func metadataRow(icon: String, label: String, value: String, color: Color) -> some View {
@@ -225,7 +250,7 @@ struct GenerationDetailView: View {
 
             Text(label)
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundSecondary)
 
             Spacer()
 
@@ -250,9 +275,9 @@ struct GenerationDetailView: View {
                 actionButton(
                     icon: "arrow.down.circle",
                     label: "Download",
-                    color: LGColors.VideoGeneration.main
+                    color: LGColors.foreground
                 ) {
-                    // Download functionality (similar to GenerationResultView)
+                    // Download functionality
                     if let url = generation.outputUrl {
                         UIApplication.shared.open(URL(string: url)!)
                     }
@@ -261,7 +286,7 @@ struct GenerationDetailView: View {
                 actionButton(
                     icon: "square.and.arrow.up",
                     label: "Share",
-                    color: .blue
+                    color: LGColors.foreground
                 ) {
                     showShareSheet = true
                 }
@@ -269,7 +294,7 @@ struct GenerationDetailView: View {
                 actionButton(
                     icon: generation.isFavorite ? "heart.fill" : "heart",
                     label: "Favorite",
-                    color: generation.isFavorite ? .red : LGColors.neutral400
+                    color: generation.isFavorite ? LGColors.foregroundSecondary : LGColors.foregroundTertiary
                 ) {
                     Task {
                         await viewModel.toggleFavorite(generation: generation)
@@ -290,7 +315,7 @@ struct GenerationDetailView: View {
                     actionButton(
                         icon: "arrow.clockwise",
                         label: "Regenerate",
-                        color: LGColors.VideoGeneration.main
+                        color: LGColors.foreground
                     ) {
                         // TODO: Implement regenerate functionality
                         // This would navigate to the model detail view with pre-filled inputs
@@ -299,8 +324,13 @@ struct GenerationDetailView: View {
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 6, x: 0, y: 3)
     }
 
     private func actionButton(
@@ -317,12 +347,16 @@ struct GenerationDetailView: View {
 
                 Text(label)
                     .font(.system(size: 11))
-                    .foregroundColor(LGColors.neutral300)
+                    .foregroundColor(LGColors.foregroundSecondary)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .background(LGColors.neutral800.opacity(0.5))
+            .background(LGColors.backgroundElevated)
             .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(LGColors.border, lineWidth: 1)
+            )
         }
     }
 
@@ -340,7 +374,7 @@ struct GenerationDetailView: View {
 
                     Image(systemName: showInputDetails ? "chevron.up" : "chevron.down")
                         .font(.system(size: 12))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(LGColors.foregroundTertiary)
                 }
             }
 
@@ -351,20 +385,29 @@ struct GenerationDetailView: View {
                     }
                 }
                 .padding(LGSpacing.md)
-                .background(LGColors.neutral800.opacity(0.3))
+                .background(LGColors.backgroundElevated)
                 .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(LGColors.divider, lineWidth: 1)
+                )
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 6, x: 0, y: 3)
     }
 
     private func inputParameterRow(key: String, value: AnyCodable?) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(key.capitalized)
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundSecondary)
 
             Text(formatInputValue(value))
                 .font(LGFonts.small)
@@ -388,10 +431,14 @@ struct GenerationDetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                     } placeholder: {
-                        Color.gray.opacity(0.3)
+                        LGColors.backgroundElevated
                     }
                     .frame(width: 60, height: 60)
                     .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(LGColors.border, lineWidth: 1)
+                    )
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -402,7 +449,7 @@ struct GenerationDetailView: View {
                     if let provider = model.providerDisplayName {
                         Text("by \(provider)")
                             .font(LGFonts.small)
-                            .foregroundColor(LGColors.neutral400)
+                            .foregroundColor(LGColors.foregroundSecondary)
                     }
 
                     if let category = model.category {
@@ -414,6 +461,10 @@ struct GenerationDetailView: View {
                             .padding(.vertical, 4)
                             .background(colors.background)
                             .cornerRadius(6)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(LGColors.border, lineWidth: 0.5)
+                            )
                     }
                 }
 
@@ -421,64 +472,81 @@ struct GenerationDetailView: View {
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral800)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: LGColors.innerShadow, radius: 6, x: 0, y: 3)
     }
 
     // MARK: - Placeholder Views
 
     private var loadingPlaceholder: some View {
         ZStack {
-            LGColors.neutral800
+            LGColors.backgroundElevated
             ProgressView()
-                .tint(LGColors.VideoGeneration.main)
+                .tint(LGColors.foreground)
         }
         .frame(height: 300)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
     }
 
     private var errorPlaceholder: some View {
         ZStack {
-            LGColors.neutral800
+            LGColors.backgroundElevated
             VStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle")
                     .font(.system(size: 32))
                     .foregroundColor(LGColors.errorText)
                 Text(generation.errorMessage ?? "Generation failed")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
             }
         }
         .frame(height: 300)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.errorBorder, lineWidth: 1)
+        )
     }
 
     private var processingPlaceholder: some View {
         ZStack {
-            LGColors.neutral800
+            LGColors.backgroundElevated
             VStack(spacing: 12) {
                 ProgressView()
                     .scaleEffect(1.2)
-                    .tint(LGColors.VideoGeneration.main)
+                    .tint(LGColors.info)
                 Text("Processing...")
                     .font(LGFonts.body)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foreground)
                 Text("This may take a few minutes")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral500)
+                    .foregroundColor(LGColors.foregroundTertiary)
             }
         }
         .frame(height: 300)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.infoBorder, lineWidth: 1)
+        )
     }
 
     private func genericOutputView(url: String) -> some View {
         VStack(spacing: LGSpacing.sm) {
             Image(systemName: "doc.fill")
                 .font(.system(size: 48))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundTertiary)
 
             Text("Output available")
                 .font(LGFonts.body)
@@ -491,13 +559,25 @@ struct GenerationDetailView: View {
             }) {
                 Text("Open in Browser")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                    .foregroundColor(LGColors.foreground)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(LGColors.backgroundElevated)
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(LGColors.border, lineWidth: 1)
+                    )
             }
         }
         .frame(maxWidth: .infinity)
         .frame(height: 300)
-        .background(LGColors.neutral800.opacity(0.5))
+        .background(LGColors.backgroundElevated)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
     }
 
     // MARK: - Helper Methods
@@ -505,11 +585,11 @@ struct GenerationDetailView: View {
     private var statusColor: Color {
         switch generation.status {
         case .pending, .processing:
-            return .orange
+            return LGColors.info
         case .completed:
-            return .green
+            return LGColors.success
         case .failed, .cancelled:
-            return LGColors.errorText
+            return LGColors.error
         }
     }
 

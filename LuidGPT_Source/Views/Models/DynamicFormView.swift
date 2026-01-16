@@ -51,14 +51,18 @@ struct DynamicFormView: View {
                 // No schema available
                 Text("Model schema not available")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color.white.opacity(0.6))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(LGSpacing.xl)
             }
         }
         .padding(LGSpacing.lg)
-        .background(Color.white)
+        .background(Color(white: 0.1))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+        )
         .sheet(isPresented: $showImagePicker) {
             if let fieldKey = currentImageField {
                 ImagePicker(image: Binding(
@@ -81,7 +85,7 @@ struct DynamicFormView: View {
             HStack {
                 Text("Generate with \(modelName)")
                     .font(LGFonts.h4)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 Spacer()
 
@@ -94,14 +98,14 @@ struct DynamicFormView: View {
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
-                .background(LGColors.VideoGeneration.main.opacity(0.2))
-                .foregroundColor(LGColors.VideoGeneration.main)
+                .background(Color.white.opacity(0.1))
+                .foregroundColor(.white)
                 .cornerRadius(8)
             }
 
             Text("Fill out the parameters below to generate your output")
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color.white.opacity(0.6))
         }
     }
 
@@ -114,11 +118,11 @@ struct DynamicFormView: View {
             HStack(spacing: 4) {
                 Text(property.title ?? key.capitalized)
                     .font(LGFonts.small.weight(.semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 if required {
                     Text("*")
-                        .foregroundColor(LGColors.errorText)
+                        .foregroundColor(.red)
                 }
             }
 
@@ -126,7 +130,7 @@ struct DynamicFormView: View {
             if let description = property.description {
                 Text(description)
                     .font(.system(size: 11))
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
 
             // Input control based on type
@@ -136,12 +140,16 @@ struct DynamicFormView: View {
             if let error = validationErrors[key] {
                 Text(error)
                     .font(.system(size: 11))
-                    .foregroundColor(LGColors.errorText)
+                    .foregroundColor(.red)
             }
         }
         .padding(LGSpacing.md)
-        .background(LGColors.neutral100)
+        .background(Color.white.opacity(0.05))
         .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 
     @ViewBuilder
@@ -183,13 +191,23 @@ struct DynamicFormView: View {
                 TextEditor(text: binding)
                     .frame(minHeight: 100)
                     .padding(8)
-                    .background(LGColors.neutral100)
+                    .background(Color.white.opacity(0.05))
                     .cornerRadius(8)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                    )
             } else {
                 TextField("Enter \(property.title ?? key)", text: binding)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(4)
+                    .padding(12)
+                    .background(Color.white.opacity(0.05))
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                    )
             }
         }
     }
@@ -207,22 +225,28 @@ struct DynamicFormView: View {
                 HStack {
                     Text("\(Int(binding.wrappedValue))")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .frame(width: 50)
 
                     Slider(value: binding, in: min...max, step: 1)
-                        .accentColor(LGColors.VideoGeneration.main)
+                        .accentColor(.white)
 
                     Text("\(Int(max))")
                         .font(.system(size: 12))
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(Color.white.opacity(0.6))
                 }
             } else {
                 // Text field for unbounded numbers
                 TextField("Enter number", value: binding, format: .number)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(12)
+                    .background(Color.white.opacity(0.05))
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                    )
                     .keyboardType(.decimalPad)
-                    .padding(4)
             }
         }
     }
@@ -237,7 +261,7 @@ struct DynamicFormView: View {
         return Toggle(isOn: binding) {
             EmptyView()
         }
-        .tint(LGColors.VideoGeneration.main)
+        .tint(.white)
     }
 
     private func enumPicker(key: String, property: InputProperty) -> some View {
@@ -273,7 +297,7 @@ struct DynamicFormView: View {
                     showImagePicker = true
                 }
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.VideoGeneration.main)
+                .foregroundColor(.white)
             } else {
                 // Upload button
                 Button(action: {
@@ -283,20 +307,20 @@ struct DynamicFormView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "photo.on.rectangle.angled")
                             .font(.system(size: 32))
-                            .foregroundColor(LGColors.neutral400)
+                            .foregroundColor(Color.white.opacity(0.4))
 
                         Text("Upload Image")
                             .font(LGFonts.small)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(LGSpacing.lg)
-                    .background(LGColors.neutral100)
+                    .background(Color.white.opacity(0.05))
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
-                            .foregroundColor(LGColors.neutral600)
+                            .foregroundColor(Color.white.opacity(0.3))
                     )
                 }
             }
@@ -313,10 +337,10 @@ struct DynamicFormView: View {
             if !hasEnoughCredits {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(LGColors.warningText)
+                        .foregroundColor(.orange)
                     Text("Insufficient credits")
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.warningText)
+                        .foregroundColor(.orange)
                 }
                 .padding(.vertical, 8)
             }
@@ -326,7 +350,7 @@ struct DynamicFormView: View {
                     if isLoading {
                         ProgressView()
                             .scaleEffect(0.8)
-                            .tint(.white)
+                            .tint(.black)
                     } else {
                         Image(systemName: "sparkles")
                         Text("Generate")
@@ -335,13 +359,13 @@ struct DynamicFormView: View {
                     }
                 }
                 .font(LGFonts.body.weight(.semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
                 .background(
                     canSubmit
-                        ? LGColors.VideoGeneration.main
-                        : LGColors.neutral600
+                        ? .white
+                        : Color.white.opacity(0.3)
                 )
                 .cornerRadius(10)
             }
@@ -352,14 +376,14 @@ struct DynamicFormView: View {
     private func errorBanner(_ error: String) -> some View {
         HStack(spacing: 8) {
             Image(systemName: "xmark.circle.fill")
-                .foregroundColor(LGColors.errorText)
+                .foregroundColor(.red)
             Text(error)
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.errorText)
+                .foregroundColor(.red)
         }
         .padding(LGSpacing.md)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(LGColors.errorText.opacity(0.1))
+        .background(Color.red.opacity(0.1))
         .cornerRadius(8)
     }
 

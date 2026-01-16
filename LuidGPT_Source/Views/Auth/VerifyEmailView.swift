@@ -43,16 +43,33 @@ struct VerifyEmailView: View {
 
     private var headerSection: some View {
         VStack(spacing: 16) {
-            // Email icon
+            // Email icon with elegant black and white design
             ZStack {
+                // Outer circle with white border
                 Circle()
-                    .fill(LGColors.VideoGeneration.main.opacity(0.2))
+                    .stroke(LGColors.border, lineWidth: 2)
                     .frame(width: 80, height: 80)
+
+                // Inner circle with gradient fill
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                LGColors.neutral800,
+                                LGColors.background
+                            ],
+                            center: .center,
+                            startRadius: 5,
+                            endRadius: 40
+                        )
+                    )
+                    .frame(width: 76, height: 76)
 
                 Image(systemName: "envelope.fill")
                     .font(.system(size: 36))
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                    .foregroundColor(LGColors.foreground)
             }
+            .shadow(color: LGColors.glow, radius: 20, x: 0, y: 0)
 
             Text("Verify your email")
                 .font(LGFonts.h2)
@@ -61,7 +78,7 @@ struct VerifyEmailView: View {
             VStack(spacing: 8) {
                 Text("We sent a verification code to")
                     .font(LGFonts.body)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundSecondary)
 
                 Text(email)
                     .font(LGFonts.body.weight(.semibold))
@@ -100,7 +117,7 @@ struct VerifyEmailView: View {
                 )
             }
 
-            // 6-digit code input
+            // 6-digit code input with black and white styling
             VStack(alignment: .leading, spacing: 12) {
                 Text("Verification Code")
                     .font(LGFonts.label)
@@ -141,7 +158,7 @@ struct VerifyEmailView: View {
                             Text("Tap to enter code")
                                 .font(LGFonts.small)
                         }
-                        .foregroundColor(LGColors.neutral500)
+                        .foregroundColor(LGColors.foregroundTertiary)
                     }
                 }
             }
@@ -163,7 +180,7 @@ struct VerifyEmailView: View {
                 if resendCountdown > 0 {
                     Text("Resend code in \(resendCountdown)s")
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral500)
+                        .foregroundColor(LGColors.foregroundTertiary)
                 } else {
                     Button(action: handleResendCode) {
                         HStack(spacing: 8) {
@@ -171,7 +188,7 @@ struct VerifyEmailView: View {
                             Text("Resend verification code")
                         }
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(LGColors.foregroundSecondary)
                     }
                 }
 
@@ -181,7 +198,7 @@ struct VerifyEmailView: View {
                 }) {
                     Text("Wrong email? Go back")
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.neutral500)
+                        .foregroundColor(LGColors.foregroundTertiary)
                 }
             }
             .padding(.top, 16)
@@ -235,7 +252,7 @@ struct VerifyEmailView: View {
     }
 }
 
-// MARK: - Digit Box Component
+// MARK: - Digit Box Component (Black & White Design)
 
 struct DigitBox: View {
     let digit: String
@@ -243,17 +260,26 @@ struct DigitBox: View {
 
     var body: some View {
         ZStack {
+            // Background with subtle elevation
             RoundedRectangle(cornerRadius: 12)
-                .fill(LGColors.neutral800)
+                .fill(LGColors.backgroundCard)
                 .frame(width: 50, height: 60)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(
-                            isFocused ? LGColors.VideoGeneration.main : LGColors.neutral700,
-                            lineWidth: isFocused ? 2 : 1
-                        )
-                )
 
+            // Border - white when focused, gray when not
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(
+                    isFocused ? LGColors.foreground : LGColors.border,
+                    lineWidth: isFocused ? 2 : 1
+                )
+                .frame(width: 50, height: 60)
+
+            // Subtle shadow for depth
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.clear)
+                .frame(width: 50, height: 60)
+                .shadow(color: isFocused ? LGColors.glow : Color.clear, radius: 8, x: 0, y: 0)
+
+            // Digit text in white
             Text(digit)
                 .font(.system(size: 28, weight: .semibold))
                 .foregroundColor(LGColors.foreground)

@@ -3,7 +3,7 @@
 //  LuidGPT
 //
 //  Main tab bar navigation with Home, Models, Generations, and Profile tabs
-//  Includes drawer menu for navigation
+//  Redesigned with premium black & white aesthetic
 //
 
 import SwiftUI
@@ -30,7 +30,7 @@ struct TabBarView: View {
                                 }) {
                                     Image(systemName: "line.3.horizontal")
                                         .font(.system(size: 20, weight: .semibold))
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                 }
                             }
                         }
@@ -52,7 +52,7 @@ struct TabBarView: View {
                                 }) {
                                     Image(systemName: "line.3.horizontal")
                                         .font(.system(size: 20, weight: .semibold))
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                 }
                             }
                         }
@@ -74,7 +74,7 @@ struct TabBarView: View {
                                 }) {
                                     Image(systemName: "line.3.horizontal")
                                         .font(.system(size: 20, weight: .semibold))
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                 }
                             }
                         }
@@ -84,7 +84,25 @@ struct TabBarView: View {
                 }
                 .tag(2)
             }
-            .accentColor(LGColors.VideoGeneration.main)
+            .accentColor(.white)
+            .background(Color.black)
+            .onAppear {
+                // Customize TabBar appearance for black background
+                let appearance = UITabBarAppearance()
+                appearance.configureWithOpaqueBackground()
+                appearance.backgroundColor = UIColor.black
+
+                // Selected item - pure white
+                appearance.stackedLayoutAppearance.selected.iconColor = UIColor.white
+                appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+                // Unselected item - medium gray
+                appearance.stackedLayoutAppearance.normal.iconColor = UIColor(white: 0.45, alpha: 1.0)
+                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(white: 0.45, alpha: 1.0)]
+
+                UITabBar.appearance().standardAppearance = appearance
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
 
             // Drawer Menu Overlay
             if isDrawerOpen {
@@ -102,6 +120,7 @@ struct TabBarView: View {
                             Button("Close") {
                                 drawerDestination = nil
                             }
+                            .foregroundColor(.white)
                         }
                     }
             }

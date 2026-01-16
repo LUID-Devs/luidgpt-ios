@@ -3,6 +3,7 @@
 //  LuidGPT
 //
 //  Dashboard overview with stats, recent activity, and quick actions
+//  Redesigned with elegant black & white aesthetic
 //
 
 import SwiftUI
@@ -44,7 +45,7 @@ struct DashboardView: View {
         VStack(spacing: LGSpacing.md) {
             Text("Overview")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: LGSpacing.md) {
@@ -52,7 +53,7 @@ struct DashboardView: View {
                     icon: "sparkles",
                     title: "Credits",
                     value: "\(creditsViewModel.totalCredits)",
-                    color: LGColors.VideoGeneration.main
+                    color: .white
                 )
 
                 StatCard(
@@ -75,7 +76,7 @@ struct DashboardView: View {
                     icon: "checkmark.circle",
                     title: "Completed",
                     value: "\(completedCount)",
-                    color: LGColors.ImageEditing.main
+                    color: LGColors.TextGeneration.main
                 )
             }
         }
@@ -87,7 +88,7 @@ struct DashboardView: View {
         VStack(spacing: LGSpacing.md) {
             Text("Quick Actions")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             VStack(spacing: LGSpacing.sm) {
@@ -96,7 +97,7 @@ struct DashboardView: View {
                         icon: "plus.circle.fill",
                         title: "New Generation",
                         subtitle: "Create AI content",
-                        color: LGColors.VideoGeneration.main
+                        color: .white
                     )
                 }
 
@@ -105,7 +106,7 @@ struct DashboardView: View {
                         icon: "chart.bar.fill",
                         title: "View Usage",
                         subtitle: "Check credit usage",
-                        color: LGColors.blue500
+                        color: LGColors.foregroundSecondary
                     )
                 }
 
@@ -114,7 +115,7 @@ struct DashboardView: View {
                         icon: "creditcard.fill",
                         title: "Manage Billing",
                         subtitle: "Subscription & payments",
-                        color: LGColors.MusicGeneration.main
+                        color: LGColors.AudioSpeech.main
                     )
                 }
             }
@@ -128,27 +129,28 @@ struct DashboardView: View {
             HStack {
                 Text("Recent Activity")
                     .font(LGFonts.h3)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 Spacer()
 
                 NavigationLink("View All", destination: GenerationsListView())
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.blue500)
+                    .foregroundColor(LGColors.foregroundSecondary)
             }
 
             if isLoading {
                 ProgressView()
                     .padding(LGSpacing.xl)
+                    .tint(.white)
             } else if recentGenerations.isEmpty {
                 VStack(spacing: LGSpacing.md) {
                     Image(systemName: "tray")
                         .font(.system(size: 48))
-                        .foregroundColor(LGColors.neutral400)
+                        .foregroundColor(LGColors.foregroundTertiary)
 
                     Text("No recent activity")
                         .font(LGFonts.body)
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(LGColors.foregroundSecondary)
 
                     NavigationLink(destination: HomeView()) {
                         LGButton("Create Your First Generation", style: .primary, fullWidth: false) {
@@ -158,8 +160,13 @@ struct DashboardView: View {
                 }
                 .padding(LGSpacing.xl)
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                .background(LGColors.backgroundCard)
                 .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(LGColors.border, lineWidth: 1)
+                )
+                .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
             } else {
                 VStack(spacing: LGSpacing.sm) {
                     ForEach(recentGenerations.prefix(5)) { generation in
@@ -225,16 +232,21 @@ struct StatCard: View {
 
             Text(value)
                 .font(.system(size: 28, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Text(title)
                 .font(LGFonts.small)
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(LGColors.foregroundSecondary)
         }
         .padding(LGSpacing.md)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
     }
 }
 
@@ -250,8 +262,12 @@ struct QuickActionRow: View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.2))
+                    .fill(color.opacity(0.15))
                     .frame(width: 48, height: 48)
+                    .overlay(
+                        Circle()
+                            .stroke(color.opacity(0.3), lineWidth: 1)
+                    )
 
                 Image(systemName: icon)
                     .font(.system(size: 20))
@@ -261,22 +277,27 @@ struct QuickActionRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 Text(subtitle)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(LGColors.foregroundSecondary)
             }
 
             Spacer()
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 14))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundTertiary)
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 3)
     }
 }
 
@@ -290,8 +311,12 @@ struct GenerationRow: View {
             // Status icon
             ZStack {
                 Circle()
-                    .fill(statusColor.opacity(0.2))
+                    .fill(statusColor.opacity(0.15))
                     .frame(width: 40, height: 40)
+                    .overlay(
+                        Circle()
+                            .stroke(statusColor.opacity(0.3), lineWidth: 1)
+                    )
 
                 Image(systemName: statusIcon)
                     .font(.system(size: 16))
@@ -301,27 +326,40 @@ struct GenerationRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(generation.title ?? generation.modelId)
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .lineLimit(1)
 
                 Text(timeAgo)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(LGColors.foregroundSecondary)
             }
 
             Spacer()
 
-            Text("\(generation.creditsUsed)★")
+            Text("\(generation.creditsUsed)")
                 .font(LGFonts.small.weight(.medium))
-                .foregroundColor(LGColors.VideoGeneration.main)
+                .foregroundColor(.white)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.white.opacity(0.1))
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 14))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(LGColors.foregroundTertiary)
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(LGColors.backgroundCard)
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(LGColors.border, lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 3)
     }
 
     private var statusColor: Color {
@@ -362,6 +400,7 @@ struct DashboardView_Previews: PreviewProvider {
             DashboardView()
                 .environmentObject(CreditsViewModel())
         }
+        .preferredColorScheme(.dark)
     }
 }
 #endif

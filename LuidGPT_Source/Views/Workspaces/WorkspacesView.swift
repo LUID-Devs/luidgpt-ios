@@ -13,7 +13,7 @@ struct WorkspacesView: View {
 
     var body: some View {
         ZStack {
-            LGColors.background.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: LGSpacing.lg) {
@@ -52,11 +52,11 @@ struct WorkspacesView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Your Workspaces")
                     .font(LGFonts.h3)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 Text("\(viewModel.workspaces.count) workspace\(viewModel.workspaces.count == 1 ? "" : "s")")
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color(white: 0.5))
             }
 
             Spacer()
@@ -70,10 +70,10 @@ struct WorkspacesView: View {
                     Text("New")
                         .font(LGFonts.body.weight(.semibold))
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.horizontal, LGSpacing.md)
                 .padding(.vertical, LGSpacing.sm)
-                .background(LGColors.VideoGeneration.main)
+                .background(.white)
                 .cornerRadius(10)
             }
         }
@@ -85,22 +85,22 @@ struct WorkspacesView: View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             HStack {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(LGColors.success)
+                    .foregroundColor(.white)
                 Text("Current Workspace")
                     .font(LGFonts.small.weight(.semibold))
-                    .foregroundColor(LGColors.success)
+                    .foregroundColor(.white)
             }
 
             VStack(alignment: .leading, spacing: LGSpacing.md) {
                 HStack(spacing: LGSpacing.md) {
-                    // Workspace icon
+                    // Workspace icon - white with black text
                     ZStack {
                         Circle()
                             .fill(
                                 LinearGradient(
                                     colors: [
-                                        LGColors.VideoGeneration.main,
-                                        LGColors.ImageGeneration.main
+                                        .white,
+                                        Color(white: 0.7)
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -110,18 +110,23 @@ struct WorkspacesView: View {
 
                         Text(workspace.initials)
                             .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(workspace.name)
                             .font(LGFonts.h4)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         if let role = workspace.role {
+                            // Grayscale role badge
                             Text(role.capitalized)
-                                .font(LGFonts.small)
-                                .foregroundColor(LGColors.neutral600)
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundColor(.black)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color(white: 0.6))
+                                .cornerRadius(4)
                         }
 
                         if let memberCount = workspace.memberCount, memberCount > 1 {
@@ -131,7 +136,7 @@ struct WorkspacesView: View {
                                 Text("\(memberCount) members")
                                     .font(LGFonts.small)
                             }
-                            .foregroundColor(LGColors.blue500)
+                            .foregroundColor(Color(white: 0.6))
                         }
                     }
 
@@ -162,19 +167,19 @@ struct WorkspacesView: View {
                         Text("Manage Workspace")
                             .font(LGFonts.body.weight(.semibold))
                     }
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                    .foregroundColor(.black)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 12)
-                    .background(LGColors.VideoGeneration.main.opacity(0.1))
+                    .background(.white)
                     .cornerRadius(10)
                 }
             }
             .padding(LGSpacing.lg)
-            .background(Color.white)
+            .background(Color(white: 0.07))
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(LGColors.success, lineWidth: 2)
+                    .stroke(.white, lineWidth: 2)
             )
         }
     }
@@ -185,10 +190,11 @@ struct WorkspacesView: View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             Text("All Workspaces")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             if viewModel.isLoading {
                 ProgressView()
+                    .tint(.white)
                     .padding(LGSpacing.xl)
                     .frame(maxWidth: .infinity)
             } else if viewModel.workspaces.isEmpty {
@@ -215,28 +221,32 @@ struct WorkspacesView: View {
         VStack(spacing: LGSpacing.md) {
             Image(systemName: "building.2")
                 .font(.system(size: 48))
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(Color(white: 0.3))
 
             Text("No workspaces yet")
                 .font(LGFonts.body)
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color(white: 0.5))
 
             Button(action: {
                 showingCreateWorkspace = true
             }) {
                 Text("Create Your First Workspace")
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding(.horizontal, LGSpacing.lg)
                     .padding(.vertical, LGSpacing.md)
-                    .background(LGColors.VideoGeneration.main)
+                    .background(.white)
                     .cornerRadius(10)
             }
         }
         .padding(LGSpacing.xl)
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -249,35 +259,44 @@ struct WorkspaceCard: View {
 
     var body: some View {
         HStack(spacing: LGSpacing.md) {
-            // Workspace icon
+            // Workspace icon with white border
             ZStack {
                 Circle()
-                    .fill(LGColors.neutral100)
+                    .fill(Color(white: 0.15))
                     .frame(width: 48, height: 48)
+                    .overlay(
+                        Circle()
+                            .stroke(.white, lineWidth: 1)
+                    )
 
                 Text(workspace.initials)
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(LGColors.neutral700)
+                    .foregroundColor(.white)
             }
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(workspace.name)
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 HStack(spacing: LGSpacing.xs) {
                     if let role = workspace.role {
+                        // Grayscale role badge
                         Text(role.capitalized)
-                            .font(LGFonts.small)
-                            .foregroundColor(LGColors.neutral600)
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(white: 0.5))
+                            .cornerRadius(3)
                     }
 
                     if let memberCount = workspace.memberCount, memberCount > 1 {
                         Text("•")
-                            .foregroundColor(LGColors.neutral400)
+                            .foregroundColor(Color(white: 0.4))
                         Text("\(memberCount) members")
                             .font(LGFonts.small)
-                            .foregroundColor(LGColors.neutral600)
+                            .foregroundColor(Color(white: 0.5))
                     }
                 }
             }
@@ -286,22 +305,26 @@ struct WorkspaceCard: View {
 
             if isCurrent {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(LGColors.success)
+                    .foregroundColor(.white)
             } else {
                 Button(action: onSwitch) {
                     Text("Switch")
                         .font(LGFonts.small.weight(.semibold))
-                        .foregroundColor(LGColors.blue500)
+                        .foregroundColor(.black)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(LGColors.blue500.opacity(0.1))
+                        .background(.white)
                         .cornerRadius(8)
                 }
             }
         }
         .padding(LGSpacing.md)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 }
 
@@ -320,15 +343,15 @@ struct WorkspaceStatBadge: View {
                 Text(value)
                     .font(.system(size: 14, weight: .bold))
             }
-            .foregroundColor(LGColors.VideoGeneration.main)
+            .foregroundColor(.white)
 
             Text(label)
                 .font(.system(size: 10))
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color(white: 0.5))
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
-        .background(LGColors.neutral100)
+        .background(Color(white: 0.15))
         .cornerRadius(8)
     }
 }
@@ -343,19 +366,24 @@ struct CreateWorkspaceSheet: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LGColors.background.ignoresSafeArea()
+                Color.black.ignoresSafeArea()
 
                 VStack(spacing: LGSpacing.lg) {
                     VStack(alignment: .leading, spacing: LGSpacing.sm) {
                         Text("Workspace Name")
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         TextField("Enter workspace name", text: $workspaceName)
                             .font(LGFonts.body)
+                            .foregroundColor(.white)
                             .padding(LGSpacing.md)
-                            .background(Color.white)
+                            .background(Color(white: 0.07))
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                            )
                     }
 
                     Button(action: {
@@ -364,10 +392,10 @@ struct CreateWorkspaceSheet: View {
                     }) {
                         Text("Create Workspace")
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, LGSpacing.md)
-                            .background(workspaceName.isEmpty ? LGColors.neutral400 : LGColors.VideoGeneration.main)
+                            .background(workspaceName.isEmpty ? Color(white: 0.3) : .white)
                             .cornerRadius(10)
                     }
                     .disabled(workspaceName.isEmpty)
@@ -383,6 +411,7 @@ struct CreateWorkspaceSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .foregroundColor(.white)
                 }
             }
         }

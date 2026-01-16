@@ -17,7 +17,7 @@ struct ModelDetailView: View {
 
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             if viewModel.modelLoading {
                 loadingView
@@ -29,7 +29,7 @@ struct ModelDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarBackground(Color.white, for: .navigationBar)
+        .toolbarBackground(Color.black, for: .navigationBar)
         .task {
             await viewModel.loadModel(modelId: modelId)
             await creditsViewModel.fetchBalance()
@@ -68,26 +68,26 @@ struct ModelDetailView: View {
                     Text("Models")
                         .font(LGFonts.small)
                 }
-                .foregroundColor(LGColors.neutral400)
+                .foregroundColor(Color.white.opacity(0.6))
             }
 
             if let category = model.category {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 10))
-                    .foregroundColor(LGColors.neutral600)
+                    .foregroundColor(Color.white.opacity(0.4))
 
                 Text(category.name)
                     .font(LGFonts.small)
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(Color.white.opacity(0.6))
             }
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 10))
-                .foregroundColor(LGColors.neutral600)
+                .foregroundColor(Color.white.opacity(0.4))
 
             Text(model.name)
                 .font(LGFonts.small.weight(.semibold))
-                .foregroundColor(LGColors.foreground)
+                .foregroundColor(.white)
                 .lineLimit(1)
         }
     }
@@ -121,42 +121,48 @@ struct ModelDetailView: View {
 
             // Title & provider
             VStack(alignment: .leading, spacing: 4) {
-                Text(model.name).font(LGFonts.h3).foregroundColor(.black)
+                Text(model.name).font(LGFonts.h3).foregroundColor(.white)
                 if let provider = model.providerDisplayName {
-                    Text("by \(provider)").font(LGFonts.small).foregroundColor(LGColors.neutral600)
+                    Text("by \(provider)").font(LGFonts.small).foregroundColor(Color.white.opacity(0.5))
                 }
             }
 
             // Description
             if let description = model.description {
-                Text(description).font(LGFonts.small).foregroundColor(LGColors.neutral700).lineLimit(4)
+                Text(description).font(LGFonts.small).foregroundColor(Color.white.opacity(0.7)).lineLimit(4)
             }
 
             // Quick stats
             HStack(spacing: LGSpacing.sm) {
-                statBadge(icon: "sparkles", value: "\(viewModel.effectiveCreditCost)", label: "Credits", color: LGColors.VideoGeneration.main)
-                statBadge(icon: "clock", value: viewModel.speedEstimate, label: "Speed", color: .green)
-                statBadge(icon: "shield", value: model.tier.displayName, label: "Tier", color: .purple)
+                statBadge(icon: "sparkles", value: "\(viewModel.effectiveCreditCost)", label: "Credits", color: .white)
+                statBadge(icon: "clock", value: viewModel.speedEstimate, label: "Speed", color: Color(white: 0.7))
+                statBadge(icon: "shield", value: model.tier.displayName, label: "Tier", color: tierGrayscaleColor(for: model.tier))
             }
 
             // Category badge
             if let category = model.category {
-                let colors = ModelCategoryConstants.colors(for: category.slug)
+                let grayscaleColor = categoryGrayscaleColor(for: category.slug)
                 HStack(spacing: 4) {
                     Image(systemName: Category.icon(for: category.slug)).font(.system(size: 11, weight: .semibold))
                     Text(category.name).font(.system(size: 12, weight: .semibold))
                 }
-                .padding(.horizontal, 10).padding(.vertical, 6).background(colors.background).foregroundColor(colors.foreground).cornerRadius(8)
+                .padding(.horizontal, 10).padding(.vertical, 6).background(grayscaleColor).foregroundColor(.white).cornerRadius(8)
             }
         }
-        .padding(LGSpacing.md).background(Color.white).cornerRadius(12)
+        .padding(LGSpacing.md)
+        .background(Color(white: 0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+        )
     }
 
     private func categoryPlaceholder(model: ReplicateModel) -> some View {
-        let colors = ModelCategoryConstants.colors(for: model.categorySlug)
+        let grayscaleColor = categoryGrayscaleColor(for: model.categorySlug)
         return ZStack {
-            colors.background
-            Image(systemName: Category.icon(for: model.categorySlug)).font(.system(size: 48)).foregroundColor(colors.foreground.opacity(0.5))
+            grayscaleColor
+            Image(systemName: Category.icon(for: model.categorySlug)).font(.system(size: 48)).foregroundColor(.white)
         }
     }
 
@@ -167,28 +173,34 @@ struct ModelDetailView: View {
                 Text(value).font(.system(size: 13, weight: .bold))
             }
             .foregroundColor(color)
-            Text(label).font(.system(size: 10)).foregroundColor(LGColors.neutral600)
+            Text(label).font(.system(size: 10)).foregroundColor(Color.white.opacity(0.5))
         }
-        .frame(maxWidth: .infinity).padding(.vertical, 8).background(LGColors.neutral100).cornerRadius(8)
+        .frame(maxWidth: .infinity).padding(.vertical, 8).background(Color.white.opacity(0.05)).cornerRadius(8)
     }
 
     private func creditBalanceCard() -> some View {
         HStack(spacing: LGSpacing.md) {
             ZStack {
-                Circle().fill(LGColors.VideoGeneration.main.opacity(0.2)).frame(width: 40, height: 40)
-                Image(systemName: "sparkles").font(.system(size: 16)).foregroundColor(LGColors.VideoGeneration.main)
+                Circle().fill(Color.white.opacity(0.1)).frame(width: 40, height: 40)
+                Image(systemName: "sparkles").font(.system(size: 16)).foregroundColor(.white)
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text("Your Balance").font(.system(size: 11)).foregroundColor(LGColors.neutral600)
+                Text("Your Balance").font(.system(size: 11)).foregroundColor(Color.white.opacity(0.5))
                 if creditsViewModel.isLoading {
                     ProgressView().scaleEffect(0.7)
                 } else {
-                    Text("\(creditsViewModel.totalCredits) credits").font(.system(size: 16, weight: .bold)).foregroundColor(.black)
+                    Text("\(creditsViewModel.totalCredits) credits").font(.system(size: 16, weight: .bold)).foregroundColor(.white)
                 }
             }
             Spacer()
         }
-        .padding(LGSpacing.md).background(Color.white).cornerRadius(12)
+        .padding(LGSpacing.md)
+        .background(Color(white: 0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+        )
     }
 
     // MARK: - Right Column (Form & Results)
@@ -258,19 +270,26 @@ struct ModelDetailView: View {
 
     private var schemaLoadingView: some View {
         VStack(spacing: LGSpacing.md) {
-            ProgressView().tint(LGColors.VideoGeneration.main)
-            Text("Loading form...").font(LGFonts.small).foregroundColor(LGColors.neutral600)
+            ProgressView().tint(.white)
+            Text("Loading form...").font(LGFonts.small).foregroundColor(Color.white.opacity(0.6))
         }
-        .frame(maxWidth: .infinity).padding(LGSpacing.xl).background(Color.white).cornerRadius(12)
+        .frame(maxWidth: .infinity)
+        .padding(LGSpacing.xl)
+        .background(Color(white: 0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+        )
     }
 
     private func recentGenerationsView() -> some View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
             HStack {
-                Image(systemName: "clock.fill").foregroundColor(LGColors.VideoGeneration.main)
-                Text("Recent Generations").font(LGFonts.h4).foregroundColor(.black)
+                Image(systemName: "clock.fill").foregroundColor(.white)
+                Text("Recent Generations").font(LGFonts.h4).foregroundColor(.white)
                 Spacer()
-                Text("\(viewModel.recentGenerations.count)").font(LGFonts.small).foregroundColor(LGColors.neutral600).padding(.horizontal, 8).padding(.vertical, 4).background(LGColors.neutral100).cornerRadius(6)
+                Text("\(viewModel.recentGenerations.count)").font(LGFonts.small).foregroundColor(Color.white.opacity(0.6)).padding(.horizontal, 8).padding(.vertical, 4).background(Color.white.opacity(0.1)).cornerRadius(6)
             }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: LGSpacing.sm) {
@@ -280,14 +299,20 @@ struct ModelDetailView: View {
                 }
             }
         }
-        .padding(LGSpacing.md).background(Color.white).cornerRadius(12)
+        .padding(LGSpacing.md)
+        .background(Color(white: 0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+        )
     }
 
     private func generationThumbnail(_ generation: ModelGeneration) -> some View {
         ZStack {
-            Color.gray.opacity(0.3)
+            Color(white: 0.2)
             if generation.isImageOutput {
-                Image(systemName: "photo").font(.system(size: 32)).foregroundColor(.gray)
+                Image(systemName: "photo").font(.system(size: 32)).foregroundColor(Color.white.opacity(0.5))
             } else if generation.isVideoOutput {
                 Image(systemName: "play.circle.fill").font(.system(size: 32)).foregroundColor(.white)
             }
@@ -299,19 +324,44 @@ struct ModelDetailView: View {
 
     private var loadingView: some View {
         VStack(spacing: LGSpacing.lg) {
-            ProgressView().scaleEffect(1.5).tint(LGColors.VideoGeneration.main)
-            Text("Loading model...").font(LGFonts.body).foregroundColor(LGColors.foreground)
+            ProgressView().scaleEffect(1.5).tint(.white)
+            Text("Loading model...").font(LGFonts.body).foregroundColor(.white)
         }
     }
 
     private func errorView(error: String) -> some View {
         VStack(spacing: LGSpacing.lg) {
-            Image(systemName: "exclamationmark.triangle").font(.system(size: 48)).foregroundColor(LGColors.errorText)
-            Text("Model Not Found").font(LGFonts.h3).foregroundColor(LGColors.foreground)
-            Text(error).font(LGFonts.small).foregroundColor(LGColors.foregroundSecondary).multilineTextAlignment(.center)
+            Image(systemName: "exclamationmark.triangle").font(.system(size: 48)).foregroundColor(.red)
+            Text("Model Not Found").font(LGFonts.h3).foregroundColor(.white)
+            Text(error).font(LGFonts.small).foregroundColor(Color.white.opacity(0.7)).multilineTextAlignment(.center)
             LGButton("Go Back", style: .outline, fullWidth: false) { dismiss() }
         }
         .padding(LGSpacing.xl)
+    }
+
+    // MARK: - Helper Functions
+
+    private func categoryGrayscaleColor(for slug: String) -> Color {
+        switch slug {
+        case "text-to-image": return Color(white: 0.2)
+        case "text-to-video": return Color(white: 0.25)
+        case "image-to-image": return Color(white: 0.3)
+        case "video-to-video": return Color(white: 0.35)
+        case "image-to-video": return Color(white: 0.4)
+        case "text-to-speech": return Color(white: 0.45)
+        case "speech-to-text": return Color(white: 0.5)
+        case "text-to-3d": return Color(white: 0.55)
+        default: return Color(white: 0.3)
+        }
+    }
+
+    private func tierGrayscaleColor(for tier: ReplicateModel.Tier) -> Color {
+        switch tier {
+        case .free: return Color(white: 0.4)
+        case .standard: return Color(white: 0.6)
+        case .premium: return Color(white: 0.8)
+        case .enterprise: return Color(white: 0.9)
+        }
     }
 }
 

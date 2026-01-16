@@ -35,6 +35,7 @@ struct LoginView: View {
                 Spacer(minLength: 40)
             }
         }
+        .background(LGColors.background)
         .sheet(isPresented: $showingForgotPassword) {
             ForgotPasswordView()
         }
@@ -44,33 +45,42 @@ struct LoginView: View {
 
     private var headerSection: some View {
         VStack(spacing: 16) {
-            // App logo
+            // Elegant black and white logo
             ZStack {
+                // Outer circle with white border
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                LGColors.VideoGeneration.main,
-                                LGColors.ImageGeneration.main
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .stroke(LGColors.border, lineWidth: 2)
                     .frame(width: 80, height: 80)
 
+                // Inner circle with gradient fill
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                LGColors.neutral800,
+                                LGColors.background
+                            ],
+                            center: .center,
+                            startRadius: 5,
+                            endRadius: 40
+                        )
+                    )
+                    .frame(width: 76, height: 76)
+
+                // Sparkles icon in white
                 Image(systemName: "sparkles")
                     .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(LGColors.foreground)
             }
+            .shadow(color: LGColors.glow, radius: 20, x: 0, y: 0)
 
             Text("Welcome back")
                 .font(LGFonts.h2)
-                .foregroundColor(.black)
+                .foregroundColor(LGColors.foreground)
 
             Text("Login to continue creating with AI")
                 .font(LGFonts.body)
-                .foregroundColor(.gray)
+                .foregroundColor(LGColors.foregroundSecondary)
         }
     }
 
@@ -108,7 +118,7 @@ struct LoginView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Email")
                     .font(LGFonts.label)
-                    .foregroundColor(.black)
+                    .foregroundColor(LGColors.foreground)
 
                 LGTextField(
                     text: $email,
@@ -129,14 +139,14 @@ struct LoginView: View {
                 HStack {
                     Text("Password")
                         .font(LGFonts.label)
-                        .foregroundColor(.black)
+                        .foregroundColor(LGColors.foreground)
 
                     Spacer()
 
                     Button(action: { showingForgotPassword = true }) {
                         Text("Forgot?")
                             .font(LGFonts.small)
-                            .foregroundColor(LGColors.VideoGeneration.main)
+                            .foregroundColor(LGColors.foregroundSecondary)
                     }
                 }
 
@@ -168,12 +178,12 @@ struct LoginView: View {
             HStack(spacing: 4) {
                 Text("Don't have an account?")
                     .font(LGFonts.body)
-                    .foregroundColor(.gray)
+                    .foregroundColor(LGColors.foregroundSecondary)
 
                 Button(action: { showingRegister = true }) {
                     Text("Sign up")
                         .font(LGFonts.body.weight(.semibold))
-                        .foregroundColor(LGColors.VideoGeneration.main)
+                        .foregroundColor(LGColors.foreground)
                 }
             }
             .padding(.top, 8)

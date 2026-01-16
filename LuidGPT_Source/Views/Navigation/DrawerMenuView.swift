@@ -3,7 +3,7 @@
 //  LuidGPT
 //
 //  Professional slide-out drawer navigation menu
-//  Matches luidgpt-frontend mobile menu design
+//  Redesigned with sophisticated black & white aesthetic
 //
 
 import SwiftUI
@@ -34,7 +34,7 @@ struct DrawerMenuView: View {
         ZStack {
             // Background overlay
             if isOpen {
-                Color.black.opacity(0.5)
+                LGColors.overlay
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -57,14 +57,14 @@ struct DrawerMenuView: View {
                             creditBalanceSection
 
                             Divider()
-                                .background(LGColors.neutral200)
+                                .background(LGColors.divider)
                                 .padding(.vertical, LGSpacing.md)
 
                             // Navigation Links
                             navigationSection
 
                             Divider()
-                                .background(LGColors.neutral200)
+                                .background(LGColors.divider)
                                 .padding(.vertical, LGSpacing.md)
 
                             // User Actions
@@ -79,7 +79,7 @@ struct DrawerMenuView: View {
                     userInfoFooter
                 }
                 .frame(width: 280)
-                .background(Color.white)
+                .background(LGColors.backgroundElevated)
                 .offset(x: isOpen ? 0 : -280)
                 .animation(.easeInOut(duration: 0.3), value: isOpen)
 
@@ -94,7 +94,7 @@ struct DrawerMenuView: View {
         HStack {
             Text("LuidGPT")
                 .font(LGFonts.h3)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
 
             Spacer()
 
@@ -105,17 +105,17 @@ struct DrawerMenuView: View {
             }) {
                 Image(systemName: "xmark")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(LGColors.foregroundSecondary)
                     .padding(8)
             }
         }
         .padding(.horizontal, LGSpacing.lg)
         .padding(.vertical, LGSpacing.md)
-        .background(Color.white)
+        .background(LGColors.backgroundElevated)
         .overlay(
             Rectangle()
                 .frame(height: 1)
-                .foregroundColor(LGColors.neutral200),
+                .foregroundColor(LGColors.divider),
             alignment: .bottom
         )
     }
@@ -130,20 +130,21 @@ struct DrawerMenuView: View {
             HStack(spacing: LGSpacing.md) {
                 Image(systemName: "sparkles")
                     .font(.system(size: 20))
-                    .foregroundColor(LGColors.VideoGeneration.main)
+                    .foregroundColor(.white)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Credits")
                         .font(LGFonts.small)
-                        .foregroundColor(LGColors.neutral600)
+                        .foregroundColor(LGColors.foregroundSecondary)
 
                     if creditsViewModel.isLoading {
                         ProgressView()
                             .scaleEffect(0.8)
+                            .tint(.white)
                     } else {
                         Text("\(creditsViewModel.totalCredits)")
                             .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                 }
 
@@ -151,11 +152,15 @@ struct DrawerMenuView: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14))
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundTertiary)
             }
             .padding(LGSpacing.md)
-            .background(LGColors.neutral100)
+            .background(LGColors.backgroundCard)
             .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(LGColors.border, lineWidth: 1)
+            )
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -234,18 +239,22 @@ struct DrawerMenuView: View {
                 HStack(spacing: LGSpacing.sm) {
                     Image(systemName: "rectangle.portrait.and.arrow.right")
                         .font(.system(size: 20))
-                        .foregroundColor(.red)
+                        .foregroundColor(LGColors.error)
 
                     Text("Logout")
                         .font(LGFonts.body)
-                        .foregroundColor(.red)
+                        .foregroundColor(LGColors.errorText)
 
                     Spacer()
                 }
                 .padding(.vertical, LGSpacing.md)
                 .padding(.horizontal, LGSpacing.sm)
-                .background(Color.white)
+                .background(LGColors.backgroundCard)
                 .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(LGColors.errorBorder, lineWidth: 1)
+                )
             }
             .buttonStyle(PlainButtonStyle())
         }
@@ -257,7 +266,7 @@ struct DrawerMenuView: View {
         VStack(spacing: 0) {
             Rectangle()
                 .frame(height: 1)
-                .foregroundColor(LGColors.neutral200)
+                .foregroundColor(LGColors.divider)
 
             if let user = authViewModel.currentUser {
                 HStack(spacing: LGSpacing.md) {
@@ -267,8 +276,8 @@ struct DrawerMenuView: View {
                             .fill(
                                 LinearGradient(
                                     colors: [
-                                        LGColors.VideoGeneration.main,
-                                        LGColors.ImageGeneration.main
+                                        Color.white.opacity(0.9),
+                                        Color(hex: "#D4D4D4")
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -278,25 +287,25 @@ struct DrawerMenuView: View {
 
                         Text(user.initials)
                             .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(user.fullName)
                             .font(LGFonts.body.weight(.semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .lineLimit(1)
 
                         Text(user.email)
                             .font(LGFonts.small)
-                            .foregroundColor(LGColors.neutral600)
+                            .foregroundColor(LGColors.foregroundSecondary)
                             .lineLimit(1)
                     }
 
                     Spacer()
                 }
                 .padding(LGSpacing.lg)
-                .background(Color.white)
+                .background(LGColors.backgroundElevated)
             }
         }
     }
@@ -323,23 +332,27 @@ struct DrawerMenuButton: View {
             HStack(spacing: LGSpacing.sm) {
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(LGColors.neutral700)
+                    .foregroundColor(LGColors.foregroundSecondary)
                     .frame(width: 24)
 
                 Text(title)
                     .font(LGFonts.body)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14))
-                    .foregroundColor(LGColors.neutral400)
+                    .foregroundColor(LGColors.foregroundTertiary)
             }
             .padding(.vertical, LGSpacing.md)
             .padding(.horizontal, LGSpacing.sm)
-            .background(Color.white)
+            .background(LGColors.backgroundCard)
             .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(LGColors.border, lineWidth: 0.5)
+            )
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -353,6 +366,7 @@ struct DrawerMenuView_Previews: PreviewProvider {
         DrawerMenuView(isOpen: .constant(true), destination: .constant(nil))
             .environmentObject(AuthViewModel())
             .environmentObject(CreditsViewModel())
+            .preferredColorScheme(.dark)
     }
 }
 #endif

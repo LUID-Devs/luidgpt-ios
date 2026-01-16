@@ -12,7 +12,7 @@ struct BillingView: View {
 
     var body: some View {
         ZStack {
-            LGColors.background.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: LGSpacing.lg) {
@@ -20,11 +20,11 @@ struct BillingView: View {
                     VStack(spacing: LGSpacing.sm) {
                         Text("Choose Your Plan")
                             .font(LGFonts.h2)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         Text("Upgrade to unlock more credits and features")
                             .font(LGFonts.body)
-                            .foregroundColor(LGColors.neutral600)
+                            .foregroundColor(Color(white: 0.5))
                             .multilineTextAlignment(.center)
                     }
                     .padding(.top, LGSpacing.lg)
@@ -41,7 +41,7 @@ struct BillingView: View {
                                 "Community support",
                                 "10 generations/month"
                             ],
-                            color: LGColors.ImageEditing.main,
+                            tier: "free",
                             isSelected: selectedPlan == "free"
                         ) {
                             selectedPlan = "free"
@@ -58,7 +58,7 @@ struct BillingView: View {
                                 "Unlimited generations",
                                 "Higher quality outputs"
                             ],
-                            color: LGColors.blue500,
+                            tier: "standard",
                             isSelected: selectedPlan == "standard",
                             isPopular: true
                         ) {
@@ -77,7 +77,7 @@ struct BillingView: View {
                                 "API access",
                                 "Team collaboration"
                             ],
-                            color: LGColors.VideoGeneration.main,
+                            tier: "premium",
                             isSelected: selectedPlan == "premium"
                         ) {
                             selectedPlan = "premium"
@@ -86,8 +86,16 @@ struct BillingView: View {
 
                     // Subscribe Button
                     if selectedPlan != nil {
-                        LGButton("Subscribe to \(selectedPlan!.capitalized)", style: .primary, fullWidth: true) {
+                        Button(action: {
                             // Handle subscription
+                        }) {
+                            Text("Subscribe to \(selectedPlan!.capitalized)")
+                                .font(LGFonts.body.weight(.semibold))
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, LGSpacing.md)
+                                .background(.white)
+                                .cornerRadius(10)
                         }
                         .padding(.top, LGSpacing.md)
                     }
@@ -108,54 +116,48 @@ struct PricingCard: View {
     let period: String
     let credits: String
     let features: [String]
-    let color: Color
+    let tier: String
     let isSelected: Bool
     var isPopular: Bool = false
     let onSelect: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: LGSpacing.md) {
-            // Header
+            // Header with Tier Badge
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(name)
                         .font(LGFonts.h4)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text(price)
                             .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                         Text(period)
                             .font(LGFonts.small)
-                            .foregroundColor(LGColors.neutral600)
+                            .foregroundColor(Color(white: 0.5))
                     }
                 }
 
                 Spacer()
 
-                if isPopular {
-                    Text("POPULAR")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(color)
-                        .cornerRadius(4)
-                }
+                // Tier Badge (grayscale)
+                tierBadge
             }
 
             // Credits
             HStack {
                 Image(systemName: "sparkles")
-                    .foregroundColor(color)
+                    .foregroundColor(.white)
                 Text(credits)
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(color)
+                    .foregroundColor(.white)
             }
 
             Divider()
+                .background(Color.white.opacity(0.2))
 
             // Features
             VStack(alignment: .leading, spacing: LGSpacing.sm) {
@@ -163,11 +165,11 @@ struct PricingCard: View {
                     HStack(spacing: LGSpacing.sm) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 16))
-                            .foregroundColor(color)
+                            .foregroundColor(.white)
 
                         Text(feature)
                             .font(LGFonts.small)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                 }
             }
@@ -176,20 +178,62 @@ struct PricingCard: View {
             Button(action: onSelect) {
                 Text(isSelected ? "Selected" : "Select Plan")
                     .font(LGFonts.body.weight(.semibold))
-                    .foregroundColor(isSelected ? .white : color)
+                    .foregroundColor(isSelected ? .black : .white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 12)
-                    .background(isSelected ? color : color.opacity(0.1))
+                    .background(isSelected ? .white : Color(white: 0.15))
                     .cornerRadius(10)
             }
         }
         .padding(LGSpacing.lg)
-        .background(Color.white)
+        .background(Color(white: 0.07))
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(isSelected ? color : Color.clear, lineWidth: 2)
+                .stroke(isSelected ? .white : Color.white.opacity(0.1), lineWidth: isSelected ? 2 : 1)
         )
+    }
+
+    @ViewBuilder
+    private var tierBadge: some View {
+        let badgeColor = getBadgeColor()
+
+        if isPopular {
+            VStack(spacing: 4) {
+                Text("POPULAR")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(.white)
+                    .cornerRadius(4)
+
+                Text(tier.uppercased())
+                    .font(.system(size: 9, weight: .semibold))
+                    .foregroundColor(badgeColor)
+            }
+        } else {
+            Text(tier.uppercased())
+                .font(.system(size: 10, weight: .bold))
+                .foregroundColor(.black)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(badgeColor)
+                .cornerRadius(4)
+        }
+    }
+
+    private func getBadgeColor() -> Color {
+        switch tier {
+        case "free":
+            return Color(white: 0.3)
+        case "standard":
+            return Color(white: 0.6)
+        case "premium":
+            return Color(white: 0.9)
+        default:
+            return Color(white: 0.5)
+        }
     }
 }
 
